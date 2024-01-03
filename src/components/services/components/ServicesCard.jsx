@@ -3,7 +3,7 @@ import { Button } from "@nextui-org/react";
 import "./Services.css";
 const ServicesCard = () => {
   return (
-    <div className="px-[8rem] py-[6rem]">
+    <div className="px-[8rem] py-[1rem]">
       <div className="h-[35rem]  ServicesCard">
         <div className=" h-[35rem] bg-white mx-[10rem] w-[25rem] bg-opacity-50">
           <div className="px-[5rem] py-[5rem]">
