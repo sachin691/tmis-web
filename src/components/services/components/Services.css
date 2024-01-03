@@ -4,3 +4,9 @@
     background-size: cover;
     background-position: right;
   }
+
+
+  .servicesBg {
+    background: rgb(202,203,228);
+background: linear-gradient(90deg, rgba(202,203,228,1) 0%, rgba(235,225,236,1) 100%);
+  }
