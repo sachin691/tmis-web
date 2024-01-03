@@ -16,9 +16,9 @@ const HomeServices = () => {
         {services.map((data, index) => (
           <div
             key={index}
-            className="bg-white text-black p-[3rem] w-[15rem] rounded-3xl flex justify-center items-center hover:scale-110 duration-100 font-['rubik_doodle_shadow'] font-bold leading-5"
+            className="bg-white cursor-pointer text-black p-[3rem] w-[15rem] rounded-3xl flex justify-center items-center hover:scale-110 duration-100 font-['rubik_doodle_shadow'] font-bold leading-5"
           >
-            <p className="text-center cursor-pointer">{data}</p>
+            <p className="text-center">{data}</p>
           </div>
         ))}
       </div>
