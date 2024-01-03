@@ -2,7 +2,7 @@ import React from "react";
 import ServicesCard from "./components/ServicesCard";
 const Services = () => {
   return (
-    <div>
+    <div className="bg-[#F2F3F2]">
       <ServicesCard />
       <ServicesCard />
       <ServicesCard />
