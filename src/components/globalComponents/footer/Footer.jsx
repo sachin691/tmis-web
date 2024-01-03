@@ -3,19 +3,20 @@ import { FaPhone } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { IoLocation } from "react-icons/io5";
 import { Button } from "@nextui-org/react";
+
 const Footer = () => {
   return (
-    <div className=" bg-slate-50">
-      <div className="mx-[8rem] py-[3rem]">
-        <div className="grid grid-cols-3 gap-12">
+    <div className="bg-slate-50">
+      <div className="mx-[2rem] md:mx-[4rem] lg:mx-[8rem] py-[3rem]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="p-[2rem]">
-            <p className="font-bold text-xl ">TMIS SOLUTIONS, CO., LTD</p>
+            <p className="font-bold text-xl">TMIS SOLUTIONS, CO., LTD</p>
             <p className="mt-[1rem]">
               As a leading provider in the industry, TMIS is dedicated to
               serving international customers with utmost values.
             </p>
           </div>
-          <div className="p-[2rem] px-[8rem]">
+          <div className="p-[2rem]">
             <p className="p-[0.5rem] font-semibold text-[16px]">Services</p>
             <p className="p-[0.5rem] font-semibold text-[16px]">About</p>
             <p className="p-[0.5rem] font-semibold text-[16px]">Pricing</p>

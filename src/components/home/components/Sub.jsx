@@ -3,7 +3,7 @@ import { Button } from "@nextui-org/react";
 import "./Home.css";
 const Sub = () => {
   return (
-    <div className="h-[52rem]  items-center sub">
+    <div className="h-auto lg:h-[52rem]  items-center sub">
       <div className="w-full flex flex-col items-center">
         <div className="text-center mx-[10rem] text-white">
           <h1 className="font-['rubik_doodle_shadow'] font-bold text-[50px] pt-[4rem]">
@@ -41,7 +41,7 @@ const Sub = () => {
           <Button
             size="lg"
             radius="full"
-            className="bg-[#0e3570] text-white mt-[6rem] text-xl"
+            className="bg-[#0e3570] text-white mt-[6rem] text-xl mb-[1rem]"
           >
             Contact Us
           </Button>
