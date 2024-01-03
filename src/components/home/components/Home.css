@@ -1,0 +1,20 @@
+.main {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0.8)), url("../../../globalAssets/supportLady.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+  }
+
+  .sub {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0.8)), url("../../../globalAssets/subBg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+  }
+
+  .homeServices {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0.8)), url("../../../globalAssets/homeServices.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+  }
