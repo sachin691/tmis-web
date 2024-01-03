@@ -1,10 +1,28 @@
-.ServicesCard {
+.ServicesCard1 {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0.8)), url("../../../globalAssets/servicesCard1_80.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: right;
   }
 
+  .ServicesCard2 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0.8)), url("../../../globalAssets/services222.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+  }
+  .ServicesCard3 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0.8)), url("../../../globalAssets/services333.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+  }
+  .ServicesCard4 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0.8)), url("../../../globalAssets/services444.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+  }
 
   .servicesBg {
     background: rgb(202,203,228);

@@ -10,6 +10,32 @@ const Rates = () => {
       hours: "10 Hours",
       listItems: [
         "Minimum of 5 Employees",
+        "unSupported by American Management",
+        "Full Pbx and Call Transfer Features",
+        "Free Training Hours Included",
+        "Utilization of Remote Desktop",
+        "Willingness to Adhere to Additional Security Standards",
+      ],
+    },
+    {
+      stage: "Silver",
+      rate: "$17.50",
+      hours: "20 Hours",
+      listItems: [
+        "Minimum of 10 Employees",
+        "Supported by American Management",
+        "Full Pbx and Call Transfer Features",
+        "Free Training Hours Included",
+        "Utilization of Remote Desktop",
+        "Willingness to Adhere to Additional Security Standards",
+      ],
+    },
+    {
+      stage: "Gold",
+      rate: "$22.50",
+      hours: "30 Hours",
+      listItems: [
+        "Minimum of 15 Employees",
         "Supported by American Management",
         "Full Pbx and Call Transfer Features",
         "Free Training Hours Included",
