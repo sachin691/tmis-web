@@ -24,9 +24,9 @@ const OurMission = () => {
   return (
     <div className="ourMission py-[5rem] lg:py-0">
       <div className="flex flex-col lg:flex-row justify-evenly items-center">
-        <div className="lg:py-[8rem] max-w-[25rem]">
-          <p className="text-white text-6xl font-['rubik_doodle_shadow']">Our Mission Is Empowering Connections</p>
-          <div className="py-[3rem] grid grid-cols-2 gap-[2rem] justify-center items-center">
+        <div className="lg:py-[8rem] lg:max-w-[25rem] flex flex-col items-center lg:items-start">
+          <p className="text-white text-6xl font-['rubik_doodle_shadow'] text-center lg:text-left">Our Mission Is Empowering Connections</p>
+          <div className="py-[3rem] grid grid-cols-2 gap-[2rem] justify-center items-center max-w-[25rem]">
             {achievements.map((data, index) => (
               <div className="flex flex-col gap-2 max-w-[8rem]" key={index}>
                 <span className="text-5xl text-blue-600">{data.name}</span>
