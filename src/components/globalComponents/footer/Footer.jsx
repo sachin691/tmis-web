@@ -2,7 +2,6 @@ import React from "react";
 import { FaPhone } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { IoLocation } from "react-icons/io5";
-import { Button } from "@nextui-org/react";
 
 const Footer = () => {
   return (

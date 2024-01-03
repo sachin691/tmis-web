@@ -1,32 +1,26 @@
-import React from "react";
-import { Image } from "@nextui-org/react";
+// Local Files
 import "./Home.css";
+
+const services = [
+  "International Call Center",
+  "Consumer Satisfaction Survey / Mystery Shoppers",
+  "Promotional Booking Services",
+  "AI Services",
+];
+
 const HomeServices = () => {
   return (
-    <div className="h-[30rem] homeServices">
-      <div className="bg-white opacity-35">
-        <div className=" py-[5rem]">
-          <div className=" flex flex-col items-center ">
-            <div className="text-3xl font-bold">Our services</div>
-            <div className="mx-[2rem] py-[2rem]">
-              <li className="list-none text-xl font-bold ">
-                <ul className="py-[1rem]  hover:bg-[#e5e7eb] cursor-pointer p-[1rem] w-[22rem]">
-                  International Call Center
-                </ul>
-                <ul className="py-[1rem]  hover:bg-[#e5e7eb] cursor-pointer p-[1rem] w-[22rem]">
-                  Consumer Satisfaction Survey / <br />{" "}
-                  <span>Mystery Shoppers</span>
-                </ul>
-                <ul className="py-[1rem]  hover:bg-[#e5e7eb] cursor-pointer p-[1rem] w-[22rem]">
-                  Promotional Booking Services
-                </ul>
-                <ul className="py-[1rem] hover:bg-[#e5e7eb]  cursor-pointer p-[1rem] w-[22rem]">
-                  AI Services
-                </ul>
-              </li>
-            </div>
+    <div className="homeServices flex flex-col items-center text-white py-[5rem] gap-[2rem]">
+      <div className="text-[2.5rem] font-bold">Our Services</div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[1rem] sm:gap-[2rem]">
+        {services.map((data, index) => (
+          <div
+            key={index}
+            className="bg-white text-black p-[3rem] w-[15rem] rounded-3xl flex justify-center items-center hover:scale-110 duration-100 font-['rubik_doodle_shadow'] font-bold leading-5"
+          >
+            <p className="text-center cursor-pointer">{data}</p>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );
