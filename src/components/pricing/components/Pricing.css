@@ -1,12 +1,12 @@
 .price {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0.8)), url("../../../globalAssets/pricingMan\ \(1\).jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0.8)), url("../../../globalAssets/pricingMan\ \(1\)\ \(1\).jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: right;
 }
 
 .rates {
-  background-image:  url("../../../globalAssets/ratesBg\ \(1\).jpg");
+  background-image:  url("../../../globalAssets/ratesBg\ \(1\)\ \(1\).jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: right;
