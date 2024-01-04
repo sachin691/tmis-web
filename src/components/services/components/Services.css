@@ -24,7 +24,7 @@
     background-position: right;
   }
 
-  .servicesBg {
-    background: rgb(202,203,228);
-background: linear-gradient(90deg, rgba(202,203,228,1) 0%, rgba(235,225,236,1) 100%);
-  }
+.servicesBg {
+  background-color: #f6f6f6;
+  background-image: linear-gradient(315deg, #f6f6f6 0%, #e9e9e9 74%);
+}

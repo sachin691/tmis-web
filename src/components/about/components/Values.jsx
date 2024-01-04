@@ -32,8 +32,13 @@ const Values = () => {
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[2rem]">
         {values.map((data, index) => (
-          <div key={index} className="flex flex-col gap-[1rem] cursor-pointer shadows p-[1rem] duration-100">
-            <h1 className="font-['rubik_doodle_shadow'] font-bold text-[1.5rem] text-center">{data.name}</h1>
+          <div
+            key={index}
+            className="flex flex-col gap-[1rem] cursor-pointer shadows p-[1rem] duration-100"
+          >
+            <h1 className="font-['rubik_doodle_shadow'] font-bold text-[1.5rem] text-center">
+              {data.name}
+            </h1>
             <p className="text-justify">{data.desc}</p>
           </div>
         ))}
