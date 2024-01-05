@@ -14,22 +14,32 @@ const Sub = () => {
           Elevate Your International Customer Service with TMIS Solutions
         </h1>
         <p className="text-justify text-sm md:text-base">
-          Unlock the potential of exceptional customer service with TMIS. We understand that a superior customer
-          experience not only retains customers but also elevates your brand image and boosts revenue. Navigating
-          customer service challenges in cross-border e-commerce can be daunting. At TMIS, we specialize in addressing
-          these challenges head-on. Say goodbye to language barriers! Our seasoned agents are proficient in serving end
-          customers in their native languages, breaking down communication barriers and ensuring a seamless shopping
+          Unlock the potential of exceptional customer service with TMIS. We
+          understand that a superior customer experience not only retains
+          customers but also elevates your brand image and boosts revenue.
+          Navigating customer service challenges in cross-border e-commerce can
+          be daunting. At TMIS, we specialize in addressing these challenges
+          head-on. Say goodbye to language barriers! Our seasoned agents are
+          proficient in serving end customers in their native languages,
+          breaking down communication barriers and ensuring a seamless shopping
           experience.
         </p>
 
         <p className="text-justify text-sm md:text-base">
-          Certainly! Here's a revised version of the content for your company, TMIS, providing customer care services:
-          Elevate Your International Customer Service with TMIS Solutions Unlock the potential of exceptional customer
-          service with TMIS. We understand that a superior customer experience not only retains customers but also
-          elevates your brand image and boosts revenue. Navigating customer service challenges in cross-border
-          e-commerce can be daunting
+          Certainly! Here's a revised version of the content for your company,
+          TMIS, providing customer care services: Elevate Your International
+          Customer Service with TMIS Solutions Unlock the potential of
+          exceptional customer service with TMIS. We understand that a superior
+          customer experience not only retains customers but also elevates your
+          brand image and boosts revenue. Navigating customer service challenges
+          in cross-border e-commerce can be daunting
         </p>
-        <Button color="primary" radius="full" className="w-[10rem] p-0 gap-0 text-white bg-[#0e3570] text-lg" size="lg">
+        <Button
+          color="primary"
+          radius="full"
+          className="w-[10rem] p-0 gap-0 text-white bg-[#f5a524] text-lg"
+          size="lg"
+        >
           <Link to="../ContactUs" className="p-[8px] grow">
             Contact Us
           </Link>
