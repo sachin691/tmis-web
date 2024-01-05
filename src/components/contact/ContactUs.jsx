@@ -81,7 +81,7 @@ const ContactUs = () => {
             label="Company Name"
             name="user_company_name"
             onChange={(event) => setCompanyNameState(event.target.value.length)}
-            errorMessage={companyNameState === 0 ? "Please enter a valid Name" : ""}
+            errorMessage={companyNameState === 0 ? "Please enter a valid Company Name" : ""}
             isInvalid={companyNameState === 0}
           />
           <Input
@@ -89,7 +89,7 @@ const ContactUs = () => {
             label="Phone Number"
             name="user_number"
             onChange={(event) => setPhoneState(event.target.value.length)}
-            errorMessage={phoneState === 0 ? "Please enter a valid Name" : ""}
+            errorMessage={phoneState === 0 ? "Please enter a valid Phone Number" : ""}
             isInvalid={phoneState === 0}
           />
           <Input
@@ -113,7 +113,7 @@ const ContactUs = () => {
               </div>
             }
             onChange={(event) => setBudgetState(event.target.value.length)}
-            errorMessage={budgetState === 0 ? "Please enter a valid Name" : ""}
+            errorMessage={budgetState === 0 ? "Please enter a valid Budget" : ""}
             isInvalid={budgetState === 0}
           />
         </form>
