@@ -1,8 +1,16 @@
 import React from "react";
 import { Button } from "@nextui-org/react";
 import "./Services.css";
+import { useNavigate } from "react-router-dom";
 
 const ServicesCard = ({ service, descrition, index }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    const toUrl = "../Individual";
+    navigate(toUrl, { state: index });
+  };
+
   return (
     <div className="px-[2rem] md:px-[4rem] lg:px-[8rem] py-[1.5rem]">
       <div className={`h-auto md:h-[35rem] ServicesCard${index + 1}`}>
@@ -18,6 +26,7 @@ const ServicesCard = ({ service, descrition, index }) => {
               className="md:text-black text-white mt-4"
               variant="ghost"
               radius="none"
+              onClick={handleClick}
             >
               More
             </Button>

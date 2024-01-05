@@ -11,10 +11,10 @@ const Footer = () => {
     <div className="bg-slate-50 px-[3rem] md:px-[5rem] py-[5rem]">
       <div className="flex flex-col lg:flex-row gap-[4rem]">
         <div className="flex flex-col gap-[2rem]">
-          <Image width={300} alt="TMIS Image" src={logo} radius="none"/>
+          <Image width={300} alt="TMIS Image" src={logo} radius="none" />
           <p className="max-w-[25rem]">
-            As a leading provider in the industry, TMIS is dedicated to serving international customers with utmost
-            values.
+            As a leading provider in the industry, TMIS is dedicated to serving
+            international customers with utmost values.
           </p>
         </div>
         <div className="hidden lg:flex flex-col items-center justify-center">
@@ -65,8 +65,8 @@ const Footer = () => {
                 <span className="font-bold text-base">Luckhnow Office</span>
                 <span>Building : Unit-311/15</span>
                 <span>Location : Hazrat Ganj, Above State Bank</span>
-                <span>City : Dehradun</span>
-                <span>State : Uttarakhand</span>
+                <span>City : Luckhnow</span>
+                <span>State : UttarPradesh</span>
                 <span>Country : India</span>
               </span>
               <span className="flex flex-col sm:min-w-[20rem] md:min-w-[8rem] text-xs">
