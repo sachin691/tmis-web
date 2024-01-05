@@ -40,7 +40,7 @@ const NavBar = () => {
         </NavbarItem>
         <NavbarItem className="hidden md:block order-2">
           <Link
-            to="/Services"
+            to="../Services"
             className="px-[1rem] text-inherit text-xl text-white"
           >
             Services
