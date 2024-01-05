@@ -9,14 +9,17 @@ import {
   NavbarMenuToggle,
   Button,
 } from "@nextui-org/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./NavBar.css";
 
 const NavBar = () => {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = ["Home", "Services", "Pricing", "About", ""];
-
+  const handleContactUs = () => {
+    navigate("/ContactUs");
+  };
   return (
     <Navbar
       className="h-[5rem] bg-slate-600"
@@ -86,16 +89,15 @@ const NavBar = () => {
       </NavbarMenu>
 
       <NavbarItem className="px-[1rem] hidden md:block  order-5">
-        <Link to="/ContactUs">
-          <Button
-            radius="full"
-            variant="solid"
-            color="warning"
-            className="p-[20px]"
-          >
-            Contact Us
-          </Button>
-        </Link>
+        <Button
+          radius="full"
+          variant="solid"
+          color="warning"
+          className="p-[20px]"
+          onClick={handleContactUs}
+        >
+          Contact Us
+        </Button>
       </NavbarItem>
     </Navbar>
   );
