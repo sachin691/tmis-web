@@ -12,7 +12,11 @@ const IndividualService = () => {
   return (
     <>
       <div className="flex flex-col px-[2rem] md:px-[4rem] lg:px-[16rem] py-[1.5rem]">
-        <div className={`h-[20rem] md:h-[25rem] rounded ServicesCard7`}>
+        <div
+          className={`h-[20rem] md:h-[25rem] rounded ServicesCard${id + 1}${
+            id + 1
+          }`}
+        >
           <div className="h-auto md:h-[35rem]  mx-auto md:mx-[10rem] lg:w-[25rem] "></div>
         </div>
         <div className="py-[3rem] flex flex-col items-center gap-[2rem]">
@@ -37,7 +41,11 @@ const IndividualService = () => {
               </div>
             ))}
           </div>
-          <Button variant="solid" className="p-[20px] bg-[#f5a524] text-white">
+          <Button
+            variant="solid"
+            size="lg"
+            className="p-[20px] bg-[#f5a524] text-white"
+          >
             Contact Us
           </Button>
         </div>

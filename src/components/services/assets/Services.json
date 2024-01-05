@@ -2,42 +2,76 @@
     {
         "id": 0,
         "title": {
-          "special": "Crafting Success : "
+          "special": "International Call Center "
         },
         "content": [
           {
-            "body": "In the ever-evolving digital landscape, a compelling online presence is non-negotiable. At Kreative Machinez, we understand the pivotal role that website design and development play in shaping your brand's identity and driving business success."
+            "body": "Access our dedicated international call center for prompt and efficient customer support."
           },
           {
-            "heading": "The Art of First Impressions",
-            "body": "Your website is often the first interaction potential clients have with your brand. Our expert team ensures that this initial encounter is nothing short of spectacular. We employ intuitive design principles to create visually stunning websites that captivate and engage visitors from the first click."
+            "heading": "Multi-language services",
+            "body": "At TMIS, we recognize the pivotal role that multilingual customer services play in elevating customer satisfaction. We highly value the diversity of languages and invest in cultivating the skills of our team through professional training programs. Our commitment is to empower our talented workforce, ensuring they are proficient in multiple languages to bring added value to both your customers and your business."
           },
           {
-            "heading": "Seamless User Experience",
-            "body": "User experience is paramount in today's fast-paced online world. Our approach to website development goes beyond aesthetics. We focus on creating seamless navigation, quick loading times, and mobile responsiveness to enhance user satisfaction. A positive user experience not only retains visitors but also converts them into valuable customers."
+            "heading": "Platform stability",
+            "body": "We believe stable network service system can create reliable service quality to customers, thus it brings reliable brand image and strengthen relationship to your customers."
           },
           {
-            "heading": "SEO-Optimized Foundations",
-            "body": "A beautiful website is only effective if it's easily discoverable. Our digital marketing expertise extends to incorporating SEO best practices into the very fabric of your website. From strategic keyword placement to clean, crawlable code, we ensure that your website ranks high on search engine results, driving organic traffic and boosting visibility."
+            "heading": "Global market connection",
+            "body": "TMIS introduces a dynamic global communication platform designed to effortlessly connect routes on a global scale. With our innovative solution, you can sidestep the need to establish customer service offices in every country, streamlining your operations and optimizing resources."
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "title": {
+          "special": "Consumer Satisfaction Survey / Mystery Shoppers "
+        },
+        "content": [
+          {
+            "body": "At TMIS, we excel in the art of collecting valuable information directly from customers, uncovering the intricacies of their thoughts. Our dedicated efforts go beyond mere data collection – we aim to provide you with profound insights that keep your business relevant and in tune with your customers' ever-evolving wants and needs."
           },
           {
-            "heading": "Tailored Solutions for Every Business",
-            "body": "We recognize that each business is unique. Our website design and development services are not one-size-fits-all. Whether you're a startup, an e-commerce giant, or a service provider, our team crafts customized solutions that align with your brand identity and meet your specific business goals."
+            "heading": "Customers feedback collection",
+            "body": "At TMIS, we recognize that customer opinions are the cornerstone of staying relevant and a valuable reference for continuous improvement. We are dedicated to collecting and analyzing customer information, unraveling their needs, understanding service processes, and harnessing these insights as a benchmark for future enhancements."
           },
           {
-            "heading": "Beyond Aesthetics: Functionality Matters",
-            "body": "Beyond the visual appeal, we prioritize functionality. From seamless e-commerce integrations to user-friendly content management systems, we ensure that your website is not just a digital brochure but a powerful tool that aligns with your business objectives."
+            "heading": "Maintain service quality",
+            "body": "At TMIS, we understand the significance of staying informed about employee status. Our approach involves trained agents simulating diverse scenarios, gaining valuable insights into service processes and frontline staff requirements. Our Mystery Shopping service is designed to empower your business by maintaining a high-level of service quality and offering tailored suggestions for internal training."
           },
           {
-            "heading": "Evolving with Technology",
-            "body": "The digital landscape is ever-changing, and so are we. Our team stays ahead of the curve, incorporating the latest technologies and design trends to keep your website at the forefront of innovation. This commitment ensures that your brand remains relevant and competitive in the digital space."
+            "heading": "Market survey",
+            "body": "Staying aware of market trends is important for your business, Eason sourcing International provide market survey service to help you understand market and customers insight for future reference."
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": {
+          "special": "Promotional Booking Service "
+        },
+        "content": [
+          {
+            "body": "At TMIS, we prioritize gathering essential information from customers regarding maintenance status and service processes. Throughout this collection process, we extend personalized invitations to customers who haven't yet pursued car maintenance, strategically uncovering potential revenue opportunities."
           },
           {
-            "heading": "Your Success, Our Priority",
-            "body": "At Kreative Machinez, website design and development are not just services; they are pivotal elements in your digital success story. We go beyond creating websites; we craft digital experiences that resonate with your audience and drive tangible results for your business."
+            "heading": "Expand potential opportunities",
+            "body": "At TMIS, our agents take a proactive approach by inviting car owners for essential maintenance services. Simultaneously, we engage in thoughtful information collection from customers, transforming this data into invaluable insights that fuel effective promotion strategies for your business."
           },
           {
-            "body": "In conclusion, whether you're establishing your online presence or seeking a revamp, our digital marketing platform is your partner in success. Elevate your brand, captivate your audience, and achieve your business goals with Kreative Machinez. Let's embark on this digital journey together!"
+            "heading": "Instant complaint notice",
+            "body": "At TMIS, we recognize that understanding the reasons behind customer frustration is a vital aspect of any successful business. We actively gather information and lend a keen ear to the voices of our customers. By doing so, we not only provide valuable insights but also coordinate this information to formulate effective business solutions."
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": {
+          "special": "AI Services"
+        },
+        "content": [
+          {
+            "body": "At TMIS, we recognize that over 50% of service requests are repetitive, and we see an opportunity to revolutionize the customer service landscape through AI innovation. With this in mind, we are actively developing AI voice chat bot technology to assist both customers and agents, offering an enhanced AI-Agent solution."
           }
         ]
       }
