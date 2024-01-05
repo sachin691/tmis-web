@@ -91,6 +91,11 @@ const NavBar = () => {
             About
           </Link>
         </NavbarItem>
+        <NavbarItem className="hidden md:block order-2">
+          <Link to="/Privacy&Policy" className="px-[1rem] text-inherit text-xl text-white">
+            Privacy & Policy
+          </Link>
+        </NavbarItem>
       </NavbarContent>
 
       <NavbarMenu className="sm:hidden order-4 mt-[1rem] bg-[rgba(0,0,0,0.4)]">
