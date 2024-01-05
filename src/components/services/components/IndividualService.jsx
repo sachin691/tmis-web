@@ -2,8 +2,8 @@ import React from "react";
 import serviceData from "../assets/Services.json";
 import { useLocation } from "react-router-dom";
 import "./Services.css";
-import { Image } from "@nextui-org/react";
-import img from "../../../globalAssets/servicesCard1_80.jpg";
+import { Button } from "@nextui-org/react";
+
 const IndividualService = () => {
   const location = useLocation();
   const id = location.state || 0;
@@ -11,11 +11,40 @@ const IndividualService = () => {
 
   return (
     <>
-      <div className="h-auto bg-gray-400 flex p-[2rem] justify-center">
-        {/* <div className="md:px-[15rem] bg-yellow-200  w-full ">
-          
-        </div> */}
-        <div className="bg-green-200 h-[10rem] w-full px-[20rem]"></div>
+      <div className="flex flex-col px-[2rem] md:px-[4rem] lg:px-[16rem] py-[1.5rem]">
+        <div className={`h-[20rem] md:h-[25rem] rounded ServicesCard7`}>
+          <div className="h-auto md:h-[35rem]  mx-auto md:mx-[10rem] lg:w-[25rem] "></div>
+        </div>
+        <div className="py-[3rem] flex flex-col items-center gap-[2rem]">
+          <div className="flex flex-col items-start gap-[2rem] w-full">
+            <h1 className="font-['lilita_one'] text-[2.3rem] text-start lg:text-left">
+              <span className="text-black font-bold">
+                {data?.title.special}
+              </span>
+            </h1>
+          </div>
+          <div className="flex flex-col gap-[1rem] px-[1rem] ">
+            {data?.content.map((item, index) => (
+              <div key={index} className="flex flex-col gap-[0.5rem]">
+                {item.heading ? (
+                  <h1 className="font-['DM_Serif_Display'] text-[1.3rem] font-semibold text-default-800">
+                    {String(index) + ". " + item.heading}
+                  </h1>
+                ) : null}
+                <p className="text-justify text-default-500 text-[0.95rem] sm:text-md">
+                  {item.body}
+                </p>
+              </div>
+            ))}
+          </div>
+          <Button
+            variant="solid"
+            color="warning"
+            className="w-[8rem] text-white items-center font-bold"
+          >
+            Contact Us
+          </Button>
+        </div>
       </div>
     </>
   );

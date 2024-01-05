@@ -23,8 +23,8 @@ const ServicesCard = ({ service, descrition, index }) => {
               {descrition}
             </p>
             <Button
-              className="md:text-black text-white mt-4"
-              variant="ghost"
+              className="md:text-black  text-white mt-4"
+              variant="shadow"
               radius="none"
               onClick={handleClick}
             >
