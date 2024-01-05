@@ -1,13 +1,11 @@
 name: Generate a build and push to another branch
-permissions:
-  pull-requests: write
-  issues: write
-  repository-projects: write
 
 on:
   push:
     branches:
       - master
+
+permissions: write-all
 
 jobs:
   build:
