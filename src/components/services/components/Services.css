@@ -1,0 +1,38 @@
+.ServicesCard1 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0.8)), url("../../../globalAssets/servicesCard1_80.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+  }
+
+  .ServicesCard2 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0.8)), url("../../../globalAssets/services222.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+  }
+  .ServicesCard3 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0.8)), url("../../../globalAssets/services333.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+  }
+  .ServicesCard4 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0.8)), url("../../../globalAssets/services444.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+  }
+
+.servicesBg {
+  background-color: #f6f6f6;
+  background-image: linear-gradient(315deg, #f6f6f6 0%, #e9e9e9 74%);
+}
+
+
+.ServicesCard7 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2) 20%, rgba(0, 0, 0, 0.4)), url("../../../globalAssets/servicesCard1_80.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right;
+}
