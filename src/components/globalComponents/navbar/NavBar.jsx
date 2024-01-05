@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { updateNavStatus } from "../../../store/navOpenStatusSlice";
 import {
   Navbar,
   NavbarBrand,
@@ -13,8 +15,10 @@ import { Link, useNavigate } from "react-router-dom";
 import "./NavBar.css";
 
 const NavBar = () => {
+  const curTab = useSelector((state) => state.curTab.value);
+  const navOpenStatus = useSelector((state) => state.navOpenStatus.value);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = ["Home", "Services", "Pricing", "About", ""];
   const handleContactUs = () => {
@@ -22,13 +26,16 @@ const NavBar = () => {
   };
   return (
     <Navbar
+      isMenuOpen={navOpenStatus}
       className="h-[5rem] bg-slate-600"
       shouldHideOnScroll
-      onMenuOpenChange={setIsMenuOpen}
+      onMenuOpenChange={() => {
+        dispatch(updateNavStatus(!navOpenStatus));
+      }}
     >
       <NavbarContent justify="start" className="gap-0">
         <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-label={navOpenStatus ? "Close menu" : "Open menu"}
           className="sm:hidden order-3 text-white"
         />
 
@@ -37,14 +44,25 @@ const NavBar = () => {
         </NavbarBrand>
 
         <NavbarItem className="hidden md:block order-2">
-          <Link to="/" className="px-[1rem] text-inherit text-xl text-white">
+          <Link
+            to="/"
+            className={
+              curTab === "Home"
+                ? "active navActive flex flex-col px-[1rem] text-inherit text-xl text-white"
+                : "notActive px-[1rem] text-inherit text-xl text-white"
+            }
+          >
             Home
           </Link>
         </NavbarItem>
         <NavbarItem className="hidden md:block order-2">
           <Link
             to="../Services"
-            className="px-[1rem] text-inherit text-xl text-white"
+            className={
+              curTab === "Services"
+                ? "active navActive flex flex-col px-[1rem] text-inherit text-xl text-white"
+                : "notActive px-[1rem] text-inherit text-xl text-white"
+            }
           >
             Services
           </Link>
@@ -52,7 +70,11 @@ const NavBar = () => {
         <NavbarItem className="hidden md:block order-2">
           <Link
             to="/Pricing"
-            className="px-[1rem] text-inherit text-xl text-white"
+            className={
+              curTab === "Pricing"
+                ? "active navActive flex flex-col px-[1rem] text-inherit text-xl text-white"
+                : "notActive px-[1rem] text-inherit text-xl text-white"
+            }
           >
             Pricing
           </Link>
@@ -60,26 +82,26 @@ const NavBar = () => {
         <NavbarItem className="hidden md:block order-2">
           <Link
             to="/About"
-            className="px-[1rem] text-inherit text-xl text-white"
+            className={
+              curTab === "About"
+                ? "active navActive flex flex-col px-[1rem] text-inherit text-xl text-white"
+                : "notActive px-[1rem] text-inherit text-xl text-white"
+            }
           >
             About
           </Link>
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarMenu
-        className="sm:hidden order-4 "
-        open={isMenuOpen}
-        onHide={() => setIsMenuOpen(false)}
-      >
+      <NavbarMenu className="sm:hidden order-4 mt-[1rem] bg-[rgba(0,0,0,0.4)]">
         {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`} className="mt-[1rem]">
+          <NavbarMenuItem key={`${item}-${index}`}>
             <Link
               to={`/${item}`}
-              onClick={(e) => {
-                setIsMenuOpen(false);
+              onClick={() => {
+                dispatch(updateNavStatus(!navOpenStatus));
               }}
-              className="w-full"
+              className={curTab === item ? "active" : "notActive"}
               size="lg"
             >
               {item}
@@ -90,10 +112,8 @@ const NavBar = () => {
 
       <NavbarItem className="px-[1rem] hidden md:block  order-5">
         <Button
-          radius="full"
           variant="solid"
-          color="warning"
-          className="p-[20px]"
+          className="p-[20px] bg-[#f5a524] text-white "
           onClick={handleContactUs}
         >
           Contact Us

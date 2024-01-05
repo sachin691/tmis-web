@@ -4,3 +4,26 @@
     background-size: cover;
     background-position: right;
 } */
+
+.active {
+    color: #f5a524;
+    font-weight: 700;
+    font-size: large;
+
+  }
+
+  .notActive {
+    color: white;
+    font-size: large;
+  }
+  .notActive:hover {
+    color: #f5a524;
+  }
+
+  .navActive::after {
+    content: "";
+    height: 0.25rem;
+    border-radius: 1rem;
+    background-color: #f5a524;
+    transform: translateY(1.75rem);
+  }

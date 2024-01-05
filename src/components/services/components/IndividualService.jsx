@@ -37,11 +37,7 @@ const IndividualService = () => {
               </div>
             ))}
           </div>
-          <Button
-            variant="solid"
-            color="warning"
-            className="w-[8rem] text-white items-center font-bold"
-          >
+          <Button variant="solid" className="p-[20px] bg-[#f5a524] text-white">
             Contact Us
           </Button>
         </div>
