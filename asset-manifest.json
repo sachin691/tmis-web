@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d3234c30.css",
+    "main.js": "/static/js/main.12911903.js",
+    "static/media/servicesCard1_80.jpg": "/static/media/servicesCard1_80.1bccc4694c32e235f309.jpg",
+    "static/media/services444.jpg": "/static/media/services444.c7ec4bb37ac07ae4cfae.jpg",
+    "static/media/homeServices (1) (1).jpg": "/static/media/homeServices (1) (1).fe8a3820c8c04b9eb607.jpg",
+    "static/media/ratesBg (1) (1).jpg": "/static/media/ratesBg (1) (1).9c2b13db99b2aeb2c62e.jpg",
+    "static/media/services222.jpg": "/static/media/services222.3e3a67fc5d1e78c9330b.jpg",
+    "static/media/pricingMan (1) (1).jpg": "/static/media/pricingMan (1) (1).0c0f88d8f0031f4e8710.jpg",
+    "static/media/ourMission (1).jpg": "/static/media/ourMission (1).f95bfdb8dfe1f2d9ed76.jpg",
+    "static/media/supportLady (1) (1).jpg": "/static/media/supportLady (1) (1).c403cc16bafbc7720eab.jpg",
+    "static/media/aboutUsMan (1).jpg": "/static/media/aboutUsMan (1).8480033a3b0f0917eb60.jpg",
+    "static/media/services333.jpg": "/static/media/services333.6a10b0c22c29e69e8f6a.jpg",
+    "static/media/ContactUs (1).jpg": "/static/media/ContactUs (1).e3c1f67d48892b6198d4.jpg",
+    "static/media/logo.svg": "/static/media/logo.5c8d0164cf1740321a92190a65801b39.svg",
+    "index.html": "/index.html",
+    "main.d3234c30.css.map": "/static/css/main.d3234c30.css.map",
+    "main.12911903.js.map": "/static/js/main.12911903.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d3234c30.css",
+    "static/js/main.12911903.js"
+  ]
+}
