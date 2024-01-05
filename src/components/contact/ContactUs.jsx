@@ -22,7 +22,7 @@ const ContactUs = () => {
           color="primary"
           radius="none"
         >
-          <span>Send Message</span>
+          <span>Send</span>
         </Button>
       </div>
       <div className="text-white max-w-[30rem] flex-col gap-[2rem] hidden lg:flex">
