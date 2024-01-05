@@ -3,12 +3,12 @@ import serviceData from "../assets/Services.json";
 import { useLocation } from "react-router-dom";
 import "./Services.css";
 import { Button } from "@nextui-org/react";
-
+import { scrollTop } from "../../../utils/methods";
 const IndividualService = () => {
   const location = useLocation();
   const id = location.state || 0;
   const data = serviceData.find((item) => item.id === id);
-
+  scrollTop();
   return (
     <>
       <div className="flex flex-col px-[2rem] md:px-[4rem] lg:px-[16rem] py-[1.5rem]">

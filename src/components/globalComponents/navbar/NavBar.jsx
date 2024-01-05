@@ -92,7 +92,14 @@ const NavBar = () => {
           </Link>
         </NavbarItem>
         <NavbarItem className="hidden md:block order-2">
-          <Link to="/Privacy&Policy" className="px-[1rem] text-inherit text-xl text-white">
+          <Link
+            to="/Privacy&Policy"
+            className={
+              curTab === "Privacy & Policy"
+                ? "active navActive flex flex-col px-[1rem] text-inherit text-xl text-white"
+                : "notActive px-[1rem] text-inherit text-xl text-white"
+            }
+          >
             Privacy & Policy
           </Link>
         </NavbarItem>
