@@ -82,7 +82,7 @@ jobs:
       - name: Sync files to hosting
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ftp://coolpinservice.com # Replace with your Hostinger FTP server
+          server: ftp.coolpinservice.com # Replace with your Hostinger FTP server
           username: ${{ secrets.ftp_hostinger_username }}
           password: ${{ secrets.ftp_hostinger_password }}
           server-dir: /public_html/ # Replace with your Hostinger server directory
