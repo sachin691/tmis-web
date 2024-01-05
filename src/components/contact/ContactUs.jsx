@@ -4,6 +4,8 @@ import emailjs from "@emailjs/browser";
 import { useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { scrollTop } from "../../utils/methods";
+import { useDispatch } from "react-redux";
+import { updateTab } from "../../store/curTabSlice";
 // Local Files
 import "./Contact.css";
 
@@ -16,6 +18,8 @@ const emailSent = () => toast.success("Email Sent", toastSetting);
 const emailNotSent = () => toast.error("Email Not Sent", toastSetting);
 
 const ContactUs = () => {
+  const dispatch = useDispatch();
+  dispatch(updateTab("Contact"));
   const form = useRef();
   const email = useRef("");
   const budgetType = useRef("INR");
