@@ -26,7 +26,7 @@ const NavBar = () => {
       <NavbarContent justify="start" className="gap-0">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden order-3"
+          className="sm:hidden order-3 text-white"
         />
 
         <NavbarBrand className="order-1">
@@ -65,23 +65,18 @@ const NavBar = () => {
       </NavbarContent>
 
       <NavbarMenu
-        className="sm:hidden order-4"
+        className="sm:hidden order-4 "
         open={isMenuOpen}
         onHide={() => setIsMenuOpen(false)}
       >
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`} className="mt-[1rem]">
             <Link
-              onClick={() => setIsMenuOpen(false)}
-              color={
-                index === 2
-                  ? "primary"
-                  : index === menuItems.length - 1
-                  ? "danger"
-                  : "foreground"
-              }
+              to={`/${item}`}
+              onClick={(e) => {
+                setIsMenuOpen(false);
+              }}
               className="w-full"
-              href="#"
               size="lg"
             >
               {item}
