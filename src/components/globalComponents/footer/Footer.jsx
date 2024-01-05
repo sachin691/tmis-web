@@ -16,6 +16,12 @@ const Footer = () => {
             As a leading provider in the industry, TMIS is dedicated to serving
             international customers with utmost values.
           </p>
+          <Link
+            to="/Privacy&Policy"
+            className="text-blue-500 lg:mx-[8rem] md:mx-[4rem]"
+          >
+            Privacy & Policy
+          </Link>
         </div>
         <div className="hidden lg:flex flex-col items-center justify-center">
           <Link to="../Services">
