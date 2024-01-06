@@ -1,29 +1,16 @@
-/* .nav {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0.8)), url("../../../globalAssets/subBg.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: right;
-} */
-
 .active {
-    color: #f5a524;
-    font-weight: 700;
-    font-size: large;
+  color: #f5a524;
+  font-weight: 700;
+  font-size: large;
 
-  }
+}
 
-  .notActive {
-    color: white;
-    font-size: large;
-  }
-  .notActive:hover {
-    color: #f5a524;
-  }
+.notActive {
+  color: white;
+  font-size: large;
+}
 
-  .navActive::after {
-    content: "";
-    height: 0.25rem;
-    border-radius: 1rem;
-    background-color: #f5a524;
-    transform: translateY(1.75rem);
-  }
+.notActive:hover {
+  color: #f5a524;
+}
+

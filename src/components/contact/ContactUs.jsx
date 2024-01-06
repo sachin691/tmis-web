@@ -19,7 +19,7 @@ const emailNotSent = () => toast.error("Email Not Sent", toastSetting);
 
 const ContactUs = () => {
   const dispatch = useDispatch();
-  dispatch(updateTab("Contact"));
+  dispatch(updateTab("Contact Us"));
   const form = useRef();
   const email = useRef("");
   const budgetType = useRef("INR");

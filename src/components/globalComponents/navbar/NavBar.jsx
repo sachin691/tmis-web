@@ -20,7 +20,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const menuItems = ["Home", "Services", "Pricing", "About", ""];
+  const menuItems = ["Home", "Services", "Pricing", "About", "Contact Us"];
   const handleContactUs = () => {
     navigate("/ContactUs");
   };
@@ -36,11 +36,13 @@ const NavBar = () => {
       <NavbarContent justify="start" className="gap-0">
         <NavbarMenuToggle
           aria-label={navOpenStatus ? "Close menu" : "Open menu"}
-          className="sm:hidden order-3 text-white"
+          className="md:hidden order-3 text-white"
         />
 
         <NavbarBrand className="order-1">
-          <p className="font-bold text-inherit text-2xl text-white">TMIS</p>
+          <Link to="/" className="font-bold text-inherit text-2xl text-white">
+            TMIS
+          </Link>
         </NavbarBrand>
 
         <NavbarItem className="hidden md:block order-2">
@@ -109,7 +111,7 @@ const NavBar = () => {
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-              to={`/${item}`}
+              to={index === 4 ? `/ContactUs` : `/${item}`}
               onClick={() => {
                 dispatch(updateNavStatus(!navOpenStatus));
               }}
