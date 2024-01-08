@@ -1,6 +1,5 @@
 // Dependencies
-import { Divider } from "@nextui-org/divider";
-
+import { Accordion, AccordionItem,  Divider } from "@nextui-org/react";
 // Local Files
 import "./Privacy.css";
 import { useDispatch } from "react-redux";
@@ -121,17 +120,13 @@ const Privacy = () => {
     <div className="h-auto flex flex-col bg-[#e9ecef] m-[2rem] p-[4rem] gap-4 rounded-lg">
       <div className="bg-gray-900 grid xl:grid-cols-2">
         <div className="px-[2rem] sm:px-[3rem] md:px-[5rem] lg:px-[8rem] py-[5rem] flex flex-col gap-[3rem]">
-          <span className="font-['rubik_doodle_shadow'] text-white text-6xl font-bold">
-            Privacy & Policy
-          </span>
+          <span className="font-['rubik_doodle_shadow'] text-white text-6xl font-bold">Privacy & Policy</span>
           <div className="flex flex-col gap-[1rem]">
             <p className="text-white">
-              This Privacy Policy describes Our policies and procedures on the
-              collection, use and disclosure of Your information when You use
-              the Service and tells You about Your privacy rights and how the
-              law protects You. We use Your Personal data to provide and improve
-              the Service. By using the Service, You agree to the collection and
-              use of information in accordance with this Privacy Policy.
+              This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your
+              information when You use the Service and tells You about Your privacy rights and how the law protects You.
+              We use Your Personal data to provide and improve the Service. By using the Service, You agree to the
+              collection and use of information in accordance with this Privacy Policy.
             </p>
           </div>
         </div>
@@ -140,462 +135,366 @@ const Privacy = () => {
 
       <Divider className="my-[1rem]" />
 
-      <h1 className="font-['rubik_doodle_shadow'] font-bold text-5xl text-center my-[3rem]">
-        Interpretation and Definitions
-      </h1>
-      <div className="text-lg bg-white rounded-md p-[2rem]">
-        <h1 className="font-bold text-3xl  font-['rubik_doodle_shadow']">
-          Interpretation :
+      <div className="text-lg bg-white rounded-md p-[2rem] py-[1rem]">
+        <h1 className=" font-bold text-3xl text-start my-[1rem]">
+          Interpretation and Definitions
         </h1>
-        <p className="text-lg p-[1rem]">
-          The words of which the initial letter is capitalized have meanings
-          defined under the following conditions. The following definitions
-          shall have the same meaning regardless of whether they appear in
-          singular or in plural.
+        <h1 className="font-bold text-2xl">Interpretation</h1>
+        <p className="text-lg p-[1rem] font-['poppins']">
+          The words of which the initial letter is capitalized have meanings defined under the following conditions. The
+          following definitions shall have the same meaning regardless of whether they appear in singular or in plural.
         </p>
-        <h1 className="font-bold text-3xl  font-['rubik_doodle_shadow']">
-          Definitions :
+        <h1 className="font-bold text-2xl ">Definitions</h1>
+        <Accordion className=" font-['poppins'] " variant="">
+          <AccordionItem
+            aria-label="For the purposes of this Privacy Policy:"
+            title="For the purposes of this Privacy Policy:"
+            subtitle={<span>Press to expand</span>}
+          >
+            {definations.map((item, index) => (
+              <li key={index} className="px-[1rem] text-base">
+                {item}
+              </li>
+            ))}
+          </AccordionItem>
+        </Accordion>
+        <h1 className=" font-bold text-3xl text-start my-[1rem]">
+          Collecting and Using Your Personal Data
         </h1>
-        <p className="text-lg p-[1rem]">
-          For the purposes of this Privacy Policy:
-        </p>
-        {definations.map((item, index) => (
-          <li key={index} className="px-[1rem] text-base">
-            {item}
-          </li>
-        ))}
-      </div>
-      <Divider className="my-[1rem]" />
+        <h1 className="font-bold text-2xl">Types of Data Collected </h1>
 
-      <h1 className="font-['rubik_doodle_shadow'] font-bold text-5xl text-center my-[3rem]">
-        Collecting and Using Your Personal Data
-      </h1>
-      <div className="text-lg bg-white rounded-md p-[2rem]">
-        <h1 className="font-bold text-3xl  font-['rubik_doodle_shadow']">
-          Types of Data Collected :
-        </h1>
-        <h1 className="font-bold text-2xl  mx-[1rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          Personal Data :
-        </h1>
-        <p className="text-base mx-[2rem]">
-          While using Our Service, We may ask You to provide Us with certain
-          personally identifiable information that can be used to contact or
-          identify You. Personally identifiable information may include, but is
-          not limited to:
+        <Accordion className="mt-[1rem] font-['poppins'] " variant="">
+          <AccordionItem title="Personal Data" subtitle={<span>Press to expand</span>}>
+            <p className="text-base mx-[2rem]">
+              While using Our Service, We may ask You to provide Us with certain personally identifiable information
+              that can be used to contact or identify You. Personally identifiable information may include, but is not
+              limited to:
+            </p>
+            {personalData.map((item, index) => (
+              <li className="flex mx-[3rem] text-base " key={index}>
+                {item}
+              </li>
+            ))}
+          </AccordionItem>
+          <AccordionItem title="Usage Data" subtitle={<span>Press to expand</span>}>
+            <p className="text-base ">Usage Data is collected automatically when using the Service</p>
+            <p className="text-base ">
+              Usage Data may include information such as Your Device's Internet Protocol address (e.g. IP address),
+              browser type, browser version, the pages of our Service that You visit, the time and date of Your visit,
+              the time spent on those pages, unique device identifiers and other diagnostic data.
+            </p>
+            <p className="text-base ">
+              When You access the Service by or through a mobile device, We may collect certain information
+              automatically, including, but not limited to, the type of mobile device You use, Your mobile device unique
+              ID, the IP address of Your mobile device, Your mobile operating system, the type of mobile Internet
+              browser You use, unique device identifiers and other diagnostic data
+            </p>
+            <p className="text-base ">
+              We may also collect information that Your browser sends whenever You visit our Service or when You access
+              the Service by or through a mobile device.
+            </p>
+          </AccordionItem>
+          <AccordionItem title="Tracking Technologies and Cookies " subtitle={<span>Press to expand</span>}>
+            <p className="text-lg]">
+              We use Cookies and similar tracking technologies to track the activity on Our Service and store certain
+              information. Tracking technologies used are beacons, tags, and scripts to collect and track information
+              and to improve and analyze Our Service. The technologies We use may include:
+            </p>
+            <h1 className="font-bold text-xl  mx-[1rem]  py-[1rem]">Cookies or Browser Cookies</h1>
+            <p className=" mx-[2rem] text-base">
+              A cookie is a small file placed on Your Device. You can instruct Your browser to refuse all Cookies or to
+              indicate when a Cookie is being sent. However, if You do not accept Cookies, You may not be able to use
+              some parts of our Service. Unless you have adjusted Your browser setting so that it will refuse Cookies,
+              our Service may use Cookies
+            </p>
+            <h1 className="font-bold text-xl  mx-[1rem]  py-[1rem]">Web Beacons</h1>
+            <p className=" mx-[2rem] text-base">
+              Certain sections of our Service and our emails may contain small electronic files known as web beacons
+              (also referred to as clear gifs, pixel tags, and single-pixel gifs) that permit the Company, for example,
+              to count users who have visited those pages or opened an email and for other related website statistics
+              (for example, recording the popularity of a certain section and verifying system and server integrity)
+            </p>
+            <p className=" mx-[1.5rem] mt-[1rem]">
+              Cookies can be "Persistent" or "Session" Cookies. Persistent Cookies remain on Your personal computer or
+              mobile device when You go offline, while Session Cookies are deleted as soon as You close Your web
+              browser. You can learn more about cookies on TermsFeed website article.
+              <br />
+              We use both Session and Persistent Cookies for the purposes set out below:
+            </p>
+            <li className="mx-[2rem] mt-[1rem] font-bold">
+              Necessary / Essential Cookies
+              <p className="mx-[1.5rem] font-normal text-base">Type: Session Cookies</p>
+            </li>
+            <li className="mx-[2rem] mt-[1rem] font-bold">
+              Administered by: Us
+              <p className="mx-[1.5rem] font-normal text-base">
+                Purpose: These Cookies are essential to provide You with services available through the Website and to
+                enable You to use some of its features. They help to authenticate users and prevent fraudulent use of
+                user accounts. Without these Cookies, the services that You have asked for cannot be provided, and We
+                only use these Cookies to provide You with those services
+              </p>
+            </li>
+            <li className="mx-[2rem] mt-[1rem] font-bold">
+              Cookies Policy / Notice Acceptance Cookies
+              <p className="mx-[1.5rem] font-normal text-base">Type: Persistent Cookies</p>
+              <p className="mx-[1.5rem] font-normal text-base">Administered by: Us</p>
+              <p className="mx-[1.5rem] font-normal text-base">
+                Purpose: These Cookies identify if users have accepted the use of cookies on the Website.
+              </p>
+            </li>
+            <li className="mx-[2rem] mt-[1rem] font-bold">
+              Functionality Cookies
+              <p className="mx-[1.5rem] font-normal text-base">Type: Persistent Cookies</p>
+              <p className="mx-[1.5rem] font-normal text-base">Administered by: Us</p>
+              <p className="mx-[1.5rem] font-normal text-base">
+                Purpose: These Cookies allow us to remember choices You make when You use the Website, such as
+                remembering your login details or language preference. The purpose of these Cookies is to provide You
+                with a more personal experience and to avoid You having to re-enter your preferences every time You use
+                the Website
+              </p>
+            </li>
+            <p className=" mx-[1.5rem] mt-[1rem]">
+              For more information about the cookies we use and your choices regarding cookies, please visit our Cookies
+              Policy or the Cookies section of our Privacy Policy.
+            </p>
+          </AccordionItem>
+        </Accordion>
+
+        <h1 className="font-bold text-2xl  mt-[1rem]">Use of Your Personal Data</h1>
+        <Accordion className="mt-[1rem] font-['poppins'] " variant="">
+          <AccordionItem
+            title="The Company may use Personal Data for the following purposes:"
+            subtitle={<span>Press to expand</span>}
+          >
+            {useData.map((item, index) => (
+              <li key={index} className="px-[1.5rem] text-base">
+                {item}
+              </li>
+            ))}
+          </AccordionItem>
+          <AccordionItem
+            title="We may share Your personal information in the following situations:"
+            subtitle={<span>Press to expand</span>}
+          >
+            {shareData.map((item, index) => (
+              <li key={index} className="px-[1.5rem] text-base">
+                {item}
+              </li>
+            ))}
+          </AccordionItem>
+          <AccordionItem title=" Retention of Your Personal Data" subtitle={<span>Press to expand</span>}>
+            <p className="mx-[0.5rem] font-normal text-base">
+              The Company will retain Your Personal Data only for as long as is necessary for the purposes set out in
+              this Privacy Policy. We will retain and use Your Personal Data to the extent necessary to comply with our
+              legal obligations (for example, if we are required to retain your data to comply with applicable laws),
+              resolve disputes, and enforce our legal agreements and policies. <br />
+              The Company will also retain Usage Data for internal analysis purposes. Usage Data is generally retained
+              for a shorter period of time, except when this data is used to strengthen the security or to improve the
+              functionality of Our Service, or We are legally obligated to retain this data for longer time periods.
+            </p>
+          </AccordionItem>
+          <AccordionItem title="Transfer of Your Personal Data" subtitle={<span>Press to expand</span>}>
+            <p className="mx-[0.5rem] font-normal text-base">
+              Your information, including Personal Data, is processed at the Company's operating offices and in any
+              other places where the parties involved in the processing are located. It means that this information may
+              be transferred to — and maintained on — computers located outside of Your state, province, country or
+              other governmental jurisdiction where the data protection laws may differ than those from Your
+              jurisdiction <br />
+              Your consent to this Privacy Policy followed by Your submission of such information represents Your
+              agreement to that transfer <br />
+              The Company will take all steps reasonably necessary to ensure that Your data is treated securely and in
+              accordance with this Privacy Policy and no transfer of Your Personal Data will take place to an
+              organization or a country unless there are adequate controls in place including the security of Your data
+              and other personal information
+            </p>
+          </AccordionItem>
+          <AccordionItem title="Delete Your Personal Data" subtitle={<span>Press to expand</span>}>
+            <p className="mx-[0.5rem] font-normal text-base">
+              You have the right to delete or request that We assist in deleting the Personal Data that We have
+              collected about You.
+              <br />
+              Our Service may give You the ability to delete certain information about You from within the Service.
+              <br />
+              You may update, amend, or delete Your information at any time by signing in to Your Account, if you have
+              one, and visiting the account settings section that allows you to manage Your personal information. You
+              may also contact Us to request access to, correct, or delete any personal information that You have
+              provided to Us. <br />
+              Please note, however, that We may need to retain certain information when we have a legal obligation or
+              lawful basis to do so.
+            </p>
+          </AccordionItem>
+          <AccordionItem title="Disclosure of Your Personal Data" subtitle={<span>Press to expand</span>}>
+            <h1 className="font-bold text-2xl  mx-[1.5rem] font-['rubik_doodle_shadow'] py-[1rem]">
+              Business Transactions{" "}
+            </h1>
+            <p className="mx-[1.5rem] font-normal text-base">
+              If the Company is involved in a merger, acquisition or asset sale, Your Personal Data may be transferred.
+              We will provide notice before Your Personal Data is transferred and becomes subject to a different Privacy
+              Policy
+            </p>
+            <h1 className="font-bold text-2xl  mx-[1.5rem] font-['rubik_doodle_shadow'] py-[1rem]">Law enforcement </h1>
+            <p className="mx-[1.5rem] font-normal text-base">
+              Under certain circumstances, the Company may be required to disclose Your Personal Data if required to do
+              so by law or in response to valid requests by public authorities (e.g. a court or a government agency)
+            </p>
+            <h1 className="font-bold text-2xl  mx-[1.5rem] font-['rubik_doodle_shadow'] py-[1rem]">
+              Other legal requirements
+            </h1>
+            <p className="mx-[1.5rem] font-normal text-base">
+              The Company may disclose Your Personal Data in the good faith belief that such action is necessary to:
+            </p>
+            {legalRequirements.map((item, index) => (
+              <li className=" mx-[3rem] text-base " key={index}>
+                {item}
+              </li>
+            ))}
+          </AccordionItem>
+          <AccordionItem title="Security of Your Personal Data" subtitle={<span>Press to expand</span>}>
+            <p className="mx-[1.5rem] font-normal text-base">
+              The security of Your Personal Data is important to Us, but remember that no method of transmission over
+              the Internet, or method of electronic storage is 100% secure. While We strive to use commercially
+              acceptable means to protect Your Personal Data, We cannot guarantee its absolute security
+            </p>
+          </AccordionItem>
+        </Accordion>
+        <h1 className="font-bold text-2xl  py-[1rem]">Children's Privacy</h1>
+        <p className="mx-[0.5rem] font-normal text-base">
+          Our Service does not address anyone under the age of 13. We do not knowingly collect personally identifiable
+          information from anyone under the age of 13. If You are a parent or guardian and You are aware that Your child
+          has provided Us with Personal Data, please contact Us. If We become aware that We have collected Personal Data
+          from anyone under the age of 13 without verification of parental consent, We take steps to remove that
+          information from Our servers. <br />
+          If We need to rely on consent as a legal basis for processing Your information and Your country requires
+          consent from a parent, We may require Your parent's consent before We collect and use that information.
         </p>
-        {personalData.map((item, index) => (
-          <li className="flex mx-[3rem] text-base " key={index}>
-            {item}
-          </li>
-        ))}
-        <h1 className="font-bold text-2xl  mx-[1rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          Usage Data :
-        </h1>
-        <p className="text-base mx-[2rem]">
-          Usage Data is collected automatically when using the Service
-        </p>
-        <br />
-        <p className="text-base mx-[2rem]">
-          Usage Data may include information such as Your Device's Internet
-          Protocol address (e.g. IP address), browser type, browser version, the
-          pages of our Service that You visit, the time and date of Your visit,
-          the time spent on those pages, unique device identifiers and other
-          diagnostic data.
-        </p>
-        <br />
-        <p className="text-base mx-[2rem]">
-          When You access the Service by or through a mobile device, We may
-          collect certain information automatically, including, but not limited
-          to, the type of mobile device You use, Your mobile device unique ID,
-          the IP address of Your mobile device, Your mobile operating system,
-          the type of mobile Internet browser You use, unique device identifiers
-          and other diagnostic data
-        </p>
-        <br />
-        <p className="text-base mx-[2rem]">
-          We may also collect information that Your browser sends whenever You
-          visit our Service or when You access the Service by or through a
-          mobile device.
-        </p>
-        <h1 className="font-bold text-2xl  mx-[1rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          Tracking Technologies and Cookies :
-        </h1>
-        <p className="text-lg mx-[2rem]">
-          We use Cookies and similar tracking technologies to track the activity
-          on Our Service and store certain information. Tracking technologies
-          used are beacons, tags, and scripts to collect and track information
-          and to improve and analyze Our Service. The technologies We use may
-          include:
-        </p>
-        <h1 className="font-bold text-xl  mx-[2rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          Cookies or Browser Cookies
-        </h1>
-        <p className=" mx-[3rem] text-base">
-          A cookie is a small file placed on Your Device. You can instruct Your
-          browser to refuse all Cookies or to indicate when a Cookie is being
-          sent. However, if You do not accept Cookies, You may not be able to
-          use some parts of our Service. Unless you have adjusted Your browser
-          setting so that it will refuse Cookies, our Service may use Cookies
-        </p>
-        <h1 className="font-bold text-xl  mx-[2rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          Web Beacons
-        </h1>
-        <p className=" mx-[3rem] text-base">
-          Certain sections of our Service and our emails may contain small
-          electronic files known as web beacons (also referred to as clear gifs,
-          pixel tags, and single-pixel gifs) that permit the Company, for
-          example, to count users who have visited those pages or opened an
-          email and for other related website statistics (for example, recording
-          the popularity of a certain section and verifying system and server
-          integrity)
-        </p>
-        <p className="text-lg mx-[1.5rem] mt-[1rem]">
-          Cookies can be "Persistent" or "Session" Cookies. Persistent Cookies
-          remain on Your personal computer or mobile device when You go offline,
-          while Session Cookies are deleted as soon as You close Your web
-          browser. You can learn more about cookies on TermsFeed website
-          article.
+        <h1 className="font-bold text-2xl    py-[1rem]">Links to Other Websites</h1>
+        <p className="mx-[0.5rem] font-normal text-base">
+          Our Service may contain links to other websites that are not operated by Us. If You click on a third party
+          link, You will be directed to that third party's site. We strongly advise You to review the Privacy Policy of
+          every site You visit.
           <br />
-          We use both Session and Persistent Cookies for the purposes set out
-          below:
+          We have no control over and assume no responsibility for the content, privacy policies or practices of any
+          third party sites or services.
         </p>
-        <li className="mx-[3rem] mt-[1rem] font-bold">
-          Necessary / Essential Cookies
-          <p className="mx-[1.5rem] font-normal text-base">
-            Type: Session Cookies
-          </p>
-        </li>
-        <li className="mx-[3rem] mt-[1rem] font-bold">
-          Administered by: Us
-          <p className="mx-[1.5rem] font-normal text-base">
-            Purpose: These Cookies are essential to provide You with services
-            available through the Website and to enable You to use some of its
-            features. They help to authenticate users and prevent fraudulent use
-            of user accounts. Without these Cookies, the services that You have
-            asked for cannot be provided, and We only use these Cookies to
-            provide You with those services
-          </p>
-        </li>
-        <li className="mx-[3rem] mt-[1rem] font-bold">
-          Cookies Policy / Notice Acceptance Cookies
-          <p className="mx-[1.5rem] font-normal text-base">
-            Type: Persistent Cookies
-          </p>
-          <p className="mx-[1.5rem] font-normal text-base">
-            Administered by: Us
-          </p>
-          <p className="mx-[1.5rem] font-normal text-base">
-            Purpose: These Cookies identify if users have accepted the use of
-            cookies on the Website.
-          </p>
-        </li>
-        <li className="mx-[3rem] mt-[1rem] font-bold">
-          Functionality Cookies
-          <p className="mx-[1.5rem] font-normal text-base">
-            Type: Persistent Cookies
-          </p>
-          <p className="mx-[1.5rem] font-normal text-base">
-            Administered by: Us
-          </p>
-          <p className="mx-[1.5rem] font-normal text-base">
-            Purpose: These Cookies allow us to remember choices You make when
-            You use the Website, such as remembering your login details or
-            language preference. The purpose of these Cookies is to provide You
-            with a more personal experience and to avoid You having to re-enter
-            your preferences every time You use the Website
-          </p>
-        </li>
-        <p className="text-lg mx-[1.5rem] mt-[1rem]">
-          For more information about the cookies we use and your choices
-          regarding cookies, please visit our Cookies Policy or the Cookies
-          section of our Privacy Policy.
-        </p>
-        <h1 className="font-bold text-2xl  mx-[1rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          Use of Your Personal Data
-        </h1>
-        <p className="text-lg mx-[1.5rem] ">
-          The Company may use Personal Data for the following purposes:
-        </p>
-        {useData.map((item, index) => (
-          <li key={index} className="px-[2.5rem] text-base">
-            {item}
-          </li>
-        ))}
-        <p className="text-lg mx-[1.5rem] mt-[1rem]">
-          We may share Your personal information in the following situations:
-        </p>
-        {shareData.map((item, index) => (
-          <li key={index} className="px-[2.5rem] text-base">
-            {item}
-          </li>
-        ))}
-        <h1 className="font-bold text-2xl  mx-[1rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          Retention of Your Personal Data
-        </h1>
-        <p className="mx-[1.5rem] font-normal text-base">
-          The Company will retain Your Personal Data only for as long as is
-          necessary for the purposes set out in this Privacy Policy. We will
-          retain and use Your Personal Data to the extent necessary to comply
-          with our legal obligations (for example, if we are required to retain
-          your data to comply with applicable laws), resolve disputes, and
-          enforce our legal agreements and policies. <br />
-          The Company will also retain Usage Data for internal analysis
-          purposes. Usage Data is generally retained for a shorter period of
-          time, except when this data is used to strengthen the security or to
-          improve the functionality of Our Service, or We are legally obligated
-          to retain this data for longer time periods.
-        </p>
-        <h1 className="font-bold text-2xl  mx-[1rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          Transfer of Your Personal Data{" "}
-        </h1>
-        <p className="mx-[1.5rem] font-normal text-base">
-          Your information, including Personal Data, is processed at the
-          Company's operating offices and in any other places where the parties
-          involved in the processing are located. It means that this information
-          may be transferred to — and maintained on — computers located outside
-          of Your state, province, country or other governmental jurisdiction
-          where the data protection laws may differ than those from Your
-          jurisdiction <br />
-          Your consent to this Privacy Policy followed by Your submission of
-          such information represents Your agreement to that transfer <br />
-          The Company will take all steps reasonably necessary to ensure that
-          Your data is treated securely and in accordance with this Privacy
-          Policy and no transfer of Your Personal Data will take place to an
-          organization or a country unless there are adequate controls in place
-          including the security of Your data and other personal information
-        </p>
-        <h1 className="font-bold text-2xl  mx-[1rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          Delete Your Personal Data
-        </h1>
-        <p className="mx-[1.5rem] font-normal text-base">
-          You have the right to delete or request that We assist in deleting the
-          Personal Data that We have collected about You.
+        <h1 className="font-bold text-2xl py-[1rem]">Changes to this Privacy Policy</h1>
+        <p className="mx-[0.5rem] font-normal text-base">
+          We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new
+          Privacy Policy on this page.
           <br />
-          Our Service may give You the ability to delete certain information
-          about You from within the Service.
-          <br />
-          You may update, amend, or delete Your information at any time by
-          signing in to Your Account, if you have one, and visiting the account
-          settings section that allows you to manage Your personal information.
-          You may also contact Us to request access to, correct, or delete any
-          personal information that You have provided to Us. <br />
-          Please note, however, that We may need to retain certain information
-          when we have a legal obligation or lawful basis to do so.
+          We will let You know via email and/or a prominent notice on Our Service, prior to the change becoming
+          effective and update the "Last updated" date at the top of this Privacy Policy. <br />
+          You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are
+          effective when they are posted on this page
         </p>
-        <h1 className="font-bold text-2xl  mx-[1rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          Disclosure of Your Personal Data
-        </h1>
-        <h1 className="font-bold text-2xl  mx-[1.5rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          Business Transactions{" "}
-        </h1>
-        <p className="mx-[1.5rem] font-normal text-base">
-          If the Company is involved in a merger, acquisition or asset sale,
-          Your Personal Data may be transferred. We will provide notice before
-          Your Personal Data is transferred and becomes subject to a different
-          Privacy Policy
+        <h1 className="font-bold text-2xl py-[1rem]">Contact Us</h1>
+        <p className="mx-[0.5rem] font-normal text-base">
+          If you have any questions about this Privacy Policy, You can contact us:
         </p>
-        <h1 className="font-bold text-2xl  mx-[1.5rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          Law enforcement{" "}
-        </h1>
-        <p className="mx-[1.5rem] font-normal text-base">
-          Under certain circumstances, the Company may be required to disclose
-          Your Personal Data if required to do so by law or in response to valid
-          requests by public authorities (e.g. a court or a government agency)
-        </p>
-        <h1 className="font-bold text-2xl  mx-[1.5rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          Other legal requirements
-        </h1>
-        <p className="mx-[1.5rem] font-normal text-base">
-          The Company may disclose Your Personal Data in the good faith belief
-          that such action is necessary to:
-        </p>
-        {legalRequirements.map((item, index) => (
-          <li className=" mx-[3rem] text-base " key={index}>
-            {item}
-          </li>
-        ))}
-        <h1 className="font-bold text-2xl  mx-[1rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          Security of Your Personal Data
-        </h1>
-        <p className="mx-[1.5rem] font-normal text-base">
-          The security of Your Personal Data is important to Us, but remember
-          that no method of transmission over the Internet, or method of
-          electronic storage is 100% secure. While We strive to use commercially
-          acceptable means to protect Your Personal Data, We cannot guarantee
-          its absolute security
-        </p>
-        <h1 className="font-bold text-2xl  mx-[1rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          Children's Privacy
-        </h1>
-        <p className="mx-[1.5rem] font-normal text-base">
-          Our Service does not address anyone under the age of 13. We do not
-          knowingly collect personally identifiable information from anyone
-          under the age of 13. If You are a parent or guardian and You are aware
-          that Your child has provided Us with Personal Data, please contact Us.
-          If We become aware that We have collected Personal Data from anyone
-          under the age of 13 without verification of parental consent, We take
-          steps to remove that information from Our servers. <br />
-          If We need to rely on consent as a legal basis for processing Your
-          information and Your country requires consent from a parent, We may
-          require Your parent's consent before We collect and use that
-          information.
-        </p>
-        <h1 className="font-bold text-2xl  mx-[1rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          Links to Other Websites
-        </h1>
-        <p className="mx-[1.5rem] font-normal text-base">
-          Our Service may contain links to other websites that are not operated
-          by Us. If You click on a third party link, You will be directed to
-          that third party's site. We strongly advise You to review the Privacy
-          Policy of every site You visit.
-          <br />
-          We have no control over and assume no responsibility for the content,
-          privacy policies or practices of any third party sites or services.
-        </p>
-        <h1 className="font-bold text-2xl  mx-[1rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          Changes to this Privacy Policy
-        </h1>
-        <p className="mx-[1.5rem] font-normal text-base">
-          We may update Our Privacy Policy from time to time. We will notify You
-          of any changes by posting the new Privacy Policy on this page.
-          <br />
-          We will let You know via email and/or a prominent notice on Our
-          Service, prior to the change becoming effective and update the "Last
-          updated" date at the top of this Privacy Policy. <br />
-          You are advised to review this Privacy Policy periodically for any
-          changes. Changes to this Privacy Policy are effective when they are
-          posted on this page
-        </p>
-        <h1 className="font-bold text-2xl  mx-[1rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          Contact Us
-        </h1>
-        <p className="mx-[1.5rem] font-normal text-base">
-          If you have any questions about this Privacy Policy, You can contact
-          us:
-        </p>
-        <li className=" mx-[3rem] text-base ">By phone number: +18234555</li>
-        <h1 className="font-bold text-2xl  mx-[1rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          Cancellation Policy
-        </h1>
-        <li className=" mx-[3rem] text-base ">
-          {" "}
-          The contract will be not effective between the service provider Travel
-          Magnet Infotech Private Limited (TMIS)) and the client until received
-          the full amount of payment from client.
-        </li>
-        <li className=" mx-[3rem] text-base ">
-          The agency (TMIS) has the right to take decision by reason for:-
-        </li>
-        <li className=" mx-[5rem] text-base ">
-          To cancel the contract by reason prior to the date of service provide
-          and if does so, its liability shall be limited to refunding amount
-          received from client without inclusion of any percentage of interest.
-        </li>
-        <li className=" mx-[5rem] text-base ">
-          To amend of route / Timing of transportation service in such situation
-          of any unavoidable circumstance.
-        </li>
-        <li className=" mx-[3rem] text-base ">
-          The Travel Magnet Infotech Private Limited cannot be responsible for
-          any improper services provided by any other service provider agency
-          apart from services officially confirmed by TMIS also not be
-          responsible for the sudden situations if arise within the service
-          providing period by the agency TMIS as damage , lost of luggage or any
-          valuable goods, in the case of caused by the act or default of the
-          management or employee of any hotelier, airline, surface transport,
-          who are the agency’s independent service associates. <br />
-          The TMIS also not liable for situation arising out side of normal
-          selection and inspection process, or acts of Government authority,
-          war, civil or political disturbances, strike, natural calamities - as
-          landslide, flood, earthquake, and others of it’s kind. As a result of
-          any of the causes delay of days out of contract period and changes of
-          itinerary the extra expense will be bear by the client.
-        </li>
-        <li className=" mx-[3rem] text-base ">
-          The agency TMIS shall in no any circumstances whatsoever be liable to
-          the client or persons traveling with the agency in the contract period
-          of service provide for :-
-        </li>
-        <li className=" mx-[5rem] text-base ">
-          Any death, physical injury, sickness, accidental case, any illegal or
-          immoral activity, any penalty by caused of activity’s against civic
-          rule, any damage or lost of luggage or valuable goods,
-        </li>
-        <li className=" mx-[3rem] text-base ">
-          The amount quoted for the particular services has been calculated as
-          per the fuel and related cost prevailing at the time of submission of
-          the rate quotation. <br />
-          The TMIS reserves the right to amend the quoted rate in case of
-          changes in any tax or surcharges structure, increase of fuel cost, and
-          any of cost increase beyond control of the company. On that situation
-          the service provider agency We will inform in advance to the client or
-          related person for additional payment amount to be paid before start
-          of service.
-        </li>
-        <h1 className="font-bold text-2xl  mx-[1rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          BOOKING PROCEDURE :
-        </h1>
-        {bookingProcedures.map((item, index) => (
-          <li className=" mx-[3rem] text-base " key={index}>
-            {item}
-          </li>
-        ))}
-        <h1 className="font-bold text-2xl  mx-[1rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          CANCELLATION TERMS AND POLICIES :
-        </h1>
-        {Cancellationterms.map((item, index) => (
-          <li className=" mx-[3rem] text-base " key={index}>
-            {item}
-          </li>
-        ))}
-        <h1 className="font-bold text-2xl  mx-[1rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          Refund Policy
-        </h1>
-        <p className="mx-[1.5rem] font-normal text-base">
-          If the tour or any part thereof cannot be conducted due to Force
-          Majeure or Vis Majeure, the Company shall not be responsible to give
-          any refund to you. <br />
-          If the tour or any part thereof cannot be conducted due to Force
-          Majeure or Vis Majeure, the Company shall not be responsible to give
-          any refund to you. However, at its sole discretion, the Company gives
-          the refund based on various factors like the number of participants,
-          the cancellation policies of suppliers like hoteliers, coach
-          operators, etc. the decision of the Company on the quantum of refund
-          shall be final.
-          <br />
-          It would take at least minimum of 15 to 45 days to process the refund
-          (if due). <br />
-          It is clearly understood that there shall be no refund whatsoever if
-          the Client does not or cannot utilize any of the services like hotels,
-          sightseeing, rides, cruises, meals, entrance fees, optional tours
-          etc., due to any reason whatsoever <br />
-          Refunds (If any) for amendments and/or cancellations will be paid
-          directly to the Client for booking made directly with the Company by
-          way of NEFT / RTGS / Crossed cheque or by credit card it will be
-          reversed to their credit card account at the discretion of the
-          company. It would at least take 45 days to process refunds. <br />
-          There is no refund payable for any unutilized services (e.g. meals,
-          entrance fees, optional tours, hotels, transport and sightseeing
-          etc.,) for any reason whatsoever.
-          <br />
-          Any service booked in advance and cancelled as per booking policy,
-          refund will be done in the same mode of payment after deducting
-          cancellation charges and actual bank charges if any for refund. ( to
-          customer bank account if paid by bank transfer, net banking mode /
-          credit /debit card – reversal to their respective credit card account
-          will be done. This process will take 15 to 45 days to reflect in their
-          account. <br />
-          Clients have option to keep their refund money in our account and
-          collect credit certificate and utilise the same with 24 months.
-        </p>
-        <h1 className="font-bold text-2xl  mx-[1rem] font-['rubik_doodle_shadow'] py-[1rem]">
-          CONDITIONS OF TRAVEL :
-        </h1>
-        {conditionsTravel.map((item, index) => (
-          <li className=" mx-[3rem] text-base list-inside" key={index}>
-            {item}
-          </li>
-        ))}
+        <li className=" mx-[1rem] text-base ">By phone number: +18234555</li>
+        <h1 className="font-bold text-2xl mt-[1rem]">Cancellation Policy</h1>
+        <Accordion className=" font-['poppins'] " variant="">
+          <AccordionItem title="Policy for cancellation" subtitle={<span>Press to expand</span>}>
+            <li className=" mx-[3rem] text-base ">
+              {" "}
+              The contract will be not effective between the service provider Travel Magnet Infotech Private Limited
+              (TMIS)) and the client until received the full amount of payment from client.
+            </li>
+            <li className=" mx-[3rem] text-base ">The agency (TMIS) has the right to take decision by reason for:-</li>
+            <li className=" mx-[5rem] text-base ">
+              To cancel the contract by reason prior to the date of service provide and if does so, its liability shall
+              be limited to refunding amount received from client without inclusion of any percentage of interest.
+            </li>
+            <li className=" mx-[5rem] text-base ">
+              To amend of route / Timing of transportation service in such situation of any unavoidable circumstance.
+            </li>
+            <li className=" mx-[3rem] text-base ">
+              The Travel Magnet Infotech Private Limited cannot be responsible for any improper services provided by any
+              other service provider agency apart from services officially confirmed by TMIS also not be responsible for
+              the sudden situations if arise within the service providing period by the agency TMIS as damage , lost of
+              luggage or any valuable goods, in the case of caused by the act or default of the management or employee
+              of any hotelier, airline, surface transport, who are the agency’s independent service associates. <br />
+              The TMIS also not liable for situation arising out side of normal selection and inspection process, or
+              acts of Government authority, war, civil or political disturbances, strike, natural calamities - as
+              landslide, flood, earthquake, and others of it’s kind. As a result of any of the causes delay of days out
+              of contract period and changes of itinerary the extra expense will be bear by the client.
+            </li>
+            <li className=" mx-[3rem] text-base ">
+              The agency TMIS shall in no any circumstances whatsoever be liable to the client or persons traveling with
+              the agency in the contract period of service provide for :-
+            </li>
+            <li className=" mx-[5rem] text-base ">
+              Any death, physical injury, sickness, accidental case, any illegal or immoral activity, any penalty by
+              caused of activity’s against civic rule, any damage or lost of luggage or valuable goods,
+            </li>
+            <li className=" mx-[3rem] text-base ">
+              The amount quoted for the particular services has been calculated as per the fuel and related cost
+              prevailing at the time of submission of the rate quotation. <br />
+              The TMIS reserves the right to amend the quoted rate in case of changes in any tax or surcharges
+              structure, increase of fuel cost, and any of cost increase beyond control of the company. On that
+              situation the service provider agency We will inform in advance to the client or related person for
+              additional payment amount to be paid before start of service.
+            </li>
+          </AccordionItem>
+        </Accordion>
+        <h1 className="font-bold text-2xl mt-[1rem]">Booking Procedure</h1>
+        <Accordion className="mt-[1rem] font-['poppins'] " variant="">
+          <AccordionItem title="Booking procedure" subtitle={<span>Press to expand</span>}>
+            {bookingProcedures.map((item, index) => (
+              <li className=" mx-[1rem] text-base " key={index}>
+                {item}
+              </li>
+            ))}
+          </AccordionItem>
+        </Accordion>
+        <h1 className="font-bold text-2xl mt-[1rem]"> CANCELLATION TERMS AND POLICIES :</h1>
+        <Accordion className="mt-[1rem] font-['poppins'] " variant="">
+          <AccordionItem title="Cancellation terms" subtitle={<span>Press to expand</span>}>
+            {Cancellationterms.map((item, index) => (
+              <li className=" mx-[3rem] text-base " key={index}>
+                {item}
+              </li>
+            ))}
+          </AccordionItem>
+        </Accordion>
+        <h1 className="font-bold text-2xl mt-[1rem]"> Refund Policy</h1>
+        <Accordion className="mt-[1rem] font-['poppins'] " variant="">
+          <AccordionItem title="Refund Policy" subtitle={<span>Press to expand</span>}>
+            <p className="mx-[1.5rem] font-normal text-base">
+              If the tour or any part thereof cannot be conducted due to Force Majeure or Vis Majeure, the Company shall
+              not be responsible to give any refund to you. <br />
+              If the tour or any part thereof cannot be conducted due to Force Majeure or Vis Majeure, the Company shall
+              not be responsible to give any refund to you. However, at its sole discretion, the Company gives the
+              refund based on various factors like the number of participants, the cancellation policies of suppliers
+              like hoteliers, coach operators, etc. the decision of the Company on the quantum of refund shall be final.
+              <br />
+              It would take at least minimum of 15 to 45 days to process the refund (if due). <br />
+              It is clearly understood that there shall be no refund whatsoever if the Client does not or cannot utilize
+              any of the services like hotels, sightseeing, rides, cruises, meals, entrance fees, optional tours etc.,
+              due to any reason whatsoever <br />
+              Refunds (If any) for amendments and/or cancellations will be paid directly to the Client for booking made
+              directly with the Company by way of NEFT / RTGS / Crossed cheque or by credit card it will be reversed to
+              their credit card account at the discretion of the company. It would at least take 45 days to process
+              refunds. <br />
+              There is no refund payable for any unutilized services (e.g. meals, entrance fees, optional tours, hotels,
+              transport and sightseeing etc.,) for any reason whatsoever.
+              <br />
+              Any service booked in advance and cancelled as per booking policy, refund will be done in the same mode of
+              payment after deducting cancellation charges and actual bank charges if any for refund. ( to customer bank
+              account if paid by bank transfer, net banking mode / credit /debit card – reversal to their respective
+              credit card account will be done. This process will take 15 to 45 days to reflect in their account. <br />
+              Clients have option to keep their refund money in our account and collect credit certificate and utilise
+              the same with 24 months.
+            </p>
+            <h1 className="font-bold text-2xl  mx-[1rem] font-['rubik_doodle_shadow'] py-[1rem]">
+              CONDITIONS OF TRAVEL :
+            </h1>
+            {conditionsTravel.map((item, index) => (
+              <li className=" mx-[3rem] text-base list-inside" key={index}>
+                {item}
+              </li>
+            ))}
+          </AccordionItem>
+        </Accordion>
       </div>
     </div>
   );
