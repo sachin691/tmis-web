@@ -135,17 +135,17 @@ const Privacy = () => {
 
       <Divider className="my-[1rem]" />
 
-      <div className="text-lg bg-white rounded-md p-[2rem]">
-        <h1 className="font-['rubik_doodle_shadow'] font-bold text-4xl text-center my-[3rem]">
+      <div className="text-lg bg-white rounded-md p-[2rem] py-[1rem]">
+        <h1 className=" font-bold text-3xl text-start my-[1rem]">
           Interpretation and Definitions
         </h1>
-        <h1 className="font-bold text-2xl font-['rubik_doodle_shadow']">Interpretation :</h1>
+        <h1 className="font-bold text-2xl">Interpretation</h1>
         <p className="text-lg p-[1rem] font-['poppins']">
           The words of which the initial letter is capitalized have meanings defined under the following conditions. The
           following definitions shall have the same meaning regardless of whether they appear in singular or in plural.
         </p>
-        <h1 className="font-bold text-3xl  font-['rubik_doodle_shadow'] ">Definitions :</h1>
-        <Accordion className="mt-[1rem] font-['poppins'] " variant="">
+        <h1 className="font-bold text-2xl ">Definitions</h1>
+        <Accordion className=" font-['poppins'] " variant="">
           <AccordionItem
             aria-label="For the purposes of this Privacy Policy:"
             title="For the purposes of this Privacy Policy:"
@@ -158,10 +158,10 @@ const Privacy = () => {
             ))}
           </AccordionItem>
         </Accordion>
-        <h1 className="font-['rubik_doodle_shadow'] font-bold text-4xl text-center my-[3rem]">
+        <h1 className=" font-bold text-3xl text-start my-[1rem]">
           Collecting and Using Your Personal Data
         </h1>
-        <h1 className="font-bold text-2xl  font-['rubik_doodle_shadow']">Types of Data Collected :</h1>
+        <h1 className="font-bold text-2xl">Types of Data Collected </h1>
 
         <Accordion className="mt-[1rem] font-['poppins'] " variant="">
           <AccordionItem title="Personal Data" subtitle={<span>Press to expand</span>}>
@@ -260,7 +260,7 @@ const Privacy = () => {
           </AccordionItem>
         </Accordion>
 
-        <h1 className="font-bold text-2xl font-['rubik_doodle_shadow'] mt-[1rem]">Use of Your Personal Data</h1>
+        <h1 className="font-bold text-2xl  mt-[1rem]">Use of Your Personal Data</h1>
         <Accordion className="mt-[1rem] font-['poppins'] " variant="">
           <AccordionItem
             title="The Company may use Personal Data for the following purposes:"
