@@ -11,3 +11,31 @@
     background-size: cover;
     background-position: right;
   }
+
+
+  .hIcc {
+  background-image:linear-gradient(rgba(0, 0, 0, 0.4) 20%, rgba(0, 0, 0, 0.4)), url("../assets/homeIcc.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right;
+  }
+  .consumer {
+  background-image:linear-gradient(rgba(0, 0, 0, 0.4) 20%, rgba(0, 0, 0, 0.4)), url("../assets/homeConsumer.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right;
+  }
+  .pb {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4) 20%, rgba(0, 0, 0, 0.4)), url("../assets/homePb.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right;
+  }
+  .ai {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4) 20%, rgba(0, 0, 0, 0.4)), url("../assets/homeAI.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right;
+  }
+
+  
