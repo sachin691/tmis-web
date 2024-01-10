@@ -114,7 +114,7 @@ const conditionsTravel = [
 const Privacy = () => {
   const dispatch = useDispatch();
   dispatch(updateTab("Privacy & Policy"));
-  // scrollTop();
+  scrollTop();
 
   return (
     <div className="h-auto flex flex-col bg-[#e9ecef] m-[2rem] p-[4rem] gap-4 rounded-lg">
