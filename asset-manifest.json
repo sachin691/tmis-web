@@ -1,8 +1,11 @@
 {
   "files": {
-    "main.css": "/static/css/main.b322e1f7.css",
-    "main.js": "/static/js/main.50f752e6.js",
+    "main.css": "/static/css/main.3433ce2d.css",
+    "main.js": "/static/js/main.643679a7.js",
     "static/media/servicesCard1_80.jpg": "/static/media/servicesCard1_80.1bccc4694c32e235f309.jpg",
+    "static/media/homePb.jpg": "/static/media/homePb.01e6809f4eb71f7f638c.jpg",
+    "static/media/homeIcc.jpg": "/static/media/homeIcc.4c7e180e53a73c328395.jpg",
+    "static/media/homeConsumer.jpg": "/static/media/homeConsumer.f3a930c18eb98bce92a4.jpg",
     "static/media/services444.jpg": "/static/media/services444.c7ec4bb37ac07ae4cfae.jpg",
     "static/media/homeServices (1) (1).jpg": "/static/media/homeServices (1) (1).fe8a3820c8c04b9eb607.jpg",
     "static/media/ratesBg (1) (1).jpg": "/static/media/ratesBg (1) (1).9c2b13db99b2aeb2c62e.jpg",
@@ -13,14 +16,15 @@
     "static/media/aboutUsMan (1).jpg": "/static/media/aboutUsMan (1).8480033a3b0f0917eb60.jpg",
     "static/media/services333.jpg": "/static/media/services333.6a10b0c22c29e69e8f6a.jpg",
     "static/media/ContactUs (1).jpg": "/static/media/ContactUs (1).e3c1f67d48892b6198d4.jpg",
+    "static/media/homeAI.jpg": "/static/media/homeAI.9fb48b8fd39a57defae1.jpg",
     "static/media/privacy.jpg": "/static/media/privacy.87d4b4dd2650f1ea7568.jpg",
     "static/media/logo.svg": "/static/media/logo.5c8d0164cf1740321a92190a65801b39.svg",
     "index.html": "/index.html",
-    "main.b322e1f7.css.map": "/static/css/main.b322e1f7.css.map",
-    "main.50f752e6.js.map": "/static/js/main.50f752e6.js.map"
+    "main.3433ce2d.css.map": "/static/css/main.3433ce2d.css.map",
+    "main.643679a7.js.map": "/static/js/main.643679a7.js.map"
   },
   "entrypoints": [
-    "static/css/main.b322e1f7.css",
-    "static/js/main.50f752e6.js"
+    "static/css/main.3433ce2d.css",
+    "static/js/main.643679a7.js"
   ]
 }
