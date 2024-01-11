@@ -33,7 +33,13 @@ const ContactUs = () => {
   const [budgetState, setBudgetState] = useState(-1);
 
   const sendEmail = () => {
-    if (userNameState > 0 && companyNameState > 0 && phoneState > 0 && budgetState > 0 && emailState > 0) {
+    if (
+      !emailValidity && userNameState > 0 &&
+      companyNameState > 0 &&
+      phoneState > 0 &&
+      budgetState > 0 &&
+      emailState > 0
+    ) {
       emailjs
         .sendForm(
           process.env.REACT_APP_SERVICE_ID,
