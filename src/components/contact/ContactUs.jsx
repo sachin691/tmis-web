@@ -68,14 +68,10 @@ const ContactUs = () => {
   };
   scrollTop();
   return (
-    <div className="ContactUs flex py-[6rem] justify-evenly items-center">
-      <div className="flex flex-col ">
-        <h1 className="py-[1rem] font-['rubik_doodle_shadow']  text-white font-bold text-7xl">Contact Us</h1>
-        <form
-          className="w-[30rem] py-[2rem] flex-wrap md:flex-nowrap flex flex-col gap-[1rem]"
-          ref={form}
-          onSubmit={sendEmail}
-        >
+    <div className="ContactUs grid grid-cols-1 lg:grid-cols-2 py-[6rem] px-[2rem] items-center">
+      <div className="flex flex-col items-center">
+        <h1 className="py-[1rem] font-['rubik_doodle_shadow']  text-white font-bold text-5xl md:text-7xl">Contact Us</h1>
+        <form className="w-[18rem]  md:w-[30rem] py-[2rem] px-[1rem] flex flex-col gap-[1rem]" ref={form} onSubmit={sendEmail}>
           <Input
             type="email"
             label="Email"
@@ -132,13 +128,13 @@ const ContactUs = () => {
             errorMessage={budgetState === 0 ? "Please enter a valid Budget" : ""}
             isInvalid={budgetState === 0}
           />
+          <Button size="lg" className="" variant="bordered" color="primary" radius="none" onClick={sendEmail}>
+            <span>Send Message</span>
+          </Button>
+          <Toaster />
         </form>
-        <Button size="lg" className="w-[30rem] " variant="bordered" color="primary" radius="none" onClick={sendEmail}>
-          <span>Send Message</span>
-        </Button>
-        <Toaster />
       </div>
-      <div className="text-white max-w-[30rem] flex-col gap-[2rem] hidden lg:flex">
+      <div className="text-white max-w-[30rem] text-center flex-col gap-[2rem] hidden lg:flex">
         <h1 className="font-bold text-[3rem] leading-[3rem]">TMIS Solutions</h1>
         <p>
           We're eager to hear from you! Whether you have inquiries about our international customer service solutions,
