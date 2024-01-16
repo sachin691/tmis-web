@@ -29,7 +29,7 @@ const Youtube = () => {
         title="KreativeMachinez Promo Video"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
-        className="rounded-3xl"
+        className="rounded-3xl h-[10rem] w-[15rem] md:h-[20rem] md:w-[30rem] "
       />
     </div>
   );

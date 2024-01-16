@@ -9,21 +9,22 @@ import "./Home.css";
 
 const Main = () => {
   return (
-    <div className="flex items-center text-white main h-[42rem]">
+    <div className="flex items-center text-white main h-auto">
       <div className="w-full flex flex-col items-center lg:items-start gap-[2rem] py-[5rem] px-[1rem] lg:px-[6rem] xl:px-[8rem] bg-transparent">
         <div>
-          <h1 className="font-bold text-[3rem] sm:text-[4rem] leading-[4rem] text-center lg:text-left">
-            Welcome to TMIS
+          <h1 className="font-bold text-[2rem]  sm:text-[4rem] leading-[4rem] text-center lg:text-left">
+            Welcome to TMIS Solutions
           </h1>
           <h1 className="font-['rubik_doodle_shadow'] italic font-bold text-[1.7rem] leading-[4rem] text-center lg:text-left">
-            " Your Trusted Partner in Excellence ! "
+            "Your Trusted Partner for International Customer Service Excellence!"
           </h1>
         </div>
 
         <p className="text-center lg:text-justify max-w-[35rem]">
-          At TMIS, we pride ourselves on delivering world-class solutions to meet your business needs. Our commitment to
-          excellence is reflected in every aspect of our services. With TMIS, you gain a partner you can trust, backed
-          by a team that's always on-call and ready to assist you.
+          At TMIS <span className="font-bold">(Travelmagnet Infotech Private Limited)</span> Solutions, we understand the critical role that
+          customer service plays in driving customer retention, enhancing brand image, and ultimately boosting revenue.
+          Our mission is to alleviate the challenges faced by cross-border e-commerce businesses, particularly in
+          dealing with customer service and language barriers.
         </p>
 
         <Button

@@ -13,13 +13,10 @@ const Footer = () => {
         <div className="flex flex-col gap-[2rem]">
           <Image width={300} alt="TMIS Image" src={logo} radius="none" />
           <p className="max-w-[25rem]">
-            As a leading provider in the industry, TMIS is dedicated to serving
-            international customers with utmost values.
+            TMIS stands as a beacon of excellence in the industry, dedicated to embodying the highest values in serving
+            the global community.
           </p>
-          <Link
-            to="/Privacy&Policy"
-            className="text-blue-500 lg:mx-[8rem] md:mx-[4rem]"
-          >
+          <Link to="/Privacy&Policy" className="text-blue-500 lg:mx-[8rem] md:mx-[4rem]">
             Privacy & Policy
           </Link>
         </div>
@@ -50,7 +47,7 @@ const Footer = () => {
           </div>
           <Divider />
           <div className="flex md:flex-col items-center">
-            <div className="grid grid-cols-2 md:flex gap-[1rem] md:flex-row">
+            <div className="grid grid-cols-1 md:flex gap-[1rem] md:flex-row">
               <span className="flex flex-col min-w-[20rem] md:min-w-[8rem] text-xs">
                 <span className="font-bold text-base">Main Office</span>
                 <span>Building : Unit-912 & 913, Tower-B</span>
