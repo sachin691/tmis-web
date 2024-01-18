@@ -117,10 +117,10 @@ const Privacy = () => {
   scrollTop();
 
   return (
-    <div className="h-auto flex flex-col bg-[#e9ecef] m-[2rem] p-[4rem] gap-4 rounded-lg">
+    <div className="h-auto flex flex-col bg-[#e9ecef] m-0 p-0 md:m-[2rem] md:p-[4rem] gap-4 rounded-lg">
       <div className="bg-gray-900 grid xl:grid-cols-2">
         <div className="px-[2rem] sm:px-[3rem] md:px-[5rem] lg:px-[8rem] py-[5rem] flex flex-col gap-[3rem]">
-          <span className=" text-white text-6xl font-bold">Privacy & Policy</span>
+          <span className=" text-white text-4xl md:text-6xl font-bold">Privacy & Policy</span>
           <div className="flex flex-col gap-[1rem]">
             <p className="text-white">
               This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your

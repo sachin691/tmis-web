@@ -24,11 +24,11 @@ const HomeServices = () => {
         {services.map((data, index) => (
           <div
             key={index}
-            className={`col-span-4 md:col-span-2 h-[10rem] w-[15rem] sm:h-[15rem] sm:w-[30rem] rounded-3xl relative overflow-hidden ${images[index]}`}
+            className={`col-span-4 md:col-span-2 h-[10rem] w-[20rem] sm:h-[15rem] sm:w-[30rem] rounded-3xl relative overflow-hidden ${images[index]}`}
           >
             <div className="absolute inset-0 flex flex-col items-center justify-center">
               <Button
-                className=" text-center text-white bg-black/20 p-[1.2rem] h-[4rem] text-[0.9rem] sm:text-[1.2rem] hover:scale-110 duration-100 font-['rubik_doodle_shadow'] leading-5"
+                className="text-center text-white bg-black/20 p-[1.2rem] h-[4rem] text-[0.9rem] sm:text-[1.2rem] hover:scale-110 duration-100 font-['rubik_doodle_shadow'] leading-5"
                 variant="flat"
                 color="default"
                 radius="lg"
