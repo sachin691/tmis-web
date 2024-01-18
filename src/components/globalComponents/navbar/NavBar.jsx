@@ -20,7 +20,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const menuItems = ["Home", "Services", "Pricing", "About", "Contact Us"];
+  const menuItems = ["Home", "Services", "Pricing", "About", "Privacy & Policy", "Contact Us"];
   const handleContactUs = () => {
     navigate("/ContactUs");
   };
@@ -111,7 +111,7 @@ const NavBar = () => {
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-              to={index === 4 ? `/ContactUs` : `/${item}`}
+              to={index === 4 ? "/Privacy&Policy" : index === 5 ? "/ContactUs" : `/${item}`}
               onClick={() => {
                 dispatch(updateNavStatus(!navOpenStatus));
               }}
@@ -125,11 +125,7 @@ const NavBar = () => {
       </NavbarMenu>
 
       <NavbarItem className="px-[1rem] hidden md:block  order-5">
-        <Button
-          variant="solid"
-          className="p-[20px] bg-[#f5a524] text-white "
-          onClick={handleContactUs}
-        >
+        <Button variant="solid" className="p-[20px] bg-[#f5a524] text-white " onClick={handleContactUs}>
           Contact Us
         </Button>
       </NavbarItem>

@@ -27,7 +27,7 @@ const values = [
 
 const Values = () => {
   return (
-    <div className="px-[5rem] py-[5rem] flex flex-col items-center gap-[3rem]">
+    <div className="px-[1rem] md:px-[5rem] py-[5rem] flex flex-col items-center gap-[3rem]">
       <h1 className="text-[2.5rem] font-bold">Our Values</h1>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[2rem]">

@@ -8,7 +8,7 @@ const Youtube = () => {
   }
 
   return (
-    <div className="px-[3rem] md:px-[5rem] py-[5rem] flex flex-col lg:flex-row lg:justify-evenly items-center gap-[2rem] lg:gap-[5rem] bg-white">
+    <div className="px-[1.5rem] md:px-[5rem] py-[5rem] flex flex-col lg:flex-row lg:justify-evenly items-center gap-[2rem] lg:gap-[5rem] bg-white">
       <div className="lg:w-[40%] flex flex-col gap-[1.5rem] lg:order-last">
         <h1 className="font-bold text-[3rem] leading-[2.7rem]">Watch Us In Action</h1>
         <p className="text-justify text-default-500 text-[0.95rem] sm:text-md">
@@ -29,7 +29,7 @@ const Youtube = () => {
         title="KreativeMachinez Promo Video"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
-        className="rounded-3xl h-[10rem] w-[15rem] md:h-[20rem] md:w-[30rem] "
+        className="rounded-3xl h-[10rem] w-full md:h-[20rem] md:w-[30rem] "
       />
     </div>
   );

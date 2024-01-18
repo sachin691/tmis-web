@@ -71,7 +71,7 @@ const ContactUs = () => {
     <div className="ContactUs grid grid-cols-1 lg:grid-cols-2 py-[6rem] px-[2rem] items-center">
       <div className="flex flex-col items-center">
         <h1 className="py-[1rem] font-['rubik_doodle_shadow']  text-white font-bold text-5xl md:text-7xl">Contact Us</h1>
-        <form className="w-[18rem]  md:w-[30rem] py-[2rem] px-[1rem] flex flex-col gap-[1rem]" ref={form} onSubmit={sendEmail}>
+        <form className="w-full md:w-[30rem] py-[2rem] px-[1rem] flex flex-col gap-[1rem]" ref={form} onSubmit={sendEmail}>
           <Input
             type="email"
             label="Email"
