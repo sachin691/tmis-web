@@ -41,7 +41,7 @@ const NavBar = () => {
 
         <NavbarBrand className="order-1">
           <Link to="/" className="font-bold text-inherit text-2xl text-white">
-            TMIS
+            TMIS Solutions
           </Link>
         </NavbarBrand>
 
