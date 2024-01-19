@@ -25,11 +25,11 @@ const Youtube = () => {
       <iframe
         width={width}
         height={height}
-        src="https://www.youtube.com/embed/w9NTzfdG7G4"
+        src="https://www.youtube.com/embed/pWOv9xcoMeY"
         title="KreativeMachinez Promo Video"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
-        className="rounded-3xl h-[10rem] w-full md:h-[20rem] md:w-[30rem] "
+        className="rounded-3xl h-[20rem] w-full md:h-[20rem] md:w-[30rem] "
       />
     </div>
   );
