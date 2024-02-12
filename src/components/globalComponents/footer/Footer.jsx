@@ -50,9 +50,9 @@ const Footer = () => {
             <div className="grid grid-cols-1 md:flex gap-[1rem] lg:flex-row">
               <span className="flex flex-col min-w-[20rem] md:min-w-[8rem] text-xs">
                 <span className="font-bold text-base">Main Office</span>
-                <span>Building : House No 2068, Sector 57, Sadar Bazar</span>
-                <span>Location : Spaze Itech Park</span>
-                <span>City : Gurgoun</span>
+                <span>Building : House No 2068</span>
+                <span>Location : Sector 57, Sadar Bazar</span>
+                <span>City : Gurugram, 122001</span>
                 <span>State : Haryana</span>
                 <span>Country : India</span>
               </span>
@@ -85,7 +85,7 @@ const Footer = () => {
         </div>
       </div>
       <p className="text-center text-gray-700 font-bold text-md md:text-xl mt-[4rem]">
-        © 2024 Travel Magnet Infotech Private Limited • All Rights Reserved
+        © 2024 TRAVELMAGNET INFOTECH PRIVATE LIMITED • All Rights Reserved
       </p>
     </div>
   );
