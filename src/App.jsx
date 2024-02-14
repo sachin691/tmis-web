@@ -10,6 +10,8 @@ import Privacy from "./components/privacy/Privacy";
 import Refund from "./components/globalSubComponents/Refund";
 import Terms from "./components/globalSubComponents/Terms";
 import Checkout from "./components/pricing/components/Checkout";
+import Refund from "./components/globalSubComponents/Refund";
+import Terms from "./components/globalSubComponents/Terms";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
         <Route path="/Refund" element={<Refund />} />
         <Route path="/T&C" element={<Terms />} />
         <Route path="/Checkout" element={<Checkout/>} />
+        <Route path="/Refund" element={<Refund />} />
+        <Route path="/T&C" element={<Terms />} />
         <Route path="*" element={<Navigate to="/Home" />} />
       </Routes>
       <Footer />
