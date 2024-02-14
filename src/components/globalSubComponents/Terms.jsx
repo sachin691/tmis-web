@@ -79,7 +79,7 @@ const Terms = () => {
             </p>
           </div>
         </div>
-        <div className="refund"></div>
+        <div className="terms"></div>
       </div>
 
       <Divider className="my-[1rem]" />
