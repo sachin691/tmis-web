@@ -56,7 +56,7 @@ const terms = [
   {
     heading: "Governing Law & Jurisdiction : ",
     content: [
-      "These Terms and Conditions will be governed by and construed in accordance with the laws of [Your Jurisdiction], and you submit to the non-exclusive jurisdiction of the state and federal courts located in [Your Jurisdiction] for the resolution of any disputes.",
+      "These Terms and Conditions will be governed by and construed in accordance with the laws of India, and you submit to the non-exclusive jurisdiction of the state and federal courts located in India for the resolution of any disputes.",
     ],
   },
 ];
