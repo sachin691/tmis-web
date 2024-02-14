@@ -16,6 +16,8 @@ import Create from "./components/career/Create"
 import Auth from "./components/Auth/Auth";
 
 import Checkout from "./components/pricing/components/Checkout";
+import Refund from "./components/globalSubComponents/Refund";
+import Terms from "./components/globalSubComponents/Terms";
 
 function App() {
   return (
@@ -38,6 +40,8 @@ function App() {
         <Route path="/Auth" element={<Auth />} />
 
         <Route path="/Checkout" element={<Checkout/>} />
+        <Route path="/Refund" element={<Refund />} />
+        <Route path="/T&C" element={<Terms />} />
         <Route path="*" element={<Navigate to="/Home" />} />
       </Routes>
       <Footer />
