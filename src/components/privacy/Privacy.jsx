@@ -1,8 +1,9 @@
 // Dependencies
 import { Accordion, AccordionItem,  Divider } from "@nextui-org/react";
+import { useDispatch } from "react-redux";
+
 // Local Files
 import "./Privacy.css";
-import { useDispatch } from "react-redux";
 import { updateTab } from "../../store/curTabSlice";
 import { scrollTop } from "../../utils/methods";
 

@@ -8,7 +8,7 @@ import logo from "../../../globalAssets/logo.svg";
 
 const Footer = () => {
   return (
-    <div className="bg-slate-50 px-[3rem] md:px-[5rem] py-[5rem]">
+    <div className="bg-slate-50 px-[3rem] md:px-[5rem] py-[5rem] pb-0">
       <div className="flex flex-col lg:flex-row gap-[4rem]">
         <div className="flex flex-col gap-[2rem]">
           <Image width={300} alt="TMIS Image" src={logo} radius="none" />
@@ -16,9 +16,17 @@ const Footer = () => {
             TMIS stands as a beacon of excellence in the industry, dedicated to embodying the highest values in serving
             the global community.
           </p>
-          <Link to="/Privacy&Policy" className="text-blue-500">
-            Privacy & Policy
-          </Link>
+          <div className="flex flex-col">
+            <Link to="/Privacy&Policy" className="text-blue-500">
+              Privacy & Policy
+            </Link>
+            <Link to="/Refund" className="text-blue-500">
+              Refund & Cancellation Policy
+            </Link>
+            <Link to="/T&C" className="text-blue-500">
+              Terms & Conditions
+            </Link>
+          </div>
         </div>
         <div className="hidden lg:flex flex-col items-center justify-center">
           <Link to="../Services">
@@ -84,7 +92,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <p className="text-center text-gray-700 font-bold text-md md:text-xl mt-[4rem]">
+      <p className="text-center text-gray-700 font-bold text-md md:text-xl mt-[3rem] py-[1rem] border-t-[0.1rem]">
         © 2024 TRAVELMAGNET INFOTECH PRIVATE LIMITED • All Rights Reserved
       </p>
     </div>

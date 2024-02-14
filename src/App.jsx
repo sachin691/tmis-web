@@ -8,6 +8,8 @@ import Footer from "./components/globalComponents/footer/Footer";
 import ContactUs from "./components/contact/ContactUs";
 import Privacy from "./components/privacy/Privacy";
 import Checkout from "./components/pricing/components/Checkout";
+import Refund from "./components/globalSubComponents/Refund";
+import Terms from "./components/globalSubComponents/Terms";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
         <Route path="/ContactUs" element={<ContactUs />} />
         <Route path="/Privacy&Policy" element={<Privacy />} />
         <Route path="/Checkout" element={<Checkout/>} />
+        <Route path="/Refund" element={<Refund />} />
+        <Route path="/T&C" element={<Terms />} />
         <Route path="*" element={<Navigate to="/Home" />} />
       </Routes>
       <Footer />
