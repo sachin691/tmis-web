@@ -1,6 +1,6 @@
 // Dependencies
-import { Table, TableHeader, TableColumn, TableBody, TableCell, TableRow } from "@nextui-org/react";
-
+import { Table, TableHeader, TableColumn, TableBody, TableCell, TableRow, Button } from "@nextui-org/react";
+import axios from "axios";
 // Local Files
 import "./Pricing.css";
 
@@ -104,6 +104,70 @@ const cardData = [
 ];
 
 const Rates = () => {
+  const loadScript = (src) => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  };
+
+  const displayRazorpay = async () => {
+    const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
+
+    if (!res) {
+      alert("Razorpay SDK failed to load. Are you online?");
+      return;
+    }
+
+    const result = await axios.post("http://localhost:5000/payment/orders");
+    if (!result) {
+      alert("Server error. Are you online?");
+      return;
+    }
+
+    const { amount, id: order_id, currency } = result.data.payload.order;
+
+    const options = {
+      key: process.env.REACT_APP_RAZORPAY_KEY, // Enter the Key ID generated from the Dashboard
+      amount: amount.toString(),
+      currency: currency,
+      name: "TMIS PVT LTD",
+      description: "Test Transaction",
+      // image: { logo },
+      order_id: order_id,
+      handler: async function (response) {
+        console.log("starting transaction");
+        const data = {
+          orderCreationId: order_id,
+          razorpayPaymentId: response.razorpay_payment_id,
+          razorpayOrderId: response.razorpay_order_id,
+          razorpaySignature: response.razorpay_signature,
+        };
+        console.log("data", data);
+        const result = await axios.post("http://localhost:5000/payment/success", data);
+        console.log("result", result);
+      },
+      prefill: {},
+      notes: {
+        address: "TMIS Office",
+      },
+      theme: {
+        color: "#61dafb",
+      },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    console.log("done");
+    paymentObject.open();
+  };
+
   return (
     <div className="rates py-[5rem] flex flex-col gap-[4rem] items-center px-[1rem]">
       <div className="flex justify-center">
@@ -180,6 +244,9 @@ const Rates = () => {
           </div>
         ))}
       </div>
+      <Button size="lg" variant="solid" color="warning" onClick={displayRazorpay}>
+        Buy
+      </Button>
     </div>
   );
 };
