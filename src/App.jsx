@@ -15,6 +15,7 @@ import JobDescription from "./components/career/Components/JobDescription"
 import Create from "./components/career/Create"
 import Auth from "./components/Auth/Auth";
 
+import Checkout from "./components/pricing/components/Checkout";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path="/Career/Create" element={<Create />} />
         <Route path="/Auth" element={<Auth />} />
 
+        <Route path="/Checkout" element={<Checkout/>} />
         <Route path="*" element={<Navigate to="/Home" />} />
       </Routes>
       <Footer />
