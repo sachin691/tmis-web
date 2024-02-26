@@ -20,7 +20,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const menuItems = ["Home", "Services", "Pricing", "About", "Privacy & Policy", "Contact Us"];
+  const menuItems = ["Home", "Services", "Pricing", "About", "Career", "Contact Us"];
   const handleContactUs = () => {
     navigate("/ContactUs");
   };
@@ -95,14 +95,14 @@ const NavBar = () => {
         </NavbarItem>
         <NavbarItem className="hidden md:block order-2">
           <Link
-            to="/Privacy&Policy"
+            to="/Career"
             className={
-              curTab === "Privacy & Policy"
+              curTab === "Career"
                 ? "active navActive flex flex-col px-[1rem] text-inherit text-xl text-white"
                 : "notActive px-[1rem] text-inherit text-xl text-white"
             }
           >
-            Privacy & Policy
+            Career
           </Link>
         </NavbarItem>
       </NavbarContent>
