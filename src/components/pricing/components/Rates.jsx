@@ -147,7 +147,7 @@ const services = [
 const plans = [
   {
     label: "Basic",
-    value: "basic",
+    value: "Basic",
     description: "Our 15% clients use basic plan",
   },
   { label: "Standard", value: "Standard", description: "Our 30% clients use standard plan" },
