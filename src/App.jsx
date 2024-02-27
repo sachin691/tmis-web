@@ -9,6 +9,7 @@ import ContactUs from "./components/contact/ContactUs";
 import Privacy from "./components/privacy/Privacy";
 import Refund from "./components/globalSubComponents/Refund";
 import Terms from "./components/globalSubComponents/Terms";
+import Checkout from "./components/pricing/components/Checkout";
 
 function App() {
   return (
