@@ -12,6 +12,7 @@ import Terms from "./components/globalSubComponents/Terms";
 import Checkout from "./components/pricing/components/Checkout";
 import Refund from "./components/globalSubComponents/Refund";
 import Terms from "./components/globalSubComponents/Terms";
+import Checkout from "./components/pricing/components/Checkout";
 
 function App() {
   return (
