@@ -93,7 +93,7 @@ const Footer = () => {
         </div>
       </div>
       <p className="text-center text-gray-700 font-bold text-md md:text-xl mt-[3rem] py-[1rem] border-t-[0.1rem]">
-        © 2024 TRAVELMAGNET INFOTECH PRIVATE LIMITED • All Rights Reserved
+        © 2023 TRAVELMAGNET INFOTECH PRIVATE LIMITED • All Rights Reserved
       </p>
     </div>
   );
