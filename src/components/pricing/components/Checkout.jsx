@@ -1,5 +1,6 @@
+// Dependencies
 import { useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Button } from "@nextui-org/react";
@@ -20,7 +21,9 @@ const rupeesCost = [36500, 54750, 72729];
 const dollarCost = [500, 750, 999];
 
 const Checkout = () => {
+  const navigate = useNavigate();
   const location = useLocation();
+
   const pdfRef = useRef();
   const userData = location.state;
 
@@ -36,10 +39,6 @@ const Checkout = () => {
       window.print = window.__originalPrint;
     };
   }, []);
-
-  if (!userData) {
-    return <div>No data available</div>;
-  }
 
   const countCost = (service, plan) => {
     const serviceIndex = services.indexOf(service);

@@ -6,6 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { scrollTop } from "../../utils/methods";
 import { useDispatch } from "react-redux";
 import { updateTab } from "../../store/curTabSlice";
+import { updateCheckoutPermit } from "../../store/checkoutPermitSlice";
 
 // Local Files
 import "./Contact.css";
@@ -20,6 +21,8 @@ const emailNotSent = () => toast.error("Email Not Sent", toastSetting);
 const ContactUs = () => {
   const dispatch = useDispatch();
   dispatch(updateTab("Contact Us"));
+  dispatch(updateCheckoutPermit(false));
+
   const form = useRef();
   const email = useRef("");
   const budgetType = useRef("INR");
