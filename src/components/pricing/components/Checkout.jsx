@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Button } from "@nextui-org/react";
-import useRazorpay from "react-razorpay";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
+
 const toastSetting = { position: "top-center" };
 
 const successToast = (message) => {
