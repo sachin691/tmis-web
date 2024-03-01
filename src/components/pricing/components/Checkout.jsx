@@ -33,9 +33,12 @@ const rupeesCost = [36500, 54750, 72729];
 const dollarCost = [500, 750, 999];
 
 const Checkout = () => {
-  const location = useLocation();
+  let apiUrl = process.env.REACT_APP_API_URL;
+  if (process.env.NODE_ENV === "development") {
+    apiUrl = process.env.REACT_APP_DEV_API_URL;
+  }
 
-  const pdfRef = useRef();
+  const location = useLocation();
   const userData = location.state;
 
   useEffect(() => {
@@ -84,47 +87,37 @@ const Checkout = () => {
     });
   };
 
-  const genReceiptId = (counter) => {
-    // Timestamp component (YYYYMMDDHHMMSS)
-    const currentDate = new Date();
-    const timestampComponent = currentDate.toISOString().slice(0, 19).replace(/[-:T]/g, "");
-
-    // Random component (5 digits)
-    const randomComponent = Math.floor(Math.random() * 100000)
-      .toString()
-      .padStart(5, "0");
-
-    // Counter Component - Resets every Day
-    const counterComponent = counter.toString().padStart(5, "0");
-
-    // UserId
-    const userId = "tmis_receipt_" + timestampComponent + randomComponent + counterComponent;
-
-    return userId;
+  const generateReceipt = () => {
+    const doc = new jsPDF();
+    doc.autoTable({ html: "#receipt-table" });
+    doc.save("receipt.pdf");
   };
 
-  const displayRazorpay = async () => {
-    const receiptId = genReceiptId(6);
+  const displayRazorpay = async (totalAmt, cur) => {
     const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
     if (!res) {
-      errorToast("Razorpay SDK failed to load. Are you online?");
+      errorToast("Razorpay failed to load. Are you online?");
       return;
     }
 
-    const result = await axios.post("http://localhost:5000/api/payment/orders", { total, receiptId });
-    if (!result) {
-      errorToast("Server error. Are you online?");
+    const result = await axios.post(`${apiUrl}/payment/orders`, { totalAmt, cur });
+    if (!result.success) {
+      errorToast("Unable to process Order.Try Again");
       return;
     }
-    const { id: orderId, currency, amount, status, notes, attempts } = result.data.payload.order;
+
+    const { orderId } = result.data.payload.order;
+    if (orderId === undefined) {
+      errorToast("Order Creating Failed. Try Again");
+      return;
+    }
 
     const options = {
       key: process.env.REACT_APP_RAZORPAY_KEY,
-      amount: amount,
-      currency: currency,
-      name: "TMIS PVT LTD",
-      description: "Test Transaction",
-      // image: { logo },
+      amount: totalAmt,
+      currency: cur,
+      name: "TRAVELMAGNET INFOTECH PRIVATE LIMITED",
+      description: "Service Purchase",
       orderId: orderId,
       handler: async function (response) {
         const data = {
@@ -133,14 +126,14 @@ const Checkout = () => {
           razorpayOrderId: response.razorpay_order_id,
           razorpaySignature: response.razorpay_signature,
         };
-        const result = await axios.post("http://localhost:5000/api/payment/success", data);
-        if (result) {
-          generateReceipt();
+
+        const result = await axios.post(`${apiUrl}/payment/varify`, data);
+        if (!result.success) {
+          errorToast("Payment Varification Failed. Try Again");
+          return;
         }
-      },
-      prefill: {},
-      notes: {
-        address: "TMIS Office",
+
+        generateReceipt();
       },
       theme: {
         color: "#61dafb",
@@ -149,12 +142,6 @@ const Checkout = () => {
 
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
-  };
-
-  const generateReceipt = () => {
-    const doc = new jsPDF();
-    doc.autoTable({ html: "#receipt-table" });
-    doc.save("receipt.pdf");
   };
 
   return (
@@ -191,7 +178,7 @@ const Checkout = () => {
           <TableRow>
             <TableCell className="border-2 text-start font-mono font-bold text-md">Transaction Currency</TableCell>
             <TableCell className="border-2 ">
-              <Select className="max-w-[8rem]" defaultSelectedKeys="USD">
+              <Select className="max-w-[8rem]" defaultSelectedKeys={[currency[0]]}>
                 {currency.map((data, index) => (
                   <SelectItem key={data} value={data}>
                     {data}
