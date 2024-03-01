@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import "./Privacy.css";
 import { updateTab } from "../../store/curTabSlice";
 import { scrollTop } from "../../utils/methods";
+import { updateCheckoutPermit } from "../../store/checkoutPermitSlice";
 
 const definations = [
   `Account means a unique account created for You to access our Service or parts of our Service`,
@@ -115,6 +116,8 @@ const conditionsTravel = [
 const Privacy = () => {
   const dispatch = useDispatch();
   dispatch(updateTab("Privacy & Policy"));
+  dispatch(updateCheckoutPermit(false));
+
   scrollTop();
 
   return (

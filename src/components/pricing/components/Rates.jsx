@@ -21,10 +21,12 @@ import {
 } from "@nextui-org/react";
 import { useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 // Local Files
 import "./Pricing.css";
-import { useNavigate } from "react-router-dom";
+import { updateCheckoutPermit } from "../../../store/checkoutPermitSlice";
 
 const emailRe = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_-]+)(\.[a-zA-Z]{2,5}){1,2}$/;
 const toastSetting = { position: "top-center" };
@@ -137,6 +139,7 @@ const plans = ["Basic", "Standard", "Premium"];
 
 const Rates = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const userNameRef = useRef(null);
@@ -193,7 +196,7 @@ const Rates = () => {
         plan: selectedPlans.map((data) => data.current.value),
       };
 
-      console.log(userData);
+      dispatch(updateCheckoutPermit(true));
 
       navigate("/Checkout", { state: userData });
     } else {

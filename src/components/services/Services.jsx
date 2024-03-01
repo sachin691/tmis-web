@@ -5,10 +5,13 @@ import "./components/Services.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import AllServices from "./components/AllServices";
 import IndividualService from "./components/IndividualService";
+import { updateCheckoutPermit } from "../../store/checkoutPermitSlice";
 
 const Services = () => {
   const dispatch = useDispatch();
   dispatch(updateTab("Services"));
+  dispatch(updateCheckoutPermit(false));
+  
   return (
     <Routes>
       <Route path="/" element={<Navigate to="./All" />} />
