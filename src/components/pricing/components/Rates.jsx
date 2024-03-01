@@ -177,9 +177,18 @@ const Rates = () => {
   };
 
   const handleProceed = () => {
+    console.log({
+      emailValidity,
+      userNameState,
+      companyNameState,
+      phoneState,
+      addressState,
+      service: serviceRef1.current.value,
+      plan: planRef1.current.value,
+    });
     if (
       !emailValidity &&
-      userNameState > 3 &&
+      userNameState > 2 &&
       companyNameState > 2 &&
       phoneState > 10 &&
       addressState > 3 &&

@@ -68,22 +68,20 @@ const Checkout = () => {
       errorToast("Razorpay failed to load. Are you online?");
       return;
     }
-
     const result = await axios.post(`${apiUrl}/payment/orders`, { totalAmt, cur });
-    if (!result.success) {
+    console.log(result);
+    if (!result.data.success) {
       errorToast("Unable to process Order.Try Again");
       return;
     }
-
-    const { orderId } = result.data.payload.order;
-    if (orderId === undefined) {
+    const { id: orderId, amount } = result.data.payload.order;
+    if (orderId === undefined || amount === undefined) {
       errorToast("Order Creating Failed. Try Again");
       return;
     }
-
     const options = {
       key: process.env.REACT_APP_RAZORPAY_KEY,
-      amount: totalAmt,
+      amount: amount,
       currency: cur,
       name: "TRAVELMAGNET INFOTECH PRIVATE LIMITED",
       description: "Service Purchase",
@@ -95,9 +93,10 @@ const Checkout = () => {
           razorpayOrderId: response.razorpay_order_id,
           razorpaySignature: response.razorpay_signature,
         };
-
-        const result = await axios.post(`${apiUrl}/payment/varify`, data);
-        if (!result.success) {
+        console.log("data: ", data)
+        const result = await axios.post(`${apiUrl}/payment/verify`, data);
+        console.log("result: " , result);
+        if (!result.data.success) {
           errorToast("Payment Varification Failed. Try Again");
           return;
         }
