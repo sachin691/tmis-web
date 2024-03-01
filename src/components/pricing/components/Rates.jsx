@@ -29,9 +29,6 @@ import { useNavigate } from "react-router-dom";
 const emailRe = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_-]+)(\.[a-zA-Z]{2,5}){1,2}$/;
 const toastSetting = { position: "top-center" };
 
-const successToast = (message) => {
-  toast.success(message, toastSetting);
-};
 const errorToast = (message) => {
   toast.error(message, toastSetting);
 };
@@ -135,69 +132,40 @@ const cardData = [
   },
 ];
 
-const services = [
-  {
-    label: "Website Development",
-    value: "Website Development",
-    description: "Empower your online presence",
-  },
-  { label: "SEO Services", value: "SEO Services", description: "Boost your visibility" },
-  { label: "Promotional Booking Service", value: "Promotional Booking Service", description: "Maximize your reach" },
-];
-const plans = [
-  {
-    label: "Basic",
-    value: "Basic",
-    description: "Our 15% clients use basic plan",
-  },
-  { label: "Standard", value: "Standard", description: "Our 30% clients use standard plan" },
-  { label: "Premium", value: "Premium", description: "Our 55% clients use Premium plan" },
-];
+const services = ["Website Development", "SEO Services", "Promotional Booking Service", "Software Solutions"];
+const plans = ["Basic", "Standard", "Premium"];
 
 const Rates = () => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const email = useRef(null);
+
   const userNameRef = useRef(null);
   const emailRef = useRef(null);
   const companyNameRef = useRef(null);
   const phoneNumberRef = useRef(null);
   const addressRef = useRef(null);
-  const serviceOneRef = useRef(null);
-  const planOneRef = useRef(null);
-  const serviceTwoRef = useRef(null);
-  const planTwoRef = useRef(null);
-  const serviceThreeRef = useRef(null);
-  const planThreeRef = useRef(null);
+
+  const serviceRef1 = useRef(null);
+  const serviceRef2 = useRef(null);
+  const serviceRef3 = useRef(null);
+  const serviceRef4 = useRef(null);
+  const planRef1 = useRef(null);
+  const planRef2 = useRef(null);
+  const planRef3 = useRef(null);
+  const planRef4 = useRef(null);
+
+  const selectedServices = [serviceRef1, serviceRef2, serviceRef3, serviceRef4];
+  const selectedPlans = [planRef1, planRef2, planRef3, planRef4];
 
   const [emailValidity, setEmailValidity] = useState(false);
 
-  const [emailState, setEmailState] = useState(-1);
   const [userNameState, setUserNameState] = useState(-1);
   const [companyNameState, setCompanyNameState] = useState(-1);
   const [phoneState, setPhoneState] = useState(-1);
-
-  const handleClose = () => {
-    userNameRef.current.value = "";
-    emailRef.current.value = "";
-    companyNameRef.current.value = "";
-    phoneNumberRef.current.value = "";
-    addressRef.current.value = "";
-    serviceOneRef.current.value = "";
-    planOneRef.current.value = "";
-    serviceTwoRef.current.value = "";
-    planTwoRef.current.value = "";
-    serviceThreeRef.current.value = "";
-    planThreeRef.current.value = "";
-    onOpenChange(false);
-  };
+  const [addressState, setAddressState] = useState(-1);
 
   const checkEmail = (event) => {
-    email.current = event.target.value;
-    setEmailState(event.target.value.length);
-
-    const validity = email.current.match(emailRe);
-
+    const validity = event.target.value.match(emailRe);
     if (validity) {
       setEmailValidity(false);
     } else {
@@ -206,21 +174,26 @@ const Rates = () => {
   };
 
   const handleProceed = () => {
-    console.log("here");
-    if (!emailValidity && userNameState > 0 && companyNameState > 0 && phoneState > 0 && emailState > 0) {
+    if (
+      !emailValidity &&
+      userNameState > 3 &&
+      companyNameState > 2 &&
+      phoneState > 10 &&
+      addressState > 3 &&
+      serviceRef1.current.value !== "" &&
+      planRef1.current.value !== ""
+    ) {
       const userData = {
         userName: userNameRef.current.value,
         email: emailRef.current.value,
         companyName: companyNameRef.current.value,
         phoneNumber: phoneNumberRef.current.value,
         address: addressRef.current.value,
-        serviceOne: serviceOneRef.current.value,
-        planOne: planOneRef.current.value,
-        serviceTwo: serviceTwoRef.current.value,
-        planTwo: planTwoRef.current.value,
-        serviceThree: serviceThreeRef.current.value,
-        planThree: planThreeRef.current.value,
+        service: selectedServices.map((data) => data.current.value),
+        plan: selectedPlans.map((data) => data.current.value),
       };
+
+      console.log(userData);
 
       navigate("/Checkout", { state: userData });
     } else {
@@ -238,12 +211,12 @@ const Rates = () => {
 
       <div className="grid grid-cols-1 gap-[3rem] ">
         {cardData.map((data, index) => (
-          <div className="flex flex-col lg:flex-row gap-[1rem] lg:gap-[2rem]" key={index}>
+          <div className="flex flex-col lg:flex-row gap-[1rem] lg:gap-[2rem]" key={index} aria-label={index}>
             <div className="text-white max-w-[25rem] bg-[#18181B] flex flex-col justify-center gap-2 p-[2rem] rounded-2xl">
               <h1 className="text-2xl font-bold">{data.name}</h1>
               <p className="text-default-400">{data.desc}</p>
             </div>
-            <Table className="dark max-w-[42rem]">
+            <Table className="dark max-w-[42rem]" aria-label={index}>
               <TableHeader>
                 <TableColumn className="text-center font-['DM_Serif_Display'] text-lg sm:text-[1.5rem] py-[1.5rem] text-default-800">
                   Services
@@ -307,25 +280,36 @@ const Rates = () => {
       <Button onPress={onOpen} size="lg" variant="solid" color="warning">
         Buy
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} size="5xl" scrollBehavior="inside">
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        isDismissable={false}
+        size="5xl"
+        scrollBehavior="inside"
+        placement="center"
+      >
         <ModalContent>
-          <ModalHeader className="justify-center">Please provide us with your details</ModalHeader>
+          <ModalHeader className="font-bold text-xl justify-center">Please provide us with your details</ModalHeader>
           <ModalBody className="items-center p-[2rem] text-center">
-            <div className="grid grid-cols-2 gap-[2rem] min-w-full">
+            <div className="grid grid-cols-2 gap-[0.7rem] min-w-full">
               <Input
                 type="text"
+                required
                 className="min-w-full"
                 label="Full Name"
                 name="user_name"
                 ref={userNameRef}
                 onChange={(event) => setUserNameState(event.target.value.length)}
-                errorMessage={userNameState === 0 ? "Please enter a valid Name" : ""}
-                isInvalid={userNameState === 0}
+                errorMessage={userNameState < 3 && userNameState >= 0 ? "Please enter a valid Name" : ""}
+                isInvalid={userNameState < 3 && userNameState >= 0}
+                aria-label="Full Name"
               />
               <Input
                 type="email"
+                required
                 className="min-w-full"
                 label="Email Address"
+                aria-label="Email Address"
                 name="email"
                 ref={emailRef}
                 onChange={checkEmail}
@@ -334,107 +318,101 @@ const Rates = () => {
               />
               <Input
                 type="text"
+                required
                 className="min-w-full"
                 label="Company Name"
+                aria-label="Company Name"
                 name="user_company_name"
                 ref={companyNameRef}
                 onChange={(event) => setCompanyNameState(event.target.value.length)}
-                errorMessage={companyNameState === 0 ? "Please enter a valid Company Name" : ""}
-                isInvalid={companyNameState === 0}
+                errorMessage={companyNameState < 2 && companyNameState >= 0 ? "Please enter a valid Company Name" : ""}
+                isInvalid={companyNameState < 2 && companyNameState >= 0}
               />
               <Input
                 type="tel"
+                required
                 className="min-w-full"
                 label="Phone Number"
+                aria-label="Phone Number"
                 name="user_number"
                 ref={phoneNumberRef}
                 onChange={(event) => setPhoneState(event.target.value.length)}
-                errorMessage={phoneState === 0 ? "Please enter a valid Phone Number" : ""}
-                isInvalid={phoneState === 0}
+                errorMessage={phoneState < 10 && phoneState >= 0 ? "Please enter a valid Phone Number" : ""}
+                isInvalid={phoneState < 10 && phoneState >= 0}
               />
             </div>
             <Textarea
               label="Address"
-              placeholder="Address"
+              aria-label="Address"
+              required
               classNames={{
                 base: "min-w-full",
                 input: "min-h-[50px]",
               }}
               ref={addressRef}
+              onChange={(event) => setAddressState(event.target.value.length)}
+              isInvalid={addressState < 3 && addressState >= 0}
+              errorMessage={addressState < 3 && addressState >= 0 ? "Please enter a valid Address" : ""}
             />
             <Divider />
-            <h1 className="font-bold text-xl">Select Services & Plans </h1>
-            <div className="grid grid-cols-2 gap-[2rem] min-w-full">
+            <h1 className="font-bold text-xl my-[1rem]">Select Services & Plans </h1>
+            <div className="grid grid-cols-2 gap-[0.7rem] min-w-full">
               <Select
-                isRequired
-                startContent={<span>1.</span>}
                 label="Service"
                 placeholder="Select a service"
                 className="min-w-full"
-                ref={serviceOneRef}
+                ref={selectedServices[0]}
+                isRequired
               >
-                {services.map((service) => (
-                  <SelectItem key={service.value} value={service.value}>
-                    {service.label}
-                  </SelectItem>
-                ))}
-              </Select>
-              <Select label="Plans" placeholder="Select a plan" className="min-w-full" ref={planOneRef}>
-                {plans.map((plan) => (
-                  <SelectItem key={plan.value} value={plan.value}>
-                    {plan.label}
+                {services.map((data, index) => (
+                  <SelectItem key={data} value={data}>
+                    {data}
                   </SelectItem>
                 ))}
               </Select>
               <Select
                 isRequired
-                startContent={<span>1.</span>}
-                label="Service"
-                placeholder="Select a service"
+                label="Plans"
+                placeholder="Select a plan"
                 className="min-w-full"
-                ref={serviceTwoRef}
+                ref={selectedPlans[0]}
               >
-                {services.map((service) => (
-                  <SelectItem key={service.value} value={service.value}>
-                    {service.label}
+                {plans.map((data, index) => (
+                  <SelectItem key={data} value={data}>
+                    {data}
                   </SelectItem>
                 ))}
               </Select>
-              <Select label="Plans" placeholder="Select a plan" className="min-w-full" ref={planTwoRef}>
-                {plans.map((plan) => (
-                  <SelectItem key={plan.value} value={plan.value}>
-                    {plan.label}
-                  </SelectItem>
-                ))}
-              </Select>
-              <Select
-                isRequired
-                startContent={<span>1.</span>}
-                label="Service"
-                placeholder="Select a service"
-                className="min-w-full"
-                ref={serviceThreeRef}
-              >
-                {services.map((service) => (
-                  <SelectItem key={service.value} value={service.value}>
-                    {service.label}
-                  </SelectItem>
-                ))}
-              </Select>
-              <Select label="Plans" placeholder="Select a plan" className="min-w-full" ref={planThreeRef}>
-                {plans.map((plan) => (
-                  <SelectItem key={plan.value} value={plan.value}>
-                    {plan.label}
-                  </SelectItem>
-                ))}
-              </Select>
+              {[1, 2, 3].map((data) => (
+                <>
+                  <Select
+                    label="Service"
+                    placeholder="Select a service"
+                    className="min-w-full"
+                    ref={selectedServices[data]}
+                  >
+                    {services.map((data, index) => (
+                      <SelectItem key={data} value={data}>
+                        {data}
+                      </SelectItem>
+                    ))}
+                  </Select>
+                  <Select label="Plans" placeholder="Select a plan" className="min-w-full" ref={selectedPlans[data]}>
+                    {plans.map((data, index) => (
+                      <SelectItem key={data} value={data}>
+                        {data}
+                      </SelectItem>
+                    ))}
+                  </Select>
+                </>
+              ))}
             </div>
           </ModalBody>
           <ModalFooter className="justify-center">
-            <Button color="danger" variant="shadow" onPress={handleClose}>
+            <Button color="danger" variant="shadow" onClick={() => onOpenChange(false)}>
               Cancel
             </Button>
-            <Button color="success" className="text-white" onClick={handleProceed}>
+            <Button color="success" variant="shadow" className="text-white" onClick={handleProceed}>
               Proceed
             </Button>
           </ModalFooter>
