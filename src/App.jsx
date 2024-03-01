@@ -1,5 +1,9 @@
-import NavBar from "./components/globalComponents/navbar/NavBar";
+// Dependencies
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+// Local Files
+import NavBar from "./components/globalComponents/navbar/NavBar";
 import Home from "./components/home/Home";
 import Services from "./components/services/Services";
 import About from "./components/about/About";
@@ -10,10 +14,9 @@ import Privacy from "./components/privacy/Privacy";
 import Refund from "./components/globalSubComponents/Refund";
 import Terms from "./components/globalSubComponents/Terms";
 import Checkout from "./components/pricing/components/Checkout";
-import Refund from "./components/globalSubComponents/Refund";
-import Terms from "./components/globalSubComponents/Terms";
 
 function App() {
+  const checkoutPermit = useSelector((state) => state.checkoutPermit.value);
   return (
     <>
       <NavBar />
@@ -28,8 +31,7 @@ function App() {
         <Route path="/Refund" element={<Refund />} />
         <Route path="/T&C" element={<Terms />} />
         <Route path="/Checkout" element={<Checkout/>} />
-        <Route path="/Refund" element={<Refund />} />
-        <Route path="/T&C" element={<Terms />} />
+        {checkoutPermit ? <Route path="/Checkout" element={<Checkout />} /> : null}
         <Route path="*" element={<Navigate to="/Home" />} />
       </Routes>
       <Footer />

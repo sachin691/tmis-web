@@ -5,6 +5,7 @@ import { Divider } from "@nextui-org/react";
 // Local Files
 import { updateTab } from "../../store/curTabSlice";
 import { scrollTop } from "../../utils/methods";
+import { updateCheckoutPermit } from "../../store/checkoutPermitSlice";
 import "./Refund.css";
 
 const refund = [
@@ -65,6 +66,8 @@ const refund = [
 const Refund = () => {
   const dispatch = useDispatch();
   dispatch(updateTab("Refund"));
+  dispatch(updateCheckoutPermit(false));
+
   scrollTop();
 
   return (
