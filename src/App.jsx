@@ -30,7 +30,6 @@ function App() {
         <Route path="/Privacy&Policy" element={<Privacy />} />
         <Route path="/Refund" element={<Refund />} />
         <Route path="/T&C" element={<Terms />} />
-        <Route path="/Checkout" element={<Checkout/>} />
         {checkoutPermit ? <Route path="/Checkout" element={<Checkout />} /> : null}
         <Route path="*" element={<Navigate to="/Home" />} />
       </Routes>
