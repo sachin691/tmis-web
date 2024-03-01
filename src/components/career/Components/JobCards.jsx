@@ -27,7 +27,7 @@ const JobCards = ({title, location, type, experience,skill,i}) => {
           <p className="text-gray-500 md:p-[1rem] text-[0.8rem]">Posted {diffInDays} Days ago</p>
           <navigate key={i} onClick={()=>
             {console.log("inside",title)
-            navigate(`/Career/${title}`,{state:{type:"data"}})}} className="text-blue-500 border border-blue-500 px-10 py-2 rounded-md">Apply</navigate>
+            navigate(`/Career/${title}`,{state:{type:"data"}})}} className="text-blue-500 border border-blue-500 px-10 py-2 rounded-md cursor-pointer">Apply</navigate>
         </div>
       </div>
     

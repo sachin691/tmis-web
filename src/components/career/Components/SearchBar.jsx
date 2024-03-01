@@ -11,7 +11,7 @@ const SearchBar = () => {
             <Button
               variant="bordered"
               radius="none"
-              className="font-semibold"
+              className="font-semibold py-[1.2rem] px-[2.5rem]"
               endContent={<IoMdArrowDropdown className="text-xl mt-[0.2rem]" />}
             >
               Department
@@ -31,7 +31,7 @@ const SearchBar = () => {
             <Button
               variant="bordered"
               radius="none"
-              className="font-semibold"
+              className="font-semibold py-[1.2rem] px-[2.5rem]"
               endContent={<IoMdArrowDropdown className="text-xl mt-[0.2rem]" />}
             >
               Job Type
@@ -50,7 +50,7 @@ const SearchBar = () => {
             <Button
               variant="bordered"
               radius="none"
-              className="font-semibold"
+              className="font-semibold py-[1.2rem] px-[2.5rem]"
               endContent={<IoMdArrowDropdown className="text-xl mt-[0.2rem]" />}
             >
               Location
@@ -69,7 +69,7 @@ const SearchBar = () => {
             <Button
               variant="bordered"
               radius="none"
-              className="font-semibold"
+              className="font-semibold py-[1.2rem] px-[2.5rem]"
               endContent={<IoMdArrowDropdown className="text-xl mt-[0.2rem]" />}
             >
               Experience
@@ -83,7 +83,9 @@ const SearchBar = () => {
         </Dropdown>
       </div>
 
-      <button className=" w-44 bg-blue-500 text-white font-bold py-2 rounded-md">Search</button>
+      <div>
+        <button className=" w-44 bg-blue-500 text-white font-bold py-2 rounded-md cursor-pointer">Search</button>
+      </div>
     </div>
   );
 };

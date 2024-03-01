@@ -111,7 +111,7 @@ const NavBar = () => {
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-              to={index === 4 ? "/Privacy&Policy" : index === 5 ? "/ContactUs" : `/${item}`}
+              to={index === 5 ? "/ContactUs" : `/${item}`}
               onClick={() => {
                 dispatch(updateNavStatus(!navOpenStatus));
               }}

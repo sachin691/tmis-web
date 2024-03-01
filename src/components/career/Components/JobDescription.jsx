@@ -1,6 +1,6 @@
 import React from "react";
 import Intro from "./Intro";
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 const JobDescription = () => {
   const params = useParams()
@@ -81,7 +81,9 @@ const JobDescription = () => {
         </div>
 
         <div className="py-[0.5rem]">
+          <Link to="/Career/Applyjob">
             <button className="py-[1rem] px-[2rem] bg-blue-500 text-white font-semibold rounded-xl">Apply</button>
+          </Link>
         </div>
       </div>
     </>

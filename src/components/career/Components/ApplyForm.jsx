@@ -9,77 +9,119 @@ const ApplyForm = () => {
   return (
     <>
       <Intro />
-      <div className="flex items-center justify-center p-[3rem]">
+      <div className="flex items-center justify-center p-[2rem]">
         <h1 className="text-3xl font-bold">Kindly Fill The Details</h1>
       </div>
 
-      <div className="bg-slate-600 h-auto p-[3rem]">
-        <form action="" className="flex flex-col gap-[2rem] items-center grow ">
-          <div className="flex md:flex-row flex-col gap-[1rem] lg:w-[60rem] md:w-[40rem] w-[20rem]">
-            <Input type="text" label="First Name" name="First Name" id="First Name" className="" />
-            <Input type="text" label="Last Name" name="Last Name" id="Last Name" />
-          </div>
+      <div className=" h-auto p-[1rem]">
+        <form action="" className="flex flex-col  gap-[2rem] items-center grow ">
+          <div className="flex flex-col items-start">
+            <label htmlFor="" className="py-[0.2rem]">
+              First Name <span className="text-red-800">*</span>
+            </label>
+            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
+              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            </div>
+            <label htmlFor="" className="py-[0.2rem]">
+              Last Name <span className="text-red-800">*</span>
+            </label>
+            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
+              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            </div>
 
-          <div className="flex md:flex-row flex-col gap-[1rem] lg:w-[60rem] md:w-[40rem]  w-[20rem]">
-            <Input type="number" label="Contact Number" name="Contact Number" id="Contact Number" />
-            <Input type="email" label="Email" name="email" id="email" />
-          </div>
+            <label htmlFor="" className="py-[0.2rem]">
+              Email <span className="text-red-800">*</span>
+            </label>
+            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
+              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            </div>
 
-          <div className="flex md:flex-row flex-col gap-[1rem] lg:w-[60rem] md:w-[40rem]  w-[20rem]">
-            <Input type="text" label="Current Address" name="Address" id="Address" />
-            <Input type="text" label="Current City" name="City" id="City" />
-          </div>
-          <div className="flex md:flex-row flex-col gap-[1rem] lg:w-[60rem]  md:w-[40rem]  w-[20rem]">
-            <Input type="text" label="State" name="State" id="State" />
-            <Input type="number" label="Pincode" name="Pincode" id="Pincode" />
-          </div>
+            <label htmlFor="" className="py-[0.2rem]">
+              Contact <span className="text-red-800">*</span>
+            </label>
+            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
+              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            </div>
 
-          <div className="flex md:flex-row flex-col item-center justify-center lg:w-[60rem] w-auto gap-[1rem] lg:gap-[3rem]">
+            <label htmlFor="" className="py-[0.2rem]">
+              Year of Graduation <span className="text-red-800">*</span>
+            </label>
+            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
+              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            </div>
+
+            <label htmlFor="" className="py-[0.2rem]">
+              Gender <span className="text-red-800"></span>
+            </label>
+            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
+              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            </div>
+
+            <label htmlFor="" className="py-[0.2rem]">
+              Experience In Years <span className="text-red-800">*</span>
+            </label>
+            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
+              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            </div>
+
+            <label htmlFor="" className="py-[0.2rem]">
+              Current Employer <span className="text-red-800">*</span>
+            </label>
+            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
+              <Input type="text" label="" name="First Name" id="First Name" className="" size="xs" radius="none" />
+            </div>
+
+            <label htmlFor="" className="py-[0.2rem]">
+              Current CTC(In Lakh per Annum) <span className="text-red-800">*</span>
+            </label>
+            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
+              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            </div>
+
+            <label htmlFor="" className="py-[0.2rem]">
+              Expected CTC(In Lakh per Annum) <span className="text-red-800">*</span>
+            </label>
+            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
+              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            </div>
+
+            <label htmlFor="" className="py-[0.2rem]">
+              Notice Period(In Month) <span className="text-red-800">*</span>
+            </label>
+            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
+              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            </div>
+
+            <label htmlFor="" className="py-[0.2rem]">
+              Current Location <span className="text-red-800">*</span>
+            </label>
+            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
+              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            </div>
+
+            <label htmlFor="" className="py-[0.2rem]">
+              Preferred Location <span className="text-red-800">*</span>
+            </label>
+            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
+              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            </div>
+
+            <label htmlFor="" className="py-[0.2rem]">
+              Upload Your Resume <span className="text-red-800">*</span>
+            </label>
             <input
               type="file"
               id="myFile"
               name="Resume"
-              accept=".pdf"
+              accept=".pdf, .docx"
               className="py-[0.5rem] px-[0.3rem] bg-[#E4E4E7] rounded-xl"
             />
-            <Dropdown backdrop="blur">
-              <DropdownTrigger>
-                <Button
-                  variant="bordered"
-                  className="font-semibold lg:px-[4rem] px-[1rem] py-[1rem] text-white"
-                  endContent={<IoMdArrowDropdown className="text-xl mt-[0.2rem]" />}
-                >
-                  Choose Department
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu variant="faded" aria-label="Static Actions">
-                <DropdownItem key="IT">IT</DropdownItem>
-                <DropdownItem key="Sales">Sales</DropdownItem>
-                <DropdownItem key="Marketing">Marketing</DropdownItem>
-                <DropdownItem key="Human Reasource">Human Reasource</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-            <Dropdown backdrop="blur">
-              <DropdownTrigger>
-                <Button
-                  variant="bordered"
-                  className="font-semibold  lg:px-[4rem] px-[1rem] py-[1rem] text-white"
-                  endContent={<IoMdArrowDropdown className="text-xl mt-[0.2rem]" />}
-                >
-                  Choose Profile
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu variant="faded" aria-label="Static Actions">
-                <DropdownItem key="IT">Frontend </DropdownItem>
-                <DropdownItem key="Sales">Backend</DropdownItem>
-                <DropdownItem key="Marketing">IT Sales</DropdownItem>
-                <DropdownItem key="Human Reasource">HR</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
           </div>
+
+          
           <Button
             variant="shadow"
-            className="w-[10rem] py-[1rem] px-[2rem] text-white bg-[#EAA028]"
+            className="w-[10rem] py-[1rem] px-[2rem] text-white bg-blue-500"
             endContent={<IoSend className="mt-[0.2rem]" />}
             type="submit"
           >
