@@ -1,5 +1,5 @@
 // Dependencies
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -22,6 +22,7 @@ const toastSetting = { position: "top-center" };
 const successToast = (message) => {
   toast.success(message, toastSetting);
 };
+
 const errorToast = (message) => {
   toast.error(message, toastSetting);
 };
@@ -37,20 +38,9 @@ const Checkout = () => {
   const location = useLocation();
   const userData = location.state;
 
+  let total = 0;
   const [transCur, setTransCur] = useState("INR");
-
-  useEffect(() => {
-    const handlePrint = (e) => {
-      e.preventDefault();
-      generateReceipt();
-    };
-
-    window.print = handlePrint;
-
-    return () => {
-      window.print = window.__originalPrint;
-    };
-  }, []);
+  const [transSuccess, setTransSuccess] = useState(false);
 
   const loadScript = (src) => {
     return new Promise((resolve) => {
@@ -126,14 +116,16 @@ const Checkout = () => {
   const getPrice = (plan) => {
     let serviceCost = 0;
     if (plan === "Basic") {
-      serviceCost = 500;
+      serviceCost = transCur === "USD" ? 500 : 36500;
     } else if (plan === "Standard") {
-      serviceCost = 750;
+      serviceCost = transCur === "USD" ? 750 : 54750;
     } else {
-      serviceCost = 999;
+      serviceCost = transCur === "USD" ? 999 : 72729;
     }
 
-    return `${serviceCost} USD`;
+    total += serviceCost;
+
+    return `${serviceCost} ${transCur}`;
   };
 
   return (
@@ -175,6 +167,8 @@ const Checkout = () => {
                 defaultSelectedKeys={[currency[0]]}
                 onChange={(e) => setTransCur(e.target.value)}
                 aria-label="Currency"
+                required
+                disallowEmptySelection
               >
                 {currency.map((data, index) => (
                   <SelectItem key={data} value={data}>
@@ -208,15 +202,25 @@ const Checkout = () => {
               return null;
             }
           })}
+          <TableRow className="" colSpan={2}>
+            <TableCell className=" border-2 text-start font-mono font-bold text-md ">Total</TableCell>
+            <TableCell className=" border-2 text-start font-mono font-bold text-md "></TableCell>
+            <TableCell className="border-2 ">
+              {total} {transCur}
+            </TableCell>
+          </TableRow>
         </TableBody>
       </Table>
 
-      <Button className="" variant="shadow" color="primary" radius="none" onClick={displayRazorpay}>
-        Pay Now
-      </Button>
-      <Button className="" variant="shadow" color="success" radius="none" onClick={() => window.print()}>
-        Download Receipt
-      </Button>
+      {transSuccess ? (
+        <Button className="" variant="shadow" color="success" radius="none" onClick={() => window.print()}>
+          Download Receipt
+        </Button>
+      ) : (
+        <Button className="" variant="shadow" color="primary" onClick={() => displayRazorpay(total, transCur)}>
+          Pay Now
+        </Button>
+      )}
     </div>
   );
 };
