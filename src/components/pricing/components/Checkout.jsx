@@ -1,5 +1,5 @@
 // Dependencies
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -25,12 +25,8 @@ const successToast = (message) => {
 const errorToast = (message) => {
   toast.error(message, toastSetting);
 };
-const services = ["Website Development", "SEO Services", "Promotional Booking Service"];
-const plans = ["Basic", "Standard", "Premium"];
-const currency = ["INR", "USD"];
 
-const rupeesCost = [36500, 54750, 72729];
-const dollarCost = [500, 750, 999];
+const currency = ["INR", "USD"];
 
 const Checkout = () => {
   let apiUrl = process.env.REACT_APP_API_URL;
@@ -40,6 +36,8 @@ const Checkout = () => {
 
   const location = useLocation();
   const userData = location.state;
+
+  const [transCur, setTransCur] = useState("INR");
 
   useEffect(() => {
     const handlePrint = (e) => {
@@ -53,25 +51,6 @@ const Checkout = () => {
       window.print = window.__originalPrint;
     };
   }, []);
-
-  const countCost = (service, plan) => {
-    const serviceIndex = services.indexOf(service);
-    const planIndex = plans.indexOf(plan);
-
-    if (serviceIndex === -1 || planIndex === -1) {
-      return 0;
-    }
-
-    const rupeesPrice = rupeesCost[serviceIndex];
-
-    return rupeesPrice;
-  };
-
-  const purchaseOne = countCost(userData.serviceOne, userData.planOne);
-  const purchaseTwo = countCost(userData.serviceTwo, userData.planTwo);
-  const purchaseThree = countCost(userData.serviceThree, userData.planThree);
-
-  let total = purchaseOne + purchaseTwo + purchaseThree;
 
   const loadScript = (src) => {
     return new Promise((resolve) => {
@@ -144,6 +123,19 @@ const Checkout = () => {
     paymentObject.open();
   };
 
+  const getPrice = (plan) => {
+    let serviceCost = 0;
+    if (plan === "Basic") {
+      serviceCost = 500;
+    } else if (plan === "Standard") {
+      serviceCost = 750;
+    } else {
+      serviceCost = 999;
+    }
+
+    return `${serviceCost} USD`;
+  };
+
   return (
     <div className="flex flex-col gap-y-[1rem]  p-[2rem] justify-center items-center">
       <h1 className="text-2xl font-bold">BILLING DETAILS</h1>
@@ -178,7 +170,12 @@ const Checkout = () => {
           <TableRow>
             <TableCell className="border-2 text-start font-mono font-bold text-md">Transaction Currency</TableCell>
             <TableCell className="border-2 ">
-              <Select className="max-w-[8rem]" defaultSelectedKeys={[currency[0]]}>
+              <Select
+                className="max-w-[8rem]"
+                defaultSelectedKeys={[currency[0]]}
+                onChange={(e) => setTransCur(e.target.value)}
+                aria-label="Currency"
+              >
                 {currency.map((data, index) => (
                   <SelectItem key={data} value={data}>
                     {data}
@@ -204,7 +201,7 @@ const Checkout = () => {
                     {userData.service[index]}
                   </TableCell>
                   <TableCell className="border-2 ">{userData.plan[index]}</TableCell>
-                  <TableCell className="border-2 ">{purchaseOne.toString()}</TableCell>
+                  <TableCell className="border-2 ">{getPrice(userData.plan[index])}</TableCell>
                 </TableRow>
               );
             } else {
