@@ -1,9 +1,19 @@
 // Dependencies
-import { useEffect, useRef } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Button } from "@nextui-org/react";
+import {
+  Table,
+  TableHeader,
+  TableColumn,
+  TableBody,
+  TableRow,
+  TableCell,
+  Button,
+  Select,
+  SelectItem,
+} from "@nextui-org/react";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 
@@ -17,11 +27,12 @@ const errorToast = (message) => {
 };
 const services = ["Website Development", "SEO Services", "Promotional Booking Service"];
 const plans = ["Basic", "Standard", "Premium"];
+const currency = ["INR", "USD"];
+
 const rupeesCost = [36500, 54750, 72729];
 const dollarCost = [500, 750, 999];
 
 const Checkout = () => {
-  const navigate = useNavigate();
   const location = useLocation();
 
   const pdfRef = useRef();
@@ -146,8 +157,6 @@ const Checkout = () => {
     doc.save("receipt.pdf");
   };
 
-  const serviceNotFound = "Service Not Found";
-  const planNotFound = "Plan Not Found";
   return (
     <div className="flex flex-col gap-y-[1rem]  p-[2rem] justify-center items-center">
       <h1 className="text-2xl font-bold">BILLING DETAILS</h1>
@@ -179,6 +188,18 @@ const Checkout = () => {
             <TableCell className="border-2 text-start font-mono font-bold text-md">Address</TableCell>
             <TableCell className="border-2 ">{userData.address}</TableCell>
           </TableRow>
+          <TableRow>
+            <TableCell className="border-2 text-start font-mono font-bold text-md">Transaction Currency</TableCell>
+            <TableCell className="border-2 ">
+              <Select className="max-w-[8rem]" defaultSelectedKeys="USD">
+                {currency.map((data, index) => (
+                  <SelectItem key={data} value={data}>
+                    {data}
+                  </SelectItem>
+                ))}
+              </Select>
+            </TableCell>
+          </TableRow>
         </TableBody>
       </Table>
       <Table id="receipt-table" className=" max-w-full p-[1rem]">
@@ -188,32 +209,21 @@ const Checkout = () => {
           <TableColumn className="text-center font-bold text-xl p-2 text-black border-2">Cost</TableColumn>
         </TableHeader>
         <TableBody>
-          <TableRow className="">
-            <TableCell className=" border-2 text-start font-mono font-bold text-md ">
-              {userData.serviceOne || serviceNotFound}
-            </TableCell>
-            <TableCell className="border-2 ">{userData.planOne || planNotFound}</TableCell>
-            <TableCell className="border-2 ">{purchaseOne.toString()}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className="border-2 text-start font-mono font-bold text-md">
-              {userData.serviceTwo || serviceNotFound}
-            </TableCell>
-            <TableCell className="border-2 ">{userData.planTwo || planNotFound}</TableCell>
-            <TableCell className="border-2 ">{purchaseTwo.toString()}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className="border-2 text-start font-mono font-bold text-md">
-              {userData.serviceThree || serviceNotFound}
-            </TableCell>
-            <TableCell className="border-2 ">{userData.planThree || planNotFound}</TableCell>
-            <TableCell className="border-2 ">{purchaseThree.toString()}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className=""></TableCell>
-            <TableCell className="text-xl ">Total : </TableCell>
-            <TableCell className="border-2 font-bold">{total}</TableCell>
-          </TableRow>
+          {[1, 2, 3, 4].map((data, index) => {
+            if (userData.service[index] && userData.plan[index]) {
+              return (
+                <TableRow className="">
+                  <TableCell className=" border-2 text-start font-mono font-bold text-md ">
+                    {userData.service[index]}
+                  </TableCell>
+                  <TableCell className="border-2 ">{userData.plan[index]}</TableCell>
+                  <TableCell className="border-2 ">{purchaseOne.toString()}</TableCell>
+                </TableRow>
+              );
+            } else {
+              return null;
+            }
+          })}
         </TableBody>
       </Table>
 
