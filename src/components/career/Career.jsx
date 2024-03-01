@@ -1,8 +1,9 @@
 import React from "react";
 import Intro from "./Components/Intro";
-import JobLook from "./Components/JobLook";
-import Tittle from "./Components/Tittle";
-import SearchBar from "./Components/SearchBar";
+import Tittle from './Components/Tittle'
+import SearchBar from './Components/SearchBar'
+import JobLook from './Components/JobLook'
+
 
 const Career = () => {
   return (

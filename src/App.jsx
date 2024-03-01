@@ -9,9 +9,11 @@ import ContactUs from "./components/contact/ContactUs";
 import Privacy from "./components/privacy/Privacy";
 import Refund from "./components/globalSubComponents/Refund";
 import Terms from "./components/globalSubComponents/Terms";
-import Career from "./components/career/Career";
-import JobDescription from "./components/career/Components/JobDescription";
-import ApplyForm from "./components/career/Components/ApplyForm";
+import ApplyForm from "./components/career/Components/ApplyForm"
+import Career from "./components/career/Career"
+import JobDescription from "./components/career/Components/JobDescription"
+import Create from "./components/career/Create"
+
 
 function App() {
   return (
@@ -30,6 +32,7 @@ function App() {
         <Route path="/Career" element={<Career />} />
         <Route path="/Career/:name" element={<JobDescription />} />
         <Route path="/Career/Applyjob" element={<ApplyForm />} />
+        <Route path="/Career/Create" element={<Create />} />
 
         <Route path="*" element={<Navigate to="/Home" />} />
       </Routes>
