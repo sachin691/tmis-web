@@ -95,7 +95,9 @@ const JobDescription = () => {
 
           <div className="py-[0.5rem]">
             <Link to="/Career/Applyjob">
-              <button className="py-[1rem] px-[2rem] bg-blue-500 text-white font-semibold rounded-xl">Apply</button>
+              <Button size="lg" className="bg-blue-500 text-white font-semibold rounded-xl">
+                Apply
+              </Button>
             </Link>
           </div>
         </div>
