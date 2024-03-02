@@ -100,7 +100,19 @@ const Checkout = () => {
           return;
         }
         setSuccessorderId(response.razorpay_order_id);
+        console.log("successOrderId", successOrderId);
         setSuccessreceiptId(response.razorpay_payment_id);
+        try {
+          const updateDb = await axios.post(`${apiUrl}/payment/update`, {
+            ...userData,
+            successOrderId: response.razorpay_order_id,
+            successReceiptId: response.razorpay_payment_id,
+            amount,
+          });
+          console.log(updateDb);
+        } catch (error) {
+          console.log(error);
+        }
         successToast("Payment Successful!!");
         setTransSuccess(true);
       },
