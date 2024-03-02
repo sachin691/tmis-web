@@ -14,8 +14,6 @@ import {
   Select,
   SelectItem,
 } from "@nextui-org/react";
-import { jsPDF } from "jspdf";
-import "jspdf-autotable";
 
 const toastSetting = { position: "top-center" };
 
@@ -56,52 +54,45 @@ const Checkout = () => {
     });
   };
 
-  const generateReceipt = () => {
-    const doc = new jsPDF();
-    doc.autoTable({ html: "#receipt-table" });
-    doc.save("receipt.pdf");
-  };
-
   const displayRazorpay = async (totalAmt, cur) => {
     const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
     if (!res) {
       errorToast("Razorpay failed to load. Are you online?");
       return;
     }
+
     const result = await axios.post(`${apiUrl}/payment/orders`, { totalAmt, cur });
-    console.log(result);
     if (!result.data.success) {
       errorToast("Unable to process Order.Try Again");
       return;
     }
+
     const { id: orderId, amount } = result.data.payload.order;
     if (orderId === undefined || amount === undefined) {
       errorToast("Order Creating Failed. Try Again");
       return;
     }
+
     const options = {
       key: process.env.REACT_APP_RAZORPAY_KEY,
       amount: amount,
       currency: cur,
       name: "TRAVELMAGNET INFOTECH PRIVATE LIMITED",
       description: "Service Purchase",
-      orderId: orderId,
+      order_id: orderId,
       handler: async function (response) {
         const data = {
-          orderCreationId: orderId,
           razorpayPaymentId: response.razorpay_payment_id,
           razorpayOrderId: response.razorpay_order_id,
           razorpaySignature: response.razorpay_signature,
         };
-        console.log("data: ", data)
         const result = await axios.post(`${apiUrl}/payment/verify`, data);
-        console.log("result: " , result);
         if (!result.data.success) {
           errorToast("Payment Varification Failed. Try Again");
           return;
         }
 
-        generateReceipt();
+        setTransSuccess(true);
       },
       theme: {
         color: "#61dafb",
@@ -212,11 +203,11 @@ const Checkout = () => {
       </Table>
 
       {transSuccess ? (
-        <Button className="" variant="shadow" color="success" radius="none" onClick={() => window.print()}>
+        <Button className="text-white" color="success" onClick={() => window.print()}>
           Download Receipt
         </Button>
       ) : (
-        <Button className="" variant="shadow" color="primary" onClick={() => displayRazorpay(total, transCur)}>
+        <Button className="" color="primary" onClick={() => displayRazorpay(total, transCur)}>
           Pay Now
         </Button>
       )}

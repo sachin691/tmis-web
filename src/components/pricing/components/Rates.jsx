@@ -189,9 +189,9 @@ const Rates = () => {
     if (
       !emailValidity &&
       userNameState > 2 &&
-      companyNameState > 2 &&
-      phoneState > 10 &&
-      addressState > 3 &&
+      companyNameState > 1 &&
+      phoneState > 9 &&
+      addressState > 2 &&
       serviceRef1.current.value !== "" &&
       planRef1.current.value !== ""
     ) {
