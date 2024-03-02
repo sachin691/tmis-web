@@ -30,9 +30,12 @@ const errorToast = (message) => {
 const currency = ["INR", "USD"];
 
 const Checkout = () => {
+  scrollTop();
   let apiUrl = process.env.REACT_APP_API_URL;
+  let razorpayKey = process.env.REACT_APP_API_KEY;
   if (process.env.NODE_ENV === "development") {
     apiUrl = process.env.REACT_APP_DEV_API_URL;
+    razorpayKey = process.env.REACT_APP_DEV_RAZORPAY_KEY
   }
 
   const location = useLocation();
@@ -80,7 +83,7 @@ const Checkout = () => {
     }
 
     const options = {
-      key: process.env.REACT_APP_RAZORPAY_KEY,
+      key: razorpayKey,
       amount: amount,
       currency: cur,
       name: "TRAVELMAGNET INFOTECH PRIVATE LIMITED",
