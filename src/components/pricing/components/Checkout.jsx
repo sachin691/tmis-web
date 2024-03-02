@@ -13,6 +13,7 @@ import {
   Button,
   Select,
   SelectItem,
+  Checkbox,
 } from "@nextui-org/react";
 
 const toastSetting = { position: "top-center" };
@@ -39,6 +40,7 @@ const Checkout = () => {
   let total = 0;
   const [transCur, setTransCur] = useState("INR");
   const [transSuccess, setTransSuccess] = useState(false);
+  const [concent, setConcent] = useState(false);
 
   const loadScript = (src) => {
     return new Promise((resolve) => {
@@ -207,9 +209,26 @@ const Checkout = () => {
           Download Receipt
         </Button>
       ) : (
-        <Button className="" color="primary" onClick={() => displayRazorpay(total, transCur)}>
-          Pay Now
-        </Button>
+        <>
+          <Checkbox size="sm" onChange={() => setConcent((prev) => !prev)}>
+            I Agree.
+          </Checkbox>
+          <p className="max-w-[80%] text-justify">
+            By clicking "I Agree" you acknowledge that you have read, understood, and agree to be bound by the documents
+            which constitute the terms and conditions governing your use of our services. The Terms & Conditions,
+            Privacy and Refund Policy can be found in our website. Please Do read the documents in its entirety before
+            proceeding. By clicking "I Agree," you confirm that you have read and understood the terms and policies
+            outlined above and agree to abide by them.
+          </p>
+          <Button
+            isDisabled={!concent}
+            color="primary"
+            className="mt-[2rem]"
+            onClick={() => displayRazorpay(total, transCur)}
+          >
+            Pay Now
+          </Button>
+        </>
       )}
     </div>
   );
