@@ -44,6 +44,7 @@ const Checkout = () => {
   const [concent, setConcent] = useState(false);
   const [successOrderId, setSuccessorderId] = useState("");
   const [successReceiptId, setSuccessreceiptId] = useState("");
+  const [paymentProgress, setPaymentProgress] = useState(false);
 
   const loadScript = (src) => {
     return new Promise((resolve) => {
@@ -92,8 +93,10 @@ const Checkout = () => {
           razorpaySignature: response.razorpay_signature,
         };
         const result = await axios.post(`${apiUrl}/payment/verify`, data);
+        console.log(result);
         if (!result.data.success) {
           errorToast("Payment Varification Failed. Try Again");
+          setPaymentProgress(false);
           return;
         }
         setSuccessorderId(response.razorpay_order_id);
@@ -246,7 +249,11 @@ const Checkout = () => {
             isDisabled={!concent}
             color="primary"
             className="mt-[2rem]"
-            onClick={() => displayRazorpay(total, transCur)}
+            onClick={() => {
+              setPaymentProgress(true);
+              displayRazorpay(total, transCur);
+            }}
+            isLoading={paymentProgress}
           >
             Pay Now
           </Button>
