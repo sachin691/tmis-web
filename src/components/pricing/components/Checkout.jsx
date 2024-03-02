@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import {
   Table,
   TableHeader,
@@ -95,7 +95,7 @@ const Checkout = () => {
           errorToast("Payment Varification Failed. Try Again");
           return;
         }
-
+        successToast("Payment Successful!!");
         setTransSuccess(true);
       },
       theme: {
@@ -232,6 +232,7 @@ const Checkout = () => {
           </Button>
         </>
       )}
+      <Toaster />
     </div>
   );
 };
