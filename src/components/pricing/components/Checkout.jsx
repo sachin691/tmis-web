@@ -15,6 +15,7 @@ import {
   SelectItem,
   Checkbox,
 } from "@nextui-org/react";
+import { scrollTop } from "../../../utils/methods";
 
 const toastSetting = { position: "top-center" };
 
@@ -41,6 +42,8 @@ const Checkout = () => {
   const [transCur, setTransCur] = useState("INR");
   const [transSuccess, setTransSuccess] = useState(false);
   const [concent, setConcent] = useState(false);
+  const [successOrderId, setSuccessorderId] = useState("");
+  const [successReceiptId, setSuccessreceiptId] = useState("");
 
   const loadScript = (src) => {
     return new Promise((resolve) => {
@@ -84,8 +87,6 @@ const Checkout = () => {
       order_id: orderId,
       handler: async function (response) {
         const data = {
-          ...userData,
-          amount: amount,
           razorpayPaymentId: response.razorpay_payment_id,
           razorpayOrderId: response.razorpay_order_id,
           razorpaySignature: response.razorpay_signature,
@@ -95,6 +96,8 @@ const Checkout = () => {
           errorToast("Payment Varification Failed. Try Again");
           return;
         }
+        setSuccessorderId(response.razorpay_order_id);
+        setSuccessreceiptId(response.razorpay_payment_id);
         successToast("Payment Successful!!");
         setTransSuccess(true);
       },
@@ -154,6 +157,14 @@ const Checkout = () => {
             <TableCell className="border-2 ">{userData.address}</TableCell>
           </TableRow>
           <TableRow>
+            <TableCell className="border-2 text-start font-mono font-bold text-md">Order Id</TableCell>
+            <TableCell className="border-2 ">{successOrderId}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell className="border-2 text-start font-mono font-bold text-md">Receipt Id</TableCell>
+            <TableCell className="border-2 ">{successReceiptId}</TableCell>
+          </TableRow>
+          <TableRow>
             <TableCell className="border-2 text-start font-mono font-bold text-md">Transaction Currency</TableCell>
             <TableCell className="border-2 ">
               <Select
@@ -207,7 +218,16 @@ const Checkout = () => {
       </Table>
 
       {transSuccess ? (
-        <Button className="text-white" color="success" onClick={() => window.print()}>
+        <Button
+          className="text-white"
+          color="success"
+          onClick={() => {
+            scrollTop();
+            setTimeout(() => {
+              window.print();
+            }, 500);
+          }}
+        >
           Download Receipt
         </Button>
       ) : (
