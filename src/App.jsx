@@ -13,6 +13,7 @@ import ApplyForm from "./components/career/Components/ApplyForm"
 import Career from "./components/career/Career"
 import JobDescription from "./components/career/Components/JobDescription"
 import Create from "./components/career/Create"
+import Auth from "./components/Auth/Auth";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route path="/Career/:name" element={<JobDescription />} />
         <Route path="/Career/Applyjob" element={<ApplyForm />} />
         <Route path="/Career/Create" element={<Create />} />
+        <Route path="/Auth" element={<Auth />} />
 
         <Route path="*" element={<Navigate to="/Home" />} />
       </Routes>

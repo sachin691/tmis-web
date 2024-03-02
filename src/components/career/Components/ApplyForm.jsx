@@ -73,8 +73,8 @@ const ApplyForm = () => {
               <Input
                 type="Phone"
                 label=""
-                name="contact"
-                id="contact"
+                name="phone"
+                id="phone"
                 size="xs"
                 className=""
                 radius="none"
@@ -239,13 +239,16 @@ const ApplyForm = () => {
             <label htmlFor="" className="py-[0.5rem]">
               Upload Your Resume <span className="text-red-800">*</span>
             </label>
-            <input
-              type="file"
-              id="myFile"
-              name="Resume"
-              accept=".pdf, .docx"
-              className="py-[0.5rem] px-[0.3rem] bg-[#E4E4E7] rounded-xl"
-            />
+            <div className=" md:w-[45rem] w-[20rem]">
+              <input
+                type="file"
+                id="myFile"
+                name="Resume"
+                accept=".pdf, .docx"
+                className=""
+                
+              />
+            </div>
           </div>
 
           <Button
