@@ -1,5 +1,5 @@
 // Dependencies
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
@@ -30,12 +30,13 @@ const errorToast = (message) => {
 const currency = ["INR", "USD"];
 
 const Checkout = () => {
-  scrollTop();
+  useEffect(() => scrollTop(), []);
+
   let apiUrl = process.env.REACT_APP_API_URL;
   let razorpayKey = process.env.REACT_APP_API_KEY;
   if (process.env.NODE_ENV === "development") {
     apiUrl = process.env.REACT_APP_DEV_API_URL;
-    razorpayKey = process.env.REACT_APP_DEV_RAZORPAY_KEY
+    razorpayKey = process.env.REACT_APP_DEV_RAZORPAY_KEY;
   }
 
   const location = useLocation();
@@ -99,7 +100,6 @@ const Checkout = () => {
         console.log(result);
         if (!result.data.success) {
           errorToast("Payment Varification Failed. Try Again");
-          setPaymentProgress(false);
           return;
         }
         setSuccessorderId(response.razorpay_order_id);
@@ -126,6 +126,7 @@ const Checkout = () => {
 
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
+    setPaymentProgress(false);
   };
 
   const getPrice = (plan) => {
