@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import {
   Table,
   TableHeader,
@@ -13,9 +13,9 @@ import {
   Button,
   Select,
   SelectItem,
+  Checkbox,
 } from "@nextui-org/react";
-import { jsPDF } from "jspdf";
-import "jspdf-autotable";
+import { scrollTop } from "../../../utils/methods";
 
 const toastSetting = { position: "top-center" };
 
@@ -41,6 +41,9 @@ const Checkout = () => {
   let total = 0;
   const [transCur, setTransCur] = useState("INR");
   const [transSuccess, setTransSuccess] = useState(false);
+  const [concent, setConcent] = useState(false);
+  const [successOrderId, setSuccessorderId] = useState("");
+  const [successReceiptId, setSuccessreceiptId] = useState("");
 
   const loadScript = (src) => {
     return new Promise((resolve) => {
@@ -56,12 +59,6 @@ const Checkout = () => {
     });
   };
 
-  const generateReceipt = () => {
-    const doc = new jsPDF();
-    doc.autoTable({ html: "#receipt-table" });
-    doc.save("receipt.pdf");
-  };
-
   const displayRazorpay = async (totalAmt, cur) => {
     const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
     if (!res) {
@@ -70,39 +67,39 @@ const Checkout = () => {
     }
 
     const result = await axios.post(`${apiUrl}/payment/orders`, { totalAmt, cur });
-    if (!result.success) {
+    if (!result.data.success) {
       errorToast("Unable to process Order.Try Again");
       return;
     }
 
-    const { orderId } = result.data.payload.order;
-    if (orderId === undefined) {
+    const { id: orderId, amount } = result.data.payload.order;
+    if (orderId === undefined || amount === undefined) {
       errorToast("Order Creating Failed. Try Again");
       return;
     }
 
     const options = {
       key: process.env.REACT_APP_RAZORPAY_KEY,
-      amount: totalAmt,
+      amount: amount,
       currency: cur,
       name: "TRAVELMAGNET INFOTECH PRIVATE LIMITED",
       description: "Service Purchase",
-      orderId: orderId,
+      order_id: orderId,
       handler: async function (response) {
         const data = {
-          orderCreationId: orderId,
           razorpayPaymentId: response.razorpay_payment_id,
           razorpayOrderId: response.razorpay_order_id,
           razorpaySignature: response.razorpay_signature,
         };
-
-        const result = await axios.post(`${apiUrl}/payment/varify`, data);
-        if (!result.success) {
+        const result = await axios.post(`${apiUrl}/payment/verify`, data);
+        if (!result.data.success) {
           errorToast("Payment Varification Failed. Try Again");
           return;
         }
-
-        generateReceipt();
+        setSuccessorderId(response.razorpay_order_id);
+        setSuccessreceiptId(response.razorpay_payment_id);
+        successToast("Payment Successful!!");
+        setTransSuccess(true);
       },
       theme: {
         color: "#61dafb",
@@ -160,6 +157,14 @@ const Checkout = () => {
             <TableCell className="border-2 ">{userData.address}</TableCell>
           </TableRow>
           <TableRow>
+            <TableCell className="border-2 text-start font-mono font-bold text-md">Order Id</TableCell>
+            <TableCell className="border-2 ">{successOrderId}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell className="border-2 text-start font-mono font-bold text-md">Receipt Id</TableCell>
+            <TableCell className="border-2 ">{successReceiptId}</TableCell>
+          </TableRow>
+          <TableRow>
             <TableCell className="border-2 text-start font-mono font-bold text-md">Transaction Currency</TableCell>
             <TableCell className="border-2 ">
               <Select
@@ -213,14 +218,41 @@ const Checkout = () => {
       </Table>
 
       {transSuccess ? (
-        <Button className="" variant="shadow" color="success" radius="none" onClick={() => window.print()}>
+        <Button
+          className="text-white"
+          color="success"
+          onClick={() => {
+            scrollTop();
+            setTimeout(() => {
+              window.print();
+            }, 500);
+          }}
+        >
           Download Receipt
         </Button>
       ) : (
-        <Button className="" variant="shadow" color="primary" onClick={() => displayRazorpay(total, transCur)}>
-          Pay Now
-        </Button>
+        <>
+          <Checkbox size="sm" onChange={() => setConcent((prev) => !prev)}>
+            I Agree.
+          </Checkbox>
+          <p className="max-w-[80%] text-justify">
+            By clicking "I Agree" you acknowledge that you have read, understood, and agree to be bound by the documents
+            which constitute the terms and conditions governing your use of our services. The Terms & Conditions,
+            Privacy and Refund Policy can be found in our website. Please Do read the documents in its entirety before
+            proceeding. By clicking "I Agree," you confirm that you have read and understood the terms and policies
+            outlined above and agree to abide by them.
+          </p>
+          <Button
+            isDisabled={!concent}
+            color="primary"
+            className="mt-[2rem]"
+            onClick={() => displayRazorpay(total, transCur)}
+          >
+            Pay Now
+          </Button>
+        </>
       )}
+      <Toaster />
     </div>
   );
 };
