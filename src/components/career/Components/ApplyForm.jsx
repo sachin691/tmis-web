@@ -5,8 +5,6 @@ import { Dropdown, DropdownItem, DropdownTrigger, DropdownMenu, Button } from "@
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoSend } from "react-icons/io5";
 
-
-
 const ApplyForm = () => {
   return (
     <>
@@ -18,97 +16,227 @@ const ApplyForm = () => {
       <div className=" h-auto p-[1rem]">
         <form action="" className="flex flex-col  gap-[2rem] items-center grow ">
           <div className="flex flex-col items-start">
-            <label htmlFor="" className="py-[0.2rem]">
+            <label htmlFor="" className="py-[0.5rem]">
               First Name <span className="text-red-800">*</span>
             </label>
-            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
-              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            <div className="  md:w-[45rem] w-[20rem] ">
+              <Input
+                type="text"
+                label=""
+                name="First Name"
+                id="First Name"
+                size="xs"
+                color="warning"
+                className=""
+                radius="none"
+                variant="bordered"
+              />
             </div>
-            <label htmlFor="" className="py-[0.2rem]">
+            <label htmlFor="" className="py-[0.5rem]">
               Last Name <span className="text-red-800">*</span>
             </label>
-            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
-              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            <div className=" md:w-[45rem] w-[20rem]">
+              <Input
+                type="text"
+                variant="bordered"
+                label=""
+                name="First Name"
+                id="First Name"
+                size="xs"
+                className=""
+                radius="none"
+                color="warning"
+              />
             </div>
 
-            <label htmlFor="" className="py-[0.2rem]">
+            <label htmlFor="" className="py-[0.5rem]">
               Email <span className="text-red-800">*</span>
             </label>
-            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
-              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            <div className=" md:w-[45rem] w-[20rem]">
+              <Input
+                type="email"
+                label=""
+                name="email"
+                id="email"
+                size="xs"
+                className=""
+                radius="none"
+                color="warning"
+                variant="bordered"
+              />
             </div>
 
-            <label htmlFor="" className="py-[0.2rem]">
+            <label htmlFor="" className="py-[0.5rem]">
               Contact <span className="text-red-800">*</span>
             </label>
-            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
-              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            <div className=" md:w-[45rem] w-[20rem]">
+              <Input
+                type="Phone"
+                label=""
+                name="contact"
+                id="contact"
+                size="xs"
+                className=""
+                radius="none"
+                color="warning"
+                variant="bordered"
+              />
             </div>
 
-            <label htmlFor="" className="py-[0.2rem]">
+            <label htmlFor="" className="py-[0.5rem]">
               Year of Graduation <span className="text-red-800">*</span>
             </label>
-            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
-              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            <div className="md:w-[45rem] w-[20rem]">
+              <Input
+                type="Date"
+                label=""
+                name="First Name"
+                id="First Name"
+                size="xs"
+                className=""
+                radius="none"
+                color="warning"
+                variant="bordered"
+              />
             </div>
 
-            <label htmlFor="" className="py-[0.2rem]">
+            <label htmlFor="" className="py-[0.5rem]">
               Gender <span className="text-red-800"></span>
             </label>
-            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
-              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            <div className=" md:w-[45rem] w-[20rem]">
+              <Input
+                type="text"
+                label=""
+                name="First Name"
+                id="First Name"
+                size="xs"
+                className=""
+                radius="none"
+                color="warning"
+                variant="bordered"
+              />
             </div>
 
-            <label htmlFor="" className="py-[0.2rem]">
+            <label htmlFor="" className="py-[0.5rem]">
               Experience In Years <span className="text-red-800">*</span>
             </label>
-            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
-              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            <div className=" md:w-[45rem] w-[20rem]">
+              <Input
+                type="Number"
+                label=""
+                name="First Name"
+                id="First Name"
+                size="xs"
+                className=""
+                radius="none"
+                color="warning"
+                variant="bordered"
+              />
             </div>
 
-            <label htmlFor="" className="py-[0.2rem]">
+            <label htmlFor="" className="py-[0.5rem]">
               Current Employer <span className="text-red-800">*</span>
             </label>
-            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
-              <Input type="text" label="" name="First Name" id="First Name" className="" size="xs" radius="none" />
+            <div className=" md:w-[45rem] w-[20rem]">
+              <Input
+                type="text"
+                label=""
+                name="First Name"
+                id="First Name"
+                className=""
+                size="xs"
+                radius="none"
+                color="warning"
+                variant="bordered"
+              />
             </div>
 
-            <label htmlFor="" className="py-[0.2rem]">
+            <label htmlFor="" className="py-[0.5rem]">
               Current CTC(In Lakh per Annum) <span className="text-red-800">*</span>
             </label>
-            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
-              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            <div className=" md:w-[45rem] w-[20rem]">
+              <Input
+                type="Number"
+                label=""
+                name="First Name"
+                id="First Name"
+                size="xs"
+                className=""
+                radius="none"
+                color="warning"
+                variant="bordered"
+              />
             </div>
 
-            <label htmlFor="" className="py-[0.2rem]">
+            <label htmlFor="" className="py-[0.5rem]">
               Expected CTC(In Lakh per Annum) <span className="text-red-800">*</span>
             </label>
-            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
-              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            <div className=" md:w-[45rem] w-[20rem]">
+              <Input
+                type="Number"
+                label=""
+                name="First Name"
+                id="First Name"
+                size="xs"
+                className=""
+                radius="none"
+                color="warning"
+                variant="bordered"
+              />
             </div>
 
-            <label htmlFor="" className="py-[0.2rem]">
+            <label htmlFor="" className="py-[0.5rem]">
               Notice Period(In Month) <span className="text-red-800">*</span>
             </label>
-            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
-              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            <div className=" md:w-[45rem] w-[20rem]">
+              <Input
+                type="Number"
+                label=""
+                name="First Name"
+                id="First Name"
+                size="xs"
+                className=""
+                radius="none"
+                color="warning"
+                variant="bordered"
+              />
             </div>
 
-            <label htmlFor="" className="py-[0.2rem]">
+            <label htmlFor="" className="py-[0.5rem]">
               Current Location <span className="text-red-800">*</span>
             </label>
-            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
-              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            <div className=" md:w-[45rem] w-[20rem]">
+              <Input
+                type="text"
+                label=""
+                name="First Name"
+                id="First Name"
+                size="xs"
+                className=""
+                radius="none"
+                color="warning"
+                variant="bordered"
+              />
             </div>
 
-            <label htmlFor="" className="py-[0.2rem]">
+            <label htmlFor="" className="py-[0.5rem]">
               Preferred Location <span className="text-red-800">*</span>
             </label>
-            <div className="border-2 border-gray-400 md:w-[45rem] w-[20rem]">
-              <Input type="text" label="" name="First Name" id="First Name" size="xs" className="" radius="none" />
+            <div className=" md:w-[45rem] w-[20rem]">
+              <Input
+                type="text"
+                label=""
+                name="First Name"
+                id="First Name"
+                size="xs"
+                className=""
+                radius="none"
+                color="warning"
+                variant="bordered"
+              />
             </div>
 
-            <label htmlFor="" className="py-[0.2rem]">
+            <label htmlFor="" className="py-[0.5rem]">
               Upload Your Resume <span className="text-red-800">*</span>
             </label>
             <input
@@ -120,7 +248,6 @@ const ApplyForm = () => {
             />
           </div>
 
-          
           <Button
             variant="shadow"
             className="w-[10rem] py-[1rem] px-[2rem] text-white bg-blue-500"

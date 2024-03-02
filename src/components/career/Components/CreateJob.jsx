@@ -59,7 +59,7 @@ const CreateJob = () => {
     e.preventDefault();
     setSkillList((skillList) => {
       const updatedListSkill = [...skillList, skill];
-      console.log(updatedListSkill)
+      console.log(updatedListSkill);
       return updatedListSkill;
     });
     setSkill("");
@@ -77,7 +77,7 @@ const CreateJob = () => {
       return i != idx;
     });
     setSkillList(updatedSkilllist);
-    console.log(updatedSkilllist)
+    console.log(updatedSkilllist);
   };
   const handleClick = (event, i) => {
     event.preventDefault(); // Prevents the default behavior (e.g., page refresh)
@@ -92,8 +92,6 @@ const CreateJob = () => {
     removeSkill(i);
   };
 
- 
-
   return (
     <div className="flex flex-col items-center justify-between h-aut0">
       <div className="flex items-center justify-center p-[2rem]">
@@ -102,7 +100,7 @@ const CreateJob = () => {
 
       <div>
         <form action="">
-          <div className="py-[2rem]">
+          <div className="py-[0.7rem]">
             <label htmlFor="">
               Job Description <span className="text-red-700">*</span>
             </label>
@@ -111,7 +109,7 @@ const CreateJob = () => {
             </div>
           </div>
 
-          <div className="py-[2rem] ">
+          <div className="py-[0.7rem] ">
             <label htmlFor="">
               Required Candidate Profile <span className="text-red-500">*</span>
             </label>
@@ -132,11 +130,11 @@ const CreateJob = () => {
               </button>
             </div>
             {list.map((data, i) => (
-              <div className="flex items-start justify-start gap-[2rem] py-[1rem]">
+              <div className="flex items-start justify-start  py-[1rem]">
                 <div className="bg-slate-200 text-black rounded-xl p-[1rem] ">
                   <p key={i}>{data}</p>
                 </div>
-                <div className="flex items-center justify-center font-bold text-blue-500 text-3xl mt-3">
+                <div className="flex items-center justify-center font-bold text-red-500 text-2xl ">
                   <button onClick={(event) => handleClick(event, i)}>
                     <TiDeleteOutline />
                   </button>
@@ -144,7 +142,7 @@ const CreateJob = () => {
               </div>
             ))}
           </div>
-          <div className="py-[2rem]">
+          <div className="py-[0.7rem]">
             <label htmlFor="">
               Role <span className="text-red-500">*</span>
             </label>
@@ -158,7 +156,7 @@ const CreateJob = () => {
               color="success"
             />
           </div>
-          <div className="py-[2rem]">
+          <div className="py-[0.7rem]">
             <label htmlFor="">
               Industry Type <span className="text-red-500">*</span>
             </label>
@@ -172,7 +170,7 @@ const CreateJob = () => {
               color="success"
             />
           </div>
-          <div className="py-[2rem]">
+          <div className="py-[0.7rem]">
             <label htmlFor="">
               Department <span className="text-red-500">*</span>
             </label>
@@ -186,9 +184,9 @@ const CreateJob = () => {
               color="success"
             />
           </div>
-          <div className="py-[2rem]">
+          <div className="py-[0.7rem]">
             <label htmlFor="">
-              Employment Type Type <span className="text-red-500">*</span>
+              Education <span className="text-red-500">*</span>
             </label>
             <Input
               type="text"
@@ -200,7 +198,21 @@ const CreateJob = () => {
               color="success"
             />
           </div>
-          <div className="py-[2rem]">
+          <div className="py-[0.7rem]">
+            <label htmlFor="">
+              Employment Type <span className="text-red-500">*</span>
+            </label>
+            <Input
+              type="text"
+              label=""
+              name="First Name"
+              id="First Name"
+              size="lg"
+              variant="bordered"
+              color="success"
+            />
+          </div>
+          <div className="py-[0.7rem]">
             <label htmlFor="">
               Role Category <span className="text-red-500">*</span>
             </label>
@@ -214,7 +226,7 @@ const CreateJob = () => {
               color="success"
             />
           </div>
-          <div className="py-[2rem]">
+          <div className="py-[0.7rem]">
             <label htmlFor="">
               Key Skills <span className="text-red-500">*</span>
             </label>
@@ -234,18 +246,18 @@ const CreateJob = () => {
                 Add
               </button>
             </div>
-            {skillList?.map((data, i) => (
-              <div className="flex items-start justify-start gap-[2rem] py-[1rem]">
-                <div className="bg-slate-200 text-black rounded-xl p-[1rem] ">
-                  <p key={i}>{data}</p>
-                </div>
-                <div className="flex items-center justify-center font-bold text-blue-500 text-3xl mt-3">
-                  <button onClick={(event) => handleNextClick(event, i)}>
+            <div className="grid xl:grid-cols-6 md:grid-cols-4 grid-cols-3    gap-0">
+              {skillList?.map((data, i) => (
+                <div className="flex  items-start py-[1rem] ">
+                  <div className="bg-slate-200 text-black rounded-xl p-[1rem] ">
+                    <p key={i}>{data}</p>
+                  </div>
+                  <button className="text-red-500 text-2xl" onClick={(event) => handleNextClick(event, i)}>
                     <TiDeleteOutline />
                   </button>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
           <div className="flex flex-col items-center justify-between p-[2rem]">
             <Button
