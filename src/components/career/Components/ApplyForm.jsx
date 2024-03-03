@@ -10,7 +10,7 @@ const ApplyForm = () => {
       className="bg-center bg-no-repeat bg-cover"
       style={{
         backgroundImage:
-          "url('https://images.pexels.com/photos/1061623/pexels-photo-1061623.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
+          "url('https://img.freepik.com/free-vector/paper-style-wavy-background_23-2149116133.jpg?w=996&t=st=1709490657~exp=1709491257~hmac=12bb40978de0c4c56b8832b669f4449829ef8a9e4c62cdc48ab6ada116438b72')",
       }}
     >
       <Intro />

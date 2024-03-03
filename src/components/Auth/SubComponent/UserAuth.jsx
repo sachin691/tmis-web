@@ -235,7 +235,7 @@ const UserAuth = () => {
         <h1>Welcome to TMIS</h1>
         <p>👋</p>
       </div>
-      <p className="text-xs mb-2">Please {toLogin ? "Login to" : "Create"} your account and start the adventure !</p>
+      <p className="text-xs mb-2">Please Login and start the adventure !</p>
       {/* <Input
         type="text"
         label="Username"
@@ -262,7 +262,6 @@ const UserAuth = () => {
         variant="bordered"
       />
       <Input
-        
         variant="bordered"
         radius="none"
         label="Password"
@@ -316,22 +315,11 @@ const UserAuth = () => {
         color="primary"
         variant="shadow"
         type="submit"
+        radius="none"
         isLoading={toLogin ? handleLoginButton : handleSignUpButton}
       >
         Login
       </Button>
-      <p className="text-xs text-center">
-        {/* {toLogin ? "New to our platform?" : "Already have an account?"} */}
-        &nbsp;
-        <button
-          style={{ color: "#006FEE" }}
-          onClick={(e) => {
-            changeAuthStatus(e);
-          }}
-        >
-          {/* {toLogin ? "Create an account" : "Login"} */}
-        </button>
-      </p>
       <Toaster />
     </form>
   );

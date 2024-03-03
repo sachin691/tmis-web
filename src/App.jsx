@@ -13,19 +13,20 @@ import ContactUs from "./components/contact/ContactUs";
 import Privacy from "./components/privacy/Privacy";
 import Refund from "./components/globalSubComponents/Refund";
 import Terms from "./components/globalSubComponents/Terms";
-import ApplyForm from "./components/career/Components/ApplyForm"
-import Career from "./components/career/Career"
-import JobDescription from "./components/career/Components/JobDescription"
-import Create from "./components/career/Create"
+import ApplyForm from "./components/career/Components/ApplyForm";
+import Career from "./components/career/Career";
+import JobDescription from "./components/career/Components/JobDescription";
+import Create from "./components/career/Create";
 import Auth from "./components/Auth/Auth";
 
 import Checkout from "./components/pricing/components/Checkout";
 
 function App() {
   const checkoutPermit = useSelector((state) => state.checkoutPermit.value);
+  const curTab = useSelector((state) => state.curTab.value);
   return (
     <>
-      <NavBar />
+      {curTab === "Auth" ? null : <NavBar />}
       <Routes>
         <Route path="/" element={<Navigate to="/Home" />} />
         <Route path="/Home" element={<Home />} />
@@ -41,12 +42,10 @@ function App() {
         <Route path="/Career/Applyjob" element={<ApplyForm />} />
         <Route path="/Career/Create" element={<Create />} />
         <Route path="/Auth" element={<Auth />} />
-
-        <Route path="/Checkout" element={<Checkout/>} />
         {checkoutPermit ? <Route path="/Checkout" element={<Checkout />} /> : null}
         <Route path="*" element={<Navigate to="/Home" />} />
       </Routes>
-      <Footer />
+      {curTab === "Auth" ? null : <Footer />}
     </>
   );
 }
