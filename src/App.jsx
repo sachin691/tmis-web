@@ -18,6 +18,7 @@ import Career from "./components/career/Career";
 import JobDescription from "./components/career/Components/JobDescription";
 import Create from "./components/career/Create";
 import Auth from "./components/Auth/Auth";
+import Admin from "./components/career/Components/Admin";
 
 import Checkout from "./components/pricing/components/Checkout";
 
@@ -43,6 +44,8 @@ function App() {
         <Route path="/Career/Create" element={<Create />} />
         <Route path="/Auth" element={<Auth />} />
         {checkoutPermit ? <Route path="/Checkout" element={<Checkout />} /> : null}
+        <Route path="/Admin" element={<Admin />} />
+
         <Route path="*" element={<Navigate to="/Home" />} />
       </Routes>
       {curTab === "Auth" ? null : <Footer />}
