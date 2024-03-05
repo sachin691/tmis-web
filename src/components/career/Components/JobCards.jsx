@@ -5,12 +5,12 @@ import { Card, Button } from "@nextui-org/react";
 import { getCookie } from "../../../utils/cookies";
 
 const JobCards = ({ title, location, type, experience, skill, i }) => {
-  const isAdmin = getCookie("admin");
-
   const navigate = useNavigate();
   const date1 = dayjs(Date.now());
   const posted = "2023-09-28";
   const diffInDays = date1.diff(posted, "day");
+
+  const isAdmin = getCookie("admin") ? true : false;
 
   return (
     <Card
@@ -38,16 +38,43 @@ const JobCards = ({ title, location, type, experience, skill, i }) => {
       </div>
       <div className="flex md:flex-row flex-col items-center gap-3 ">
         <p className="text-gray-500 md:p-[1rem] text-[0.8rem]">Posted {diffInDays} Days ago</p>
-        <Button color="primary" variant="ghost" radius="sm" className="px-[2rem]">
-          <navigate
-            key={i}
-            onClick={() => {
-              navigate(`/Career/Individual/${title}`);
-            }}
-          >
-            Apply
-          </navigate>
-        </Button>
+        {isAdmin === false ? (
+          <Button color="primary" variant="ghost" radius="sm" className="px-[2rem]">
+            <navigate
+              key={i}
+              onClick={() => {
+                navigate(`/Career/${title}`, { state: { type: "data" } });
+              }}
+            >
+              Apply
+            </navigate>
+          </Button>
+        ) : (
+          <Button color="primary" variant="ghost" radius="sm" className="px-[2rem]">
+            <navigate
+              key={i}
+              onClick={() => {
+                navigate(`/Career/View/2`);
+              }}
+            >
+              View
+            </navigate>
+          </Button>
+        )}
+        {isAdmin === true ? (
+          <Button color="secondary" variant="ghost" radius="sm" className="px-[2rem]">
+            <navigate
+              key={i}
+              onClick={() => {
+                navigate(`/Career/View/2`);
+              }}
+            >
+              Edit
+            </navigate>
+          </Button>
+        ) : (
+          ""
+        )}
       </div>
     </Card>
   );

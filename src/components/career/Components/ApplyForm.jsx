@@ -122,7 +122,7 @@ const ApplyForm = () => {
           </div>
 
           <label htmlFor="" className="py-[0.5rem]">
-            Experience In Years <span className="text-red-800">*</span>
+            Experience In Years <span className="text-red-800"></span>
           </label>
           <div className="sm:w-[30rem] md:w-[45rem] w-[19rem]">
             <Input
@@ -139,7 +139,7 @@ const ApplyForm = () => {
           </div>
 
           <label htmlFor="" className="py-[0.5rem]">
-            Current Employer <span className="text-red-800">*</span>
+            Current Employer <span className="text-red-800"></span>
           </label>
           <div className="sm:w-[30rem] md:w-[45rem] w-[19rem]">
             <Input
@@ -156,7 +156,7 @@ const ApplyForm = () => {
           </div>
 
           <label htmlFor="" className="py-[0.5rem]">
-            Current CTC(In Lakh per Annum) <span className="text-red-800">*</span>
+            Current CTC(In Lakh per Annum) <span className="text-red-800"></span>
           </label>
           <div className="sm:w-[30rem] md:w-[45rem] w-[19rem]">
             <Input
@@ -190,7 +190,7 @@ const ApplyForm = () => {
           </div>
 
           <label htmlFor="" className="py-[0.5rem]">
-            Notice Period(In Month) <span className="text-red-800">*</span>
+            Notice Period(In Month) <span className="text-red-800"></span>
           </label>
           <div className="sm:w-[30rem] md:w-[45rem] w-[19rem]">
             <Input
@@ -223,22 +223,7 @@ const ApplyForm = () => {
             />
           </div>
 
-          <label htmlFor="" className="py-[0.5rem]">
-            Preferred Location <span className="text-red-800">*</span>
-          </label>
-          <div className="sm:w-[30rem] md:w-[45rem] w-[19rem]">
-            <Input
-              type="text"
-              label=""
-              name="First Name"
-              id="First Name"
-              size="xs"
-              className=""
-              radius="none"
-              color="primary"
-              variant="bordered"
-            />
-          </div>
+          
 
           <label htmlFor="" className="py-[0.5rem]">
             Upload Your Resume <span className="text-red-800">*</span>

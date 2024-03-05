@@ -43,6 +43,19 @@ const CreateJob = () => {
   const [list, setList] = useState([]);
   const [skill, setSkill] = useState("");
   const [skillList, setSkillList] = useState([]);
+  const [education, SetEducation] = useState("")
+  const [educationList, SetEducationList] = useState([])
+
+  const AddEducation = (e) => {
+    e.preventDefault();
+
+    SetEducationList((educationList) => {
+      const update = [...educationList, education];
+      console.log(update)
+      return update
+    })
+    SetEducation("")
+  }
 
   const AddActivity = (e) => {
     e.preventDefault();
@@ -79,6 +92,13 @@ const CreateJob = () => {
     setSkillList(updatedSkilllist);
     console.log(updatedSkilllist);
   };
+
+  const removeEducation =(i) => {
+    const update = educationList.filter((elem,idx) =>{
+       return i != idx;
+    })
+    SetEducationList(update)
+  }
   const handleClick = (event, i) => {
     event.preventDefault(); // Prevents the default behavior (e.g., page refresh)
 
@@ -91,6 +111,11 @@ const CreateJob = () => {
     // Call your removeData function with the index
     removeSkill(i);
   };
+
+  const handleEducation = (event, i) =>{
+    event.preventDefault();
+     removeEducation(i)
+  }
 
   return (
     <div
@@ -174,7 +199,35 @@ const CreateJob = () => {
           <label htmlFor="">
             Education <span className="text-red-500">*</span>
           </label>
-          <Input type="text" label="" name="First Name" id="First Name" size="sm" variant="bordered" color="primary" />
+          <div className="flex flex-row items-center justify-center gap-2 ">
+            <Input
+              type="text"
+              label=""
+              variant="bordered"
+              color="primary"
+              name="First Name"
+              id="First Name"
+              size="sm"
+              value={education}
+              onChange={(e) => SetEducation(e.target.value)}
+            />
+            <button className="text-white bg-blue-500 py-[0.7rem] px-[1rem] rounded-xl" onClick={AddEducation}>
+              Add
+            </button>
+          </div>
+          <div className="flex gap-x-[0.5rem] gap-y-[0.8rem] flex-wrap mt-[1rem]">
+            {educationList.map((data, i) => (
+              <div className="flex">
+                <Chip variant="shadow" size="lg" key={i}>
+                  {data}
+                </Chip>
+                <IoIosCloseCircle
+                  className="text-red-500 text-xl cursor-pointer translate-x-[-0.7rem] translate-y-[-0.2rem] bg-white rounded-full"
+                  onClick={(event) => handleEducation(event, i)}
+                />
+              </div>
+            ))}
+          </div>
         </div>
         <div>
           <label htmlFor="">
