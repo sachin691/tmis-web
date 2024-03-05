@@ -65,7 +65,7 @@ const Footer = () => {
                 <span>Country : India</span>
               </span>
               <span className="flex flex-col sm:min-w-[20rem] md:min-w-[8rem] text-xs">
-                <span className="font-bold text-base">Dehradun Office</span>
+                <span className="font-bold text-base">Dehradun Address</span>
                 <span>Building : Unit-181</span>
                 <span>Location : Rajpur Road</span>
                 <span>City : Dehradun</span>
@@ -73,7 +73,7 @@ const Footer = () => {
                 <span>Country : India</span>
               </span>
               <span className="flex flex-col sm:min-w-[20rem] md:min-w-[8rem] text-xs">
-                <span className="font-bold text-base">Luckhnow Office</span>
+                <span className="font-bold text-base">Lucknow Address</span>
                 <span>Building : Unit-311/15</span>
                 <span>Location : Hazrat Ganj, Above State Bank</span>
                 <span>City : Luckhnow</span>
@@ -81,7 +81,7 @@ const Footer = () => {
                 <span>Country : India</span>
               </span>
               <span className="flex flex-col sm:min-w-[20rem] md:min-w-[8rem] text-xs">
-                <span className="font-bold text-base">US Office</span>
+                <span className="font-bold text-base">US Address</span>
                 <span>Building : Unit-544</span>
                 <span>Location : McCabe Street</span>
                 <span>City : Port Charlotte</span>

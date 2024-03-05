@@ -386,7 +386,7 @@ const Privacy = () => {
         <p className="mx-[0.5rem] font-normal text-sm">
           If you have any questions about this Privacy Policy, You can contact us:
         </p>
-        <li className=" mx-[1rem] text-sm ">By phone number: +18234555</li>
+        <li className=" mx-[1rem] text-sm ">By phone number: +91 9205453309</li>
         <h1 className="font-bold text-lg mt-[1rem]">Cancellation Policy</h1>
         <Accordion className="  " variant="">
           <AccordionItem title="Policy for cancellation" subtitle={<span>Press to expand</span>} className="text-sm">
