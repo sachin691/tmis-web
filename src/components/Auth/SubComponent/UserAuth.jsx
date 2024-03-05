@@ -1,12 +1,11 @@
 // Dependencies
 import { useState, useRef } from "react";
 import axios from "axios";
-import { Button, Input, Checkbox } from "@nextui-org/react";
+import { Button, Input } from "@nextui-org/react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import toast, { Toaster, ToastPosition } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { setCookie } from "../../../utils/cookies";
 
 // Local Files
@@ -21,21 +20,13 @@ import {
   passwordHighCase,
   passwordLowCase,
 } from "../../../utils/authRegex";
-import { RootState } from "../../../store/store";
-import { updateToLoginStatus } from "../../../store/toLoginSlice";
 
 const handleKeyPress = (event) => {
   if (event.key === "Enter") {
     event.preventDefault();
   }
 };
-// const toastSetting: {
-//   position
-// } = { position: "top-center" };
 
-const successToast = (message) => {
-  toast.success(MessageEvent);
-};
 const errorToast = (message) => {
   toast.error(message);
 };
@@ -49,34 +40,16 @@ const UserAuth = () => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
 
-  const toLogin = useSelector((state) => state.toLogin);
   const toggleVisibility = () => setIsVisible(!isVisible);
-
-  const dispatch = useDispatch();
-  const changeAuthStatus = (event) => {
-    event.preventDefault();
-    dispatch(updateToLoginStatus(!toLogin));
-  };
 
   const email = useRef("");
   const password = useRef("");
-  const confirmPassword = useRef("");
-  const username = useRef("");
 
   const [invalidPasswordMessage, setInvalidPasswordMessage] = useState("");
-  const [invalidUsernameMessage, setInvalidUsernameMessage] = useState("");
 
   const [emailState, setEmailState] = useState(false);
   const [passwordState, setPasswordState] = useState(false);
-  const [confirmPasswordState, setConfirmPasswordState] = useState(false);
-  const [usernameState, setUsernameState] = useState(false);
-  const [rememberMe, setRememberMe] = useState(true);
   const [handleLoginButton, setHandleLoginButton] = useState(false);
-  const [handleSignUpButton, setHandleSignUpButton] = useState(false);
-
-  const handleCheckboxChange = () => {
-    setRememberMe(!rememberMe);
-  };
 
   const checkEmail = (event) => {
     email.current = event.target.value;
@@ -116,28 +89,6 @@ const UserAuth = () => {
     }
   };
 
-  const checkConfirmPassword = (event) => {
-    confirmPassword.current = event.target.value;
-
-    if (confirmPassword.current === password.current) {
-      setConfirmPasswordState(false);
-    } else {
-      setConfirmPasswordState(true);
-    }
-  };
-
-  const checkUsername = (event) => {
-    username.current = event.target.value;
-
-    if (username.current.length < 3) {
-      setUsernameState(true);
-      setInvalidUsernameMessage("Username should have a minimum length of 3 characters");
-    } else {
-      setUsernameState(false);
-      setInvalidUsernameMessage("");
-    }
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -146,27 +97,26 @@ const UserAuth = () => {
       return;
     }
     try {
-        setHandleLoginButton(true);
-        const response = await axios.post(`${apiUrl}/users/login`, {
-          email: email.current,
-          password: password.current,
-          remember: rememberMe,
-        });
-        
-        if (response.data.success) {
-          const cookieOptions = { expires: response.data.payload.expires };
+      setHandleLoginButton(true);
+      const response = await axios.post(`${apiUrl}/users/login`, {
+        email: email.current,
+        password: password.current,
+      });
 
-          setCookie("token", response.data.payload.token, cookieOptions)
-          setCookie("admin", true, cookieOptions);
-          navigate("/Career");
-        } else {
-          errorToast(response.data.payload.message);
-          setHandleLoginButton(false);
-        }
-      } catch (error) {
-        errorToast(error.response.data.payload.message);
+      if (response.data.success) {
+        const cookieOptions = { expires: response.data.payload.expires };
+
+        setCookie("token", response.data.payload.token, cookieOptions);
+        setCookie("admin", true, cookieOptions);
+        navigate("/Career");
+      } else {
+        errorToast(response.data.payload.message);
         setHandleLoginButton(false);
       }
+    } catch (error) {
+      errorToast(error.response.data.payload.message);
+      setHandleLoginButton(false);
+    }
   };
 
   return (
@@ -216,16 +166,13 @@ const UserAuth = () => {
         onPaste={(e) => e.preventDefault()}
         onCopy={(e) => e.preventDefault()}
       />
-      <Checkbox defaultSelected size="sm" className={toLogin ? "" : "hidden"} onChange={handleCheckboxChange}>
-        Remember Me
-      </Checkbox>
       <Button
         className="mt-2 mb-2"
         color="primary"
         variant="shadow"
         type="submit"
         radius="none"
-        isLoading={toLogin ? handleLoginButton : handleSignUpButton}
+        isLoading={handleLoginButton}
       >
         Login
       </Button>

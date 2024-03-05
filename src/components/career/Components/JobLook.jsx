@@ -1,28 +1,61 @@
-import { useMemo, useState } from "react";
+import { useState, useLayoutEffect } from "react";
 import JobCards from "./JobCards";
-import data from "./data";
 import { Pagination, Dropdown, DropdownItem, DropdownTrigger, DropdownMenu, Button } from "@nextui-org/react";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoSearch } from "react-icons/io5";
-import Search from "./Search";
+import axios from "axios";
+import { scrollTop } from "../../../utils/methods";
+
+const pageSize = 8;
 
 const JobLook = () => {
-  const [page, setPage] = useState(1);
-  const rowsPerPage = 9;
+  scrollTop();
+  let apiUrl = process.env.REACT_APP_API_URL;
+  if (process.env.NODE_ENV === "development") {
+    apiUrl = process.env.REACT_APP_DEV_API_URL;
+  }
 
-  const pages = Math.ceil(data.length / rowsPerPage);
+  const [jobCount, setJobCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [department, setDepartment] = useState(new Set(["All"]));
+  const [jobType, setJobType] = useState(new Set(["All"]));
+  const [location, setLocation] = useState(new Set(["All"]));
+  const [experience, setExperience] = useState(new Set(["All"]));
 
-  const items = useMemo(() => {
-    const start = (page - 1) * rowsPerPage;
-    const end = start + rowsPerPage;
+  const [jobsData, setJobsData] = useState([{ job_id: "", title: "", job_type: "", experience_level: "", skills: [] }]);
 
-    return data.slice(start, end);
-  }, [page, data]);
+  useLayoutEffect(() => {
+    const getJobs = async () => {
+      try {
+        const start = (currentPage - 1) * pageSize;
+        const end = currentPage * pageSize;
+        const response = await axios.get(`${apiUrl}/careers/activeJobs`, {
+          params: {
+            start,
+            end,
+            department: Array.from(department)[0],
+            jobType: Array.from(department)[0],
+            location: Array.from(department)[0],
+            experience: Array.from(department)[0],
+          },
+        });
+
+        console.log(response);
+
+        setJobsData(response.data.payload.jobs);
+        setJobCount(response.data.payload.total);
+      } catch (error) {
+        console.log("Error fetching Jobs:", error);
+        setJobCount(0);
+      }
+    };
+
+    getJobs();
+  }, [apiUrl, currentPage]);
 
   return (
     <>
-      <Search/>
-      {/* <div className="bg-white text-black px-[3rem] md:px-[5rem] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[1rem]">
+      <div className="bg-white text-black px-[3rem] md:px-[5rem] grid grid-cols-2 lg:grid-cols-4 gap-[1rem]">
         <Dropdown>
           <DropdownTrigger>
             <Button
@@ -34,12 +67,18 @@ const JobLook = () => {
               Department
             </Button>
           </DropdownTrigger>
-          <DropdownMenu variant="faded" aria-label="Static Actions">
+          <DropdownMenu
+            variant="faded"
+            aria-label="Department"
+            selectionMode="single"
+            selectedKeys={department}
+            onSelectionChange={setDepartment}
+          >
             <DropdownItem key="All">All</DropdownItem>
             <DropdownItem key="IT">IT</DropdownItem>
             <DropdownItem key="Sales">Sales</DropdownItem>
             <DropdownItem key="Marketing">Marketing</DropdownItem>
-            <DropdownItem key="Human Reasource">Human Reasource</DropdownItem>
+            <DropdownItem key="HR">Human Reasource</DropdownItem>
           </DropdownMenu>
         </Dropdown>
         <Dropdown>
@@ -53,11 +92,17 @@ const JobLook = () => {
               Job Type
             </Button>
           </DropdownTrigger>
-          <DropdownMenu variant="faded" aria-label="Static Actions">
+          <DropdownMenu
+            variant="faded"
+            aria-label="JobType"
+            selectionMode="single"
+            selectedKeys={jobType}
+            onSelectionChange={setJobType}
+          >
             <DropdownItem key="All">All</DropdownItem>
-            <DropdownItem key="Full Time">Full Time</DropdownItem>
-            <DropdownItem key="Part Time">Part Time</DropdownItem>
-            <DropdownItem key="Hybrid">Hybrid</DropdownItem>
+            <DropdownItem key="FullTime">Full Time</DropdownItem>
+            <DropdownItem key="PartTime">Part Time</DropdownItem>
+            <DropdownItem key="Contractual">Contractual</DropdownItem>
           </DropdownMenu>
         </Dropdown>
         <Dropdown>
@@ -71,11 +116,17 @@ const JobLook = () => {
               Location
             </Button>
           </DropdownTrigger>
-          <DropdownMenu variant="faded" aria-label="Static Actions">
+          <DropdownMenu
+            variant="faded"
+            aria-label="Location"
+            selectionMode="single"
+            selectedKeys={location}
+            onSelectionChange={setLocation}
+          >
             <DropdownItem key="All">All</DropdownItem>
-            <DropdownItem key="IT">Remote</DropdownItem>
-            <DropdownItem key="Sales">In-Office</DropdownItem>
-            <DropdownItem key="Marketing">Hybrid</DropdownItem>
+            <DropdownItem key="Remote">Remote</DropdownItem>
+            <DropdownItem key="InOffice">In-Office</DropdownItem>
+            <DropdownItem key="Hybrid">Hybrid</DropdownItem>
           </DropdownMenu>
         </Dropdown>
         <Dropdown>
@@ -89,44 +140,51 @@ const JobLook = () => {
               Experience
             </Button>
           </DropdownTrigger>
-          <DropdownMenu variant="faded" aria-label="Static Actions">
+          <DropdownMenu
+            variant="faded"
+            aria-label="Experience"
+            selectionMode="single"
+            selectedKeys={experience}
+            onSelectionChange={setExperience}
+          >
             <DropdownItem key="All">All</DropdownItem>
-            <DropdownItem key="IT">Fresher</DropdownItem>
-            <DropdownItem key="Sales">Mid-Level</DropdownItem>
-            <DropdownItem key="Marketing">Senior-Level</DropdownItem>
+            <DropdownItem key="Fresher">Fresher</DropdownItem>
+            <DropdownItem key="MidLevel">Mid-Level</DropdownItem>
+            <DropdownItem key="SeniorLevel">Senior-Level</DropdownItem>
           </DropdownMenu>
         </Dropdown>
-
-        <Button
-          className=" bg-blue-500 text-white font-bold py-2 rounded-md "
-          endContent={<IoSearch className="mt-[0.2rem]" />}
-        >
-          Search
-        </Button>
-      </div> */}
-      <div className="flex flex-col gap-3 items-center justify-center md:p-[4rem] p-[1rem]">
-        {items.map((job, ind) => (
-          <JobCards
-            title={job.title}
-            location={job.location}
-            type={job.type}
-            experience={job.experience}
-            skill={job.skills}
-            i={job.ind}
-          />
-        ))}
-        <div className="py-[2rem]">
-          <Pagination
-            loop
-            showControls
-            color="primary"
-            variant="light"
-            page={page}
-            total={pages}
-            onChange={(page) => setPage(page)}
-          />
-        </div>
       </div>
+      {jobCount ? (
+        <div className="flex flex-col gap-3 items-center justify-center md:p-[4rem] p-[1rem]">
+          {jobsData.map((job, ind) => (
+            <JobCards
+              title={job.title}
+              location={job.location}
+              type={job.job_type}
+              experience={job.experience_level}
+              skill={job.skills.skills}
+              id={job.job_id}
+              date={job.creation_date}
+              key={ind}
+            />
+          ))}
+          <div className="py-[2rem]">
+            <Pagination
+              loop
+              showControls
+              color="primary"
+              variant="light"
+              onChange={(pageNumber) => setCurrentPage(pageNumber)}
+              total={jobCount ? Math.ceil(jobCount / pageSize) : 0}
+              initialPage={1}
+            />
+          </div>
+        </div>
+      ) : (
+        <div className="min-h-[40rem] flex justify-center items-center font-bold text-2xl text-default-500">
+          <p>No Jobs Available</p>
+        </div>
+      )}
     </>
   );
 };

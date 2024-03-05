@@ -4,11 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { Card, Button } from "@nextui-org/react";
 import { getCookie } from "../../../utils/cookies";
 
-const JobCards = ({ title, location, type, experience, skill, i }) => {
+const JobCards = ({ title, location, type, experience, skill, id, date }) => {
   const navigate = useNavigate();
   const date1 = dayjs(Date.now());
-  const posted = "2023-09-28";
-  const diffInDays = date1.diff(posted, "day");
+  const diffInDays = date1.diff(date, "day");
 
   const isAdmin = getCookie("admin") ? true : false;
 
@@ -38,43 +37,17 @@ const JobCards = ({ title, location, type, experience, skill, i }) => {
       </div>
       <div className="flex md:flex-row flex-col items-center gap-3 ">
         <p className="text-gray-500 md:p-[1rem] text-[0.8rem]">Posted {diffInDays} Days ago</p>
-        {isAdmin === false ? (
-          <Button color="primary" variant="ghost" radius="sm" className="px-[2rem]">
-            <navigate
-              key={i}
-              onClick={() => {
-                navigate(`/Career/${title}`, { state: { type: "data" } });
-              }}
-            >
-              Apply
-            </navigate>
-          </Button>
-        ) : (
-          <Button color="primary" variant="ghost" radius="sm" className="px-[2rem]">
-            <navigate
-              key={i}
-              onClick={() => {
-                navigate(`/Career/View/2`);
-              }}
-            >
-              View
-            </navigate>
-          </Button>
-        )}
-        {isAdmin === true ? (
-          <Button color="secondary" variant="ghost" radius="sm" className="px-[2rem]">
-            <navigate
-              key={i}
-              onClick={() => {
-                navigate(`/Career/View/2`);
-              }}
-            >
-              Edit
-            </navigate>
-          </Button>
-        ) : (
-          ""
-        )}
+        <Button
+          color="primary"
+          variant="ghost"
+          radius="sm"
+          className="px-[2rem]"
+          onClick={() => {
+            navigate(isAdmin === false ? `/Career/Individual/${title}` : `/Career/View/2`);
+          }}
+        >
+          {isAdmin === false ? "Apply" : "View"}
+        </Button>
       </div>
     </Card>
   );

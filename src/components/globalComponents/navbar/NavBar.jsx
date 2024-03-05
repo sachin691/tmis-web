@@ -15,7 +15,6 @@ import "./NavBar.css";
 import { getCookie } from "../../../utils/cookies";
 import UserAvatar from "../../globalSubComponents/UserAvatar";
 
-
 const NavBar = () => {
   const isLoggedIn = getCookie("token") ? true : false;
   const curTab = useSelector((state) => state.curTab.value);
@@ -23,9 +22,9 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const menuItems = ["Home", "Services", "Pricing", "About", "Career", "Contact Us"];
-  const handleContactUs = () => {
-    navigate("/ContactUs");
+  const menuItems = ["Home", "Services", "Pricing", "About", "Career", "Contact Us", "Login"];
+  const handleLogin = () => {
+    navigate("/Auth");
   };
   return (
     <Navbar
@@ -117,7 +116,7 @@ const NavBar = () => {
                 : "notActive px-[1rem] text-inherit text-xl text-white"
             }
           >
-            Contact Us
+            Contact
           </Link>
         </NavbarItem>
       </NavbarContent>
@@ -126,7 +125,7 @@ const NavBar = () => {
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-              to={index === 5 ? "/ContactUs" : `/${item}`}
+              to={index === 5 ? "/ContactUs" : index === 6 ? "/Auth" : `/${item}`}
               onClick={() => {
                 dispatch(updateNavStatus(!navOpenStatus));
               }}
@@ -147,11 +146,9 @@ const NavBar = () => {
             </NavbarItem>
           </NavbarContent>
         ) : (
-          <Link to="/Auth">
-            <Button variant="solid" className="p-[20px] bg-[#f5a524] text-white " onClick={handleContactUs}>
-              Login
-            </Button>
-          </Link>
+          <Button variant="solid" className="p-[20px] bg-[#f5a524] text-white " onClick={handleLogin}>
+            Login
+          </Button>
         )}
       </NavbarItem>
     </Navbar>

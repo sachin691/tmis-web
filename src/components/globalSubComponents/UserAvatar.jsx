@@ -20,6 +20,7 @@ const UserAvatar = () => {
 
   const handleLogout = () => {
     removeCookie("token");
+    removeCookie("admin");
 
     dispatch(updateToLoginStatus(true));
     navigate("/Auth");
