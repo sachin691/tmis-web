@@ -145,38 +145,20 @@ const UserAuth = () => {
       errorToast("Please The Form Correctly");
       return;
     }
-
-    if (toLogin) {
-      try {
+    try {
         setHandleLoginButton(true);
         const response = await axios.post(`${apiUrl}/users/login`, {
           email: email.current,
           password: password.current,
           remember: rememberMe,
         });
+        
         if (response.data.success) {
           const cookieOptions = { expires: response.data.payload.expires };
 
-          setCookie("token", response.data.payload.token, cookieOptions);
-          setCookie("email", email.current, cookieOptions);
-          setCookie("username", response.data.payload.userName, cookieOptions);
-          setCookie("expiration", response.data.payload.expires, cookieOptions);
-          setCookie("isEmployee", response.data.payload.isEmployee, cookieOptions);
-
-          const profileResponse = await axios.get(`${apiUrl}/users/profile`, {
-            headers: {
-              Authorization: `Bearer ${response.data.payload.token}`,
-            },
-          });
-
-          setCookie("about", profileResponse.data.payload.about, cookieOptions);
-          setCookie("profession", profileResponse.data.payload.profession, cookieOptions);
-          setCookie("address", profileResponse.data.payload.address, cookieOptions);
-          setCookie("phone", profileResponse.data.payload.phone, cookieOptions);
-          setCookie("plan", profileResponse.data.payload.plan, cookieOptions);
-          setCookie("image", profileResponse.data.payload.image, cookieOptions);
-
-          navigate("/Profile");
+          setCookie("token", response.data.payload.token, cookieOptions)
+          setCookie("admin", true, cookieOptions);
+          navigate("/Career");
         } else {
           errorToast(response.data.payload.message);
           setHandleLoginButton(false);
@@ -185,44 +167,6 @@ const UserAuth = () => {
         errorToast(error.response.data.payload.message);
         setHandleLoginButton(false);
       }
-    } else {
-      if (
-        usernameState ||
-        confirmPasswordState ||
-        confirmPassword.current.length === 0 ||
-        username.current.length === 0
-      ) {
-        errorToast("Please The Form Correctly");
-        return;
-      }
-
-      try {
-        setHandleSignUpButton(true);
-        const response = await axios.post(`${apiUrl}/users/signup`, {
-          email: email.current,
-          username: username.current,
-          password: password.current,
-        });
-
-        if (response.data.success) {
-          successToast("Registration successful");
-          dispatch(updateToLoginStatus(true));
-          setHandleSignUpButton(false);
-          navigate("/Auth");
-        } else {
-          setHandleSignUpButton(false);
-          errorToast(`${response.data.payload.message}`);
-        }
-      } catch (error) {
-        if (error.response.status === 501) {
-          setHandleSignUpButton(false);
-          errorToast("Email Address Already Registered");
-        } else {
-          setHandleSignUpButton(false);
-          errorToast("Sign Up Failed");
-        }
-      }
-    }
   };
 
   return (
@@ -236,18 +180,6 @@ const UserAuth = () => {
         <p>👋</p>
       </div>
       <p className="text-xs mb-2">Please Login and start the adventure !</p>
-      {/* <Input
-        type="text"
-        label="Username"
-        maxLength={50}
-        labelPlacement="outside"
-        placeholder="Enter your username"
-        className={toLogin ? "hidden" : ""}
-        onKeyDown={handleKeyPress}
-        isInvalid={usernameState}
-        errorMessage={usernameState ? invalidUsernameMessage : ""}
-        onChange={checkUsername}
-      /> */}
       <Input
         type="email"
         label="Email"
@@ -284,29 +216,6 @@ const UserAuth = () => {
         onPaste={(e) => e.preventDefault()}
         onCopy={(e) => e.preventDefault()}
       />
-      {/* <Input
-        label="Confirm Password"
-        labelPlacement="outside"
-        placeholder="Confirm your password"
-        className={toLogin ? "hidden" : ""}
-        endContent={<button className="focus:outline-none" type="button" onClick={toggleVisibility}></button>}
-        type={isVisible ? "text" : "password"}
-        onKeyDown={handleKeyPress}
-        isInvalid={confirmPasswordState}
-        errorMessage={confirmPasswordState ? "Passwords do not match" : ""}
-        onChange={checkConfirmPassword}
-        onPaste={(e) => e.preventDefault()}
-        onCopy={(e) => e.preventDefault()}
-      /> */}
-      {toLogin ? (
-        <p
-          className="text-xs text-right cursor-pointer"
-          style={{ color: "#006FEE" }}
-          onClick={() => navigate("../ResetPassword")}
-        >
-          Forgot Password?
-        </p>
-      ) : null}
       <Checkbox defaultSelected size="sm" className={toLogin ? "" : "hidden"} onChange={handleCheckboxChange}>
         Remember Me
       </Checkbox>

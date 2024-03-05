@@ -2,8 +2,11 @@ import React from "react";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 import { Card, Button } from "@nextui-org/react";
+import { getCookie } from "../../../utils/cookies";
 
 const JobCards = ({ title, location, type, experience, skill, i }) => {
+  const isAdmin = getCookie("admin");
+
   const navigate = useNavigate();
   const date1 = dayjs(Date.now());
   const posted = "2023-09-28";
@@ -39,7 +42,7 @@ const JobCards = ({ title, location, type, experience, skill, i }) => {
           <navigate
             key={i}
             onClick={() => {
-              navigate(`/Career/${title}`, { state: { type: "data" } });
+              navigate(`/Career/Individual/${title}`);
             }}
           >
             Apply

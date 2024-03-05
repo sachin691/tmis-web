@@ -12,8 +12,12 @@ import {
 } from "@nextui-org/react";
 import { Link, useNavigate } from "react-router-dom";
 import "./NavBar.css";
+import { getCookie } from "../../../utils/cookies";
+import UserAvatar from "../../globalSubComponents/UserAvatar";
+
 
 const NavBar = () => {
+  const isLoggedIn = getCookie("token") ? true : false;
   const curTab = useSelector((state) => state.curTab.value);
   const navOpenStatus = useSelector((state) => state.navOpenStatus.value);
   const dispatch = useDispatch();
@@ -104,6 +108,18 @@ const NavBar = () => {
             Career
           </Link>
         </NavbarItem>
+        <NavbarItem className="hidden md:block order-2">
+          <Link
+            to="/ContactUs"
+            className={
+              curTab === "Contact Us"
+                ? "active navActive flex flex-col px-[1rem] text-inherit text-xl text-white"
+                : "notActive px-[1rem] text-inherit text-xl text-white"
+            }
+          >
+            Contact Us
+          </Link>
+        </NavbarItem>
       </NavbarContent>
 
       <NavbarMenu className="sm:hidden order-4 mt-[1rem] bg-[rgba(0,0,0,0.4)]">
@@ -124,9 +140,19 @@ const NavBar = () => {
       </NavbarMenu>
 
       <NavbarItem className="px-[1rem] hidden md:block  order-5">
-        <Button variant="solid" className="p-[20px] bg-[#f5a524] text-white " onClick={handleContactUs}>
-          Contact Us
-        </Button>
+        {isLoggedIn ? (
+          <NavbarContent justify="end">
+            <NavbarItem>
+              <UserAvatar />
+            </NavbarItem>
+          </NavbarContent>
+        ) : (
+          <Link to="/Auth">
+            <Button variant="solid" className="p-[20px] bg-[#f5a524] text-white " onClick={handleContactUs}>
+              Login
+            </Button>
+          </Link>
+        )}
       </NavbarItem>
     </Navbar>
   );

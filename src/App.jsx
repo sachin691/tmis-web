@@ -39,13 +39,12 @@ function App() {
         <Route path="/Refund" element={<Refund />} />
         <Route path="/T&C" element={<Terms />} />
         <Route path="/Career" element={<Career />} />
-        <Route path="/Career/:name" element={<JobDescription />} />
+        <Route path="/Career/Individual/:name" element={<JobDescription />} />
         <Route path="/Career/Applyjob" element={<ApplyForm />} />
         <Route path="/Career/Create" element={<Create />} />
         <Route path="/Auth" element={<Auth />} />
         {checkoutPermit ? <Route path="/Checkout" element={<Checkout />} /> : null}
         <Route path="/Admin" element={<Admin />} />
-
         <Route path="*" element={<Navigate to="/Home" />} />
       </Routes>
       {curTab === "Auth" ? null : <Footer />}
