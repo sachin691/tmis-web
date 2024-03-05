@@ -76,7 +76,7 @@ const Footer = () => {
                 <span className="font-bold text-base">Lucknow Address</span>
                 <span>Building : Unit-311/15</span>
                 <span>Location : Hazrat Ganj, Above State Bank</span>
-                <span>City : Luckhnow</span>
+                <span>City : Lucknow</span>
                 <span>State : UttarPradesh</span>
                 <span>Country : India</span>
               </span>
