@@ -196,32 +196,32 @@ const UserAuth = () => {
         return;
       }
 
-      try {
-        setHandleSignUpButton(true);
-        const response = await axios.post(`${apiUrl}/users/signup`, {
-          email: email.current,
-          username: username.current,
-          password: password.current,
-        });
+      // try {
+      //   setHandleSignUpButton(true);
+      //   const response = await axios.post(`${apiUrl}/users/signup`, {
+      //     email: email.current,
+      //     username: username.current,
+      //     password: password.current,
+      //   });
 
-        if (response.data.success) {
-          successToast("Registration successful");
-          dispatch(updateToLoginStatus(true));
-          setHandleSignUpButton(false);
-          navigate("/Auth");
-        } else {
-          setHandleSignUpButton(false);
-          errorToast(`${response.data.payload.message}`);
-        }
-      } catch (error) {
-        if (error.response.status === 501) {
-          setHandleSignUpButton(false);
-          errorToast("Email Address Already Registered");
-        } else {
-          setHandleSignUpButton(false);
-          errorToast("Sign Up Failed");
-        }
-      }
+      //   if (response.data.success) {
+      //     successToast("Registration successful");
+      //     dispatch(updateToLoginStatus(true));
+      //     setHandleSignUpButton(false);
+      //     navigate("/Auth");
+      //   } else {
+      //     setHandleSignUpButton(false);
+      //     errorToast(`${response.data.payload.message}`);
+      //   }
+      // } catch (error) {
+      //   if (error.response.status === 501) {
+      //     setHandleSignUpButton(false);
+      //     errorToast("Email Address Already Registered");
+      //   } else {
+      //     setHandleSignUpButton(false);
+      //     errorToast("Sign Up Failed");
+      //   }
+      // }
     }
   };
 

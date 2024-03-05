@@ -4,6 +4,7 @@ import data from "./data";
 import { Pagination, Dropdown, DropdownItem, DropdownTrigger, DropdownMenu, Button } from "@nextui-org/react";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoSearch } from "react-icons/io5";
+import Search from "./Search";
 
 const JobLook = () => {
   const [page, setPage] = useState(1);
@@ -20,7 +21,8 @@ const JobLook = () => {
 
   return (
     <>
-      <div className="bg-white text-black px-[3rem] md:px-[5rem] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[1rem]">
+      <Search/>
+      {/* <div className="bg-white text-black px-[3rem] md:px-[5rem] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[1rem]">
         <Dropdown>
           <DropdownTrigger>
             <Button
@@ -101,7 +103,7 @@ const JobLook = () => {
         >
           Search
         </Button>
-      </div>
+      </div> */}
       <div className="flex flex-col gap-3 items-center justify-center md:p-[4rem] p-[1rem]">
         {items.map((job, ind) => (
           <JobCards

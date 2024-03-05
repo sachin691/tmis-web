@@ -21,6 +21,8 @@ import Auth from "./components/Auth/Auth";
 import Admin from "./components/career/Components/Admin";
 
 import Checkout from "./components/pricing/components/Checkout";
+import DepartWiseJob from "./components/career/Components/DepartWiseJob";
+import AllCandidate from "./components/career/Components/AllCandidate";
 
 function App() {
   const checkoutPermit = useSelector((state) => state.checkoutPermit.value);
@@ -44,7 +46,9 @@ function App() {
         <Route path="/Career/Create" element={<Create />} />
         <Route path="/Auth" element={<Auth />} />
         {checkoutPermit ? <Route path="/Checkout" element={<Checkout />} /> : null}
-        <Route path="/Admin" element={<Admin />} />
+        <Route path="/Career/View/:id" element={<Admin />} />
+        <Route path="/department/jobs" element={<DepartWiseJob />} />
+        <Route path="/allcandidate" element={<AllCandidate />} />
 
         <Route path="*" element={<Navigate to="/Home" />} />
       </Routes>
