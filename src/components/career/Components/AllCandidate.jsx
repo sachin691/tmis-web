@@ -1,17 +1,25 @@
 import fileDownload from "js-file-download";
-import { Accordion, AccordionItem } from "@nextui-org/react";
-import { MdOutlineFileDownload } from "react-icons/md";
+
+
 import { useEffect } from "react";
 import { scrollTop } from "../../../utils/methods";
 
+import React, { useState } from "react";
+import { Accordion, AccordionItem, Button, Pagination } from "@nextui-org/react";
+import { MdOutlineFileDownload } from "react-icons/md";
+import { useNavigate, useParams } from "react-router-dom";
+import Model from "./Model";
+
+import Space from "./Space";
 const content = [
   {
     Name: "Manish Kumar",
     email: "amanish123@gmail.com",
+    gap: "  ",
     contact: "95875426345",
     year: 2018,
     expected: 4.5,
-    exp: 2,
+    exp: "2 year",
     jobid: 124857,
   },
   {
@@ -22,6 +30,7 @@ const content = [
     expected: 4.5,
     exp: 2,
     jobid: 124857,
+    gap: "  ",
   },
   {
     Name: "Manish Kumar",
@@ -31,6 +40,7 @@ const content = [
     expected: 4.5,
     exp: 2,
     jobid: 124857,
+    gap: "  ",
   },
   {
     Name: "Manish Kumar",
@@ -40,10 +50,23 @@ const content = [
     expected: 4.5,
     exp: 2,
     jobid: 124857,
+    gap: "  ",
   },
 ];
 
+const pageSize = 8;
+
 const AllCandidate = () => {
+
+  const [CandidateCount, setCandidateCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const { name, id } = useParams();
+
+  const [CandidateData, setCandidateData] = useState([{ job_id: "", name: "", email: "", contact: "", experience: "", pdf:"" }]);
+
+  const [showModel, setShowModel] = useState(false);
+
+  const navigate = useNavigate();
   const Download = (data) => {
     fileDownload(data, "filename.pdf");
   };
@@ -51,42 +74,85 @@ const AllCandidate = () => {
   useEffect(() => scrollTop(), []);
 
   return (
-    <div className="flex flex-col justify-center items-center md:p-[5rem] p-[1rem]">
-      <div className="p-[2rem]">
-        <h1 className="text-3xl text-1xl font-bold border-b-1 border-black">All Candidates</h1>
-      </div>
-      <Accordion>
+    <>
+      <div className="flex flex-col justify-center items-center md:p-[5rem] p-[1rem] ">
+        <div className="p-[2rem]">
+          <h1 className="text-3xl text-1xl font-bold border-b-1 border-black">All Candidates</h1>
+        </div>
         {content.map((data, i) => (
-          <AccordionItem key={i} aria-label="Accordion 1" title={data.Name}>
-            <div className="flex flex-wrap   items-center gap-[3rem]">
-              <h1>
-                <span className="font-bold ">Job ID: </span>
-                {data.jobid}
-              </h1>
-              <h1>
-                <span className="font-bold ">Email: </span>
-                {data.email}
-              </h1>
-              <h1>
-                <span className="font-bold ">Contact: </span>
-                {data.contact}
-              </h1>
-              <h1>
-                <span className="font-bold ">Experience: </span>
-                {data.exp}
-              </h1>
-              <h1>
-                <span className="font-bold ">Expected CTC: </span>
-                {data.expected}
-              </h1>
-              <button onClick={() => Download(i)} className=" text-black text-2xl">
-                <MdOutlineFileDownload />
-              </button>
-            </div>
-          </AccordionItem>
+          <div className=" w-full">
+            <Accordion selectionMode="multiple" variant="splitted" showDivider="true">
+              <AccordionItem
+                key={i}
+                aria-label="Chung Miller"
+                // subtitle={`Experince: ${data.exp} ${<Space/>} Contact: ${data.contact}● Email: ${data.email} `}
+                subtitle={<Space exp={data.exp} expected={data.expected} contact={data.contact} />}
+                title={data.Name}
+                className="font-semibold"
+                showDivider="true"
+              >
+                <div className="flex flex-wrap   items-center gap-[3rem] text-gray-600 ">
+                  <h1>
+                    <span className="font-semibold text-gray-600 ">Job ID: </span>
+                    {data.jobid}
+                  </h1>
+                  <h1>
+                    <span className="font-semibold text-gray-600 ">Email: </span>
+                    {data.email}
+                  </h1>
+                  <h1>
+                    <span className="font-semibold text-gray-600 ">Contact: </span>
+                    {data.contact}
+                  </h1>
+                  <h1>
+                    <span className="font-semibold text-gray-600">Experience: </span>
+                    {data.exp}
+                  </h1>
+                  <h1>
+                    <span className="font-semibold text-gray-600">Expected CTC: </span>
+                    {data.expected}
+                  </h1>
+                  <button onClick={() => Download(i)} className=" text-black text-2xl">
+                    <MdOutlineFileDownload />
+                  </button>
+                </div>
+              </AccordionItem>
+            </Accordion>
+          </div>
         ))}
-      </Accordion>
-    </div>
+        <div className="py-[2rem]">
+          <Pagination
+            loop
+            showControls
+            color="primary"
+            variant="light"
+            onChange={(pageNumber) => setCurrentPage(pageNumber)}
+            total={CandidateCount ? Math.ceil(CandidateCount / pageSize) : 1}
+            initialPage={1}
+          />
+        </div>
+        <div className="flex flex-row justify-center items-center gap-[2rem] p-[2rem]">
+          <Button
+            variant="ghost"
+            color="primary"
+            onClick={() => navigate(`/Career/Individual/${name}/${id}`)}
+            className="py-[1rem] px-[1.2rem] font-semibold rounded-xl "
+          >
+            Job Details
+          </Button>
+          <Button
+            variant="ghost"
+            color="danger"
+            onClick={() => setShowModel(true)}
+            className="py-[1rem] px-[1.2rem] font-semibold rounded-xl "
+          >
+            Delete Job
+          </Button>
+        </div>
+        <div></div>
+      </div>
+      {showModel && <Model onClose={() => setShowModel(false)} />}
+    </>
   );
 };
 

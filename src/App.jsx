@@ -45,7 +45,7 @@ function App() {
         <Route path="/Career/Create" element={<Create />} />
         <Route path="/Auth" element={<Auth />} />
         {checkoutPermit ? <Route path="/Checkout" element={<Checkout />} /> : null}
-        <Route path="/Career/View/:id" element={<AllCandidate />} />
+        <Route path="/Career/View/:name/:id" element={<AllCandidate />} />
         <Route path="/department/jobs" element={<DepartWiseJob />} />
         <Route path="*" element={<Navigate to="/Home" />} />
       </Routes>
