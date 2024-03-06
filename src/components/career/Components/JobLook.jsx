@@ -1,15 +1,13 @@
-import { useState, useLayoutEffect } from "react";
+import { useState, useLayoutEffect, useEffect } from "react";
 import JobCards from "./JobCards";
 import { Pagination, Dropdown, DropdownItem, DropdownTrigger, DropdownMenu, Button } from "@nextui-org/react";
 import { IoMdArrowDropdown } from "react-icons/io";
-import { IoSearch } from "react-icons/io5";
 import axios from "axios";
 import { scrollTop } from "../../../utils/methods";
 
 const pageSize = 8;
 
 const JobLook = () => {
-  scrollTop();
   let apiUrl = process.env.REACT_APP_API_URL;
   if (process.env.NODE_ENV === "development") {
     apiUrl = process.env.REACT_APP_DEV_API_URL;
@@ -24,6 +22,8 @@ const JobLook = () => {
 
   const [jobsData, setJobsData] = useState([{ job_id: "", title: "", job_type: "", experience_level: "", skills: [] }]);
 
+  useEffect(() => scrollTop(), []);
+
   useLayoutEffect(() => {
     const getJobs = async () => {
       try {
@@ -34,9 +34,9 @@ const JobLook = () => {
             start,
             end,
             department: Array.from(department)[0],
-            jobType: Array.from(department)[0],
-            location: Array.from(department)[0],
-            experience: Array.from(department)[0],
+            jobType: Array.from(jobType)[0],
+            location: Array.from(location)[0],
+            experience: Array.from(experience)[0],
           },
         });
 
@@ -51,7 +51,7 @@ const JobLook = () => {
     };
 
     getJobs();
-  }, [apiUrl, currentPage]);
+  }, [apiUrl, currentPage, department, jobType, location, experience]);
 
   return (
     <>
@@ -100,8 +100,8 @@ const JobLook = () => {
             onSelectionChange={setJobType}
           >
             <DropdownItem key="All">All</DropdownItem>
-            <DropdownItem key="FullTime">Full Time</DropdownItem>
-            <DropdownItem key="PartTime">Part Time</DropdownItem>
+            <DropdownItem key="Full-time">Full-Time</DropdownItem>
+            <DropdownItem key="Part-time">Part Time</DropdownItem>
             <DropdownItem key="Contractual">Contractual</DropdownItem>
           </DropdownMenu>
         </Dropdown>
@@ -125,7 +125,7 @@ const JobLook = () => {
           >
             <DropdownItem key="All">All</DropdownItem>
             <DropdownItem key="Remote">Remote</DropdownItem>
-            <DropdownItem key="InOffice">In-Office</DropdownItem>
+            <DropdownItem key="In-office">In-Office</DropdownItem>
             <DropdownItem key="Hybrid">Hybrid</DropdownItem>
           </DropdownMenu>
         </Dropdown>
@@ -148,9 +148,9 @@ const JobLook = () => {
             onSelectionChange={setExperience}
           >
             <DropdownItem key="All">All</DropdownItem>
-            <DropdownItem key="Fresher">Fresher</DropdownItem>
-            <DropdownItem key="MidLevel">Mid-Level</DropdownItem>
-            <DropdownItem key="SeniorLevel">Senior-Level</DropdownItem>
+            <DropdownItem key="Entry-level">Entry Level</DropdownItem>
+            <DropdownItem key="Mid-level">Mid Level</DropdownItem>
+            <DropdownItem key="Senior">Senior</DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </div>
