@@ -1,11 +1,10 @@
 import fileDownload from "js-file-download";
 
-
 import { useEffect } from "react";
 import { scrollTop } from "../../../utils/methods";
 
 import React, { useState } from "react";
-import { Accordion, AccordionItem, Button, Pagination } from "@nextui-org/react";
+import { Accordion, AccordionItem, Button, Pagination, Divider } from "@nextui-org/react";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
 import Model from "./Model";
@@ -57,12 +56,13 @@ const content = [
 const pageSize = 8;
 
 const AllCandidate = () => {
-
   const [CandidateCount, setCandidateCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const { name, id } = useParams();
 
-  const [CandidateData, setCandidateData] = useState([{ job_id: "", name: "", email: "", contact: "", experience: "", pdf:"" }]);
+  const [CandidateData, setCandidateData] = useState([
+    { job_id: "", name: "", email: "", contact: "", experience: "", pdf: "" },
+  ]);
 
   const [showModel, setShowModel] = useState(false);
 
@@ -77,7 +77,7 @@ const AllCandidate = () => {
     <>
       <div className="flex flex-col justify-center items-center md:p-[5rem] p-[1rem] ">
         <div className="p-[2rem]">
-          <h1 className="text-3xl text-1xl font-bold border-b-1 border-black">All Candidates</h1>
+          <h1 className="text-3xl text-1xl font-bold border-b-1 border-black">Applied Candidates</h1>
         </div>
         {content.map((data, i) => (
           <div className=" w-full">
@@ -85,23 +85,23 @@ const AllCandidate = () => {
               <AccordionItem
                 key={i}
                 aria-label="Chung Miller"
-                // subtitle={`Experince: ${data.exp} ${<Space/>} Contact: ${data.contact}● Email: ${data.email} `}
                 subtitle={<Space exp={data.exp} expected={data.expected} contact={data.contact} />}
                 title={data.Name}
-                className="font-semibold"
+                className="font-semibold my-[0.5rem]"
                 showDivider="true"
               >
-                <div className="flex flex-wrap   items-center gap-[3rem] text-gray-600 ">
+                <Divider />
+                <div className="flex flex-wrap  gap-x-[2rem] gap-y-[0.2rem] text-gray-600 my-[1rem] text-sm">
                   <h1>
-                    <span className="font-semibold text-gray-600 ">Job ID: </span>
+                    <span className="font-semibold text-gray-600">Job ID : </span>
                     {data.jobid}
                   </h1>
                   <h1>
-                    <span className="font-semibold text-gray-600 ">Email: </span>
+                    <span className="font-semibold text-gray-600 ">Email : </span>
                     {data.email}
                   </h1>
                   <h1>
-                    <span className="font-semibold text-gray-600 ">Contact: </span>
+                    <span className="font-semibold text-gray-600 ">Graduation Year : </span>
                     {data.contact}
                   </h1>
                   <h1>
@@ -109,13 +109,25 @@ const AllCandidate = () => {
                     {data.exp}
                   </h1>
                   <h1>
-                    <span className="font-semibold text-gray-600">Expected CTC: </span>
+                    <span className="font-semibold text-gray-600">Current Employer: </span>
                     {data.expected}
                   </h1>
-                  <button onClick={() => Download(i)} className=" text-black text-2xl">
-                    <MdOutlineFileDownload />
-                  </button>
+                  <h1>
+                    <span className="font-semibold text-gray-600">Current CTC: </span>
+                    {data.expected}
+                  </h1>
+                  <h1>
+                    <span className="font-semibold text-gray-600">Notice Period: </span>
+                    {data.expected}
+                  </h1>
+                  <h1>
+                    <span className="font-semibold text-gray-600">Current Location: </span>
+                    {data.expected}
+                  </h1>
                 </div>
+                <Button onClick={() => Download(i)} className=" text-black" size="sm">
+                  Download Resume : <MdOutlineFileDownload />
+                </Button>
               </AccordionItem>
             </Accordion>
           </div>
@@ -135,7 +147,7 @@ const AllCandidate = () => {
           <Button
             variant="ghost"
             color="primary"
-            onClick={() => navigate(`/Career/Individual/${name}/${id}`)}
+            onClick={() => navigate(`../Career/Individual/${name}/${id}`)}
             className="py-[1rem] px-[1.2rem] font-semibold rounded-xl "
           >
             Job Details
