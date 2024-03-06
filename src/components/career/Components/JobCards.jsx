@@ -43,7 +43,7 @@ const JobCards = ({ title, location, type, experience, skill, id, date }) => {
           radius="sm"
           className="px-[2rem]"
           onClick={() => {
-            navigate(isAdmin === false ? `/Career/Individual/${title}` : `/Career/View/2`);
+            navigate(isAdmin === false ? `/Career/Individual/${title}/${id}` : `/Career/View/${id}`);
           }}
         >
           {isAdmin === false ? "Apply" : "View"}
