@@ -1,61 +1,51 @@
-import { Button, Input, Textarea, Chip } from "@nextui-org/react";
+import { Button, Input, Textarea, Chip, Select, SelectItem } from "@nextui-org/react";
 import React, { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { IoIosCloseCircle } from "react-icons/io";
 
 const CreateJob = () => {
-  // const form = useRef < HTMLFormElement > null;
-
-  // const [nameValidity, setNameValidity] = useState < boolean > false;
-  // const [subjectValidity, setSubjectValidity] = useState < boolean > false;
-  // const [messageValidity, setMessageValidity] = useState < boolean > false;
-
-  // const [userNameState, setUserNameState] = useState < number > -1;
-  // const [subjectState, setSubjectState] = useState < number > -1;
-  // const [messageState, setMessageState] = useState < number > -1;
-  // const [state, setState] = useState(false);
-
-  const [input, setInput] = useState({
-    Firstname: "",
-    Lastname: "",
-    contact: "",
-    email: "",
-    jobDescription: "",
-    role: "",
-    industry: "",
-    department: "",
-    EmploymentType: "",
-    category: "",
-  });
-
-  //  const checkUserName = (event) => {
-  //    input.name = event.currentTarget.value;
-  //    setUserNameState(event.currentTarget.value.length);
-
-  //    const validity = input.name.length > 2;
-  //    if (validity) {
-  //      setNameValidity(false);
-  //    } else {
-  //      setNameValidity(true);
-  //    }
-  //  };
+  const departments = ["IT", "Sales", "Marketing", "Human Reasource"];
+  const employmentType = ["Part Time", "Full-Type", "Contractual"];
+  const location = ["Remote", "Hybrid", "In-office"];
+  const experience = ["Entry Level", "Mid-Level", "Senior"];
 
   const [activity, setActivity] = useState("");
   const [list, setList] = useState([]);
   const [skill, setSkill] = useState("");
   const [skillList, setSkillList] = useState([]);
-  const [education, SetEducation] = useState("")
-  const [educationList, SetEducationList] = useState([])
+  const [education, SetEducation] = useState("");
+  const [educationList, SetEducationList] = useState([]);
+
+  const [input, setInput] = useState({
+    position: "",
+    role: "",
+    department: "",
+    jobdes: "",
+    industryType: "",
+    loc: "",
+    exp: "",
+    category: "",
+    employmentType: "",
+  });
+
+  function handleUserInput(e) {
+    const { name, value } = e.target;
+    setInput({
+      ...input,
+      [name]: value,
+    });
+  }
 
   const AddEducation = (e) => {
     e.preventDefault();
 
     SetEducationList((educationList) => {
       const update = [...educationList, education];
-      console.log(update)
-      return update
-    })
-    SetEducation("")
-  }
+      console.log(update);
+      return update;
+    });
+    SetEducation("");
+  };
 
   const AddActivity = (e) => {
     e.preventDefault();
@@ -93,12 +83,12 @@ const CreateJob = () => {
     console.log(updatedSkilllist);
   };
 
-  const removeEducation =(i) => {
-    const update = educationList.filter((elem,idx) =>{
-       return i != idx;
-    })
-    SetEducationList(update)
-  }
+  const removeEducation = (i) => {
+    const update = educationList.filter((elem, idx) => {
+      return i != idx;
+    });
+    SetEducationList(update);
+  };
   const handleClick = (event, i) => {
     event.preventDefault(); // Prevents the default behavior (e.g., page refresh)
 
@@ -112,9 +102,26 @@ const CreateJob = () => {
     removeSkill(i);
   };
 
-  const handleEducation = (event, i) =>{
+  const handleEducation = (event, i) => {
     event.preventDefault();
-     removeEducation(i)
+    removeEducation(i);
+  };
+
+  function handleSubmitForm(e) {
+    e.preventDefault();
+
+    if (!input.category || !input.department || !input.employmentType || !input.exp || !input.industryType) {
+      toast.error("please fill the details");
+      return;
+    }
+    if (!input.jobdes || !input.loc || !input.position || !input.role) {
+      toast.error("please fill all the details");
+      return;
+    }
+
+    if (!skillList || !educationList || !list) {
+      toast.error("List are empty! please fill");
+    }
   }
 
   return (
@@ -129,18 +136,43 @@ const CreateJob = () => {
         <h1 className="text-3xl font-bold">Post Your Job</h1>
       </div>
 
-      <form action="" className="flex flex-col gap-[1rem] md:w-[45rem] w-[20rem]">
+      <form
+        noValidate
+        onSubmit={handleSubmitForm}
+        action=""
+        className="flex flex-col gap-[1rem] md:w-[45rem] w-[20rem]"
+      >
         <div>
           <label htmlFor="">
             Job Position <span className="text-red-500">*</span>
           </label>
-          <Input type="text" label="" name="First Name" id="First Name" size="sm" variant="bordered" color="primary" />
+          <Input
+            type="text"
+            label=""
+            name="position"
+            id="position"
+            size="sm"
+            variant="bordered"
+            color="primary"
+            value={input.position}
+            onChange={handleUserInput}
+          />
         </div>
         <div>
           <label htmlFor="">
             Job Description <span className="text-red-700">*</span>
           </label>
-          <Textarea label="" placeholder="" variant="bordered" color="primary" size="sm" />
+          <Textarea
+            label=""
+            placeholder=""
+            variant="bordered"
+            name="jobdes"
+            id="jobdes"
+            color="primary"
+            size="sm"
+            value={input.jobdes}
+            onChange={handleUserInput}
+          />
         </div>
 
         <div>
@@ -181,19 +213,60 @@ const CreateJob = () => {
           <label htmlFor="">
             Role <span className="text-red-500">*</span>
           </label>
-          <Input type="text" label="" name="First Name" id="First Name" size="sm" variant="bordered" color="primary" />
+          <Input
+            type="text"
+            label=""
+            name="role"
+            id="role"
+            value={input.role}
+            onChange={handleUserInput}
+            size="sm"
+            variant="bordered"
+            color="primary"
+          />
+        </div>
+        <div>
+          <label htmlFor="">
+            Departments <span className="text-red-500">*</span>
+          </label>
+
+          <Select
+            defaultSelectedKeys={["IT"]}
+            disallowEmptySelection
+            isRequired
+            label=""
+            placeholder=""
+            className="min-w-full"
+            size="sm"
+            variant="bordered"
+            color="primary"
+            name="department"
+            id="department"
+            value={input.department}
+            onChange={handleUserInput}
+          >
+            {departments.map((data, index) => (
+              <SelectItem key={data} value={data}>
+                {data}
+              </SelectItem>
+            ))}
+          </Select>
         </div>
         <div>
           <label htmlFor="">
             Industry Type <span className="text-red-500">*</span>
           </label>
-          <Input type="text" label="" name="First Name" id="First Name" size="sm" variant="bordered" color="primary" />
-        </div>
-        <div>
-          <label htmlFor="">
-            Department <span className="text-red-500">*</span>
-          </label>
-          <Input type="text" label="" name="First Name" id="First Name" size="sm" variant="bordered" color="primary" />
+          <Input
+            type="text"
+            label=""
+            name="industryType"
+            id="industryType"
+            size="sm"
+            variant="bordered"
+            color="primary"
+            value={input.industryType}
+            onChange={handleUserInput}
+          />
         </div>
         <div>
           <label htmlFor="">
@@ -233,13 +306,95 @@ const CreateJob = () => {
           <label htmlFor="">
             Employment Type <span className="text-red-500">*</span>
           </label>
-          <Input type="text" label="" name="First Name" id="First Name" size="sm" variant="bordered" color="primary" />
+          <Select
+            defaultSelectedKeys={["Full-time"]}
+            disallowEmptySelection
+            isRequired
+            label=""
+            placeholder=""
+            className="min-w-full"
+            size="sm"
+            variant="bordered"
+            color="primary"
+            name="employmentType"
+            id="employmentType"
+            value={input.employmentType}
+            onChange={handleUserInput}
+          >
+            {employmentType.map((data, index) => (
+              <SelectItem key={data} value={data}>
+                {data}
+              </SelectItem>
+            ))}
+          </Select>
+        </div>
+        <div>
+          <label htmlFor="">
+            Location <span className="text-red-500">*</span>
+          </label>
+          <Select
+            defaultSelectedKeys={["In-office"]}
+            disallowEmptySelection
+            isRequired
+            label=""
+            placeholder=""
+            className="min-w-full"
+            size="sm"
+            variant="bordered"
+            color="primary"
+            name="loc"
+            id="loc"
+            value={input.loc}
+            onChange={handleUserInput}
+          >
+            {location.map((data, index) => (
+              <SelectItem key={data} value={data}>
+                {data}
+              </SelectItem>
+            ))}
+          </Select>
+        </div>
+        <div>
+          <label htmlFor="">
+            Experience <span className="text-red-500">*</span>
+          </label>
+          <Select
+            defaultSelectedKeys={["Senior"]}
+            disallowEmptySelection
+            isRequired
+            label=""
+            placeholder=""
+            className="min-w-full"
+            size="sm"
+            variant="bordered"
+            color="primary"
+            name="exp"
+            id="exp"
+            value={input.exp}
+            onChange={handleUserInput}
+          >
+            {experience.map((data, index) => (
+              <SelectItem key={data} value={data}>
+                {data}
+              </SelectItem>
+            ))}
+          </Select>
         </div>
         <div>
           <label htmlFor="">
             Role Category <span className="text-red-500">*</span>
           </label>
-          <Input type="text" label="" name="First Name" id="First Name" size="sm" variant="bordered" color="primary" />
+          <Input
+            type="text"
+            label=""
+            size="sm"
+            variant="bordered"
+            color="primary"
+            name="category"
+            id="category"
+            value={input.category}
+            onChange={handleUserInput}
+          />
         </div>
         <div>
           <label htmlFor="">
@@ -281,6 +436,7 @@ const CreateJob = () => {
           </Button>
         </div>
       </form>
+      <Toaster />
     </div>
   );
 };
