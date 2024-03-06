@@ -1,13 +1,53 @@
-import React from "react";
+import React, { useLayoutEffect, useState } from "react";
 import Intro from "./Intro";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Button } from "@nextui-org/react";
+import axios from "axios";
 
 const JobDescription = () => {
-  const { name } = useParams();
+  let apiUrl = process.env.REACT_APP_API_URL;
+  if (process.env.NODE_ENV === "development") {
+    apiUrl = process.env.REACT_APP_DEV_API_URL;
+  }
 
-  const location = useLocation();
-  console.log("location", location);
+  const [jobDetails, setJobDetails] = useState({
+    job_id: "",
+    title: "",
+    job_type: "",
+    experience_level: "",
+    department: "",
+    skills: {skills: []},
+    description: "",
+    industry: "",
+    location: "",
+    required_education: {education: []},
+    required_profile: {profile: []},
+    role: "",
+    role_category: ""
+  });
+  const navigate = useNavigate();
+  const { name, id } = useParams();
+  if (id === undefined) {
+    navigate("/Careers");
+  }
+
+  useLayoutEffect(() => {
+    const getJobs = async () => {
+      try {
+        const response = await axios.get(`${apiUrl}/careers/${id}`);
+        if (!response.data.success || response.data.payload.jobDetails.length === 0) {
+          navigate("/Careers");
+        }
+        setJobDetails(response.data.payload.jobDetails[0]);
+      } catch (error) {
+        console.log("Error fetching Jobs:", error);
+        navigate("/Careers");
+      }
+    };
+
+    getJobs();
+  }, [apiUrl, id]);
+
   return (
     <>
       <Intro />
@@ -18,48 +58,42 @@ const JobDescription = () => {
           </div>
           <div className="text-1xl py-[1rem]">
             <h3 className="text-2xl font-bold">Job Description</h3>
-            <p className="pt-[1.5rem] text-start">
-              Expert web frontend developer needed having vast experience in HTML/CSS, CESS/LESS. Mandatory prior
-              experience with ReactJS, Redux/Mobx, FluentUI Experience with typescript and Javascript. Prior experience
-              with npm and react scripts is mandatory.
-            </p>
+            <p className="pt-[1.5rem] text-start">{jobDetails.description}</p>
           </div>
 
           <div className="py-[1rem]">
             <p className="text-black text-1xl">
-              <span className="font-bold">Role:</span> Front End Developer
+              <span className="font-bold">Role:</span> {jobDetails.role}
             </p>
             <p>
-              <span className="font-bold">Industry Type:</span> Front End Developer
+              <span className="font-bold">Industry Type:</span> {jobDetails.industry}
             </p>
             <p>
-              <span className="font-bold">Department:</span> Front End Developer
+              <span className="font-bold">Department:</span> {jobDetails.department}
             </p>
             <p>
-              <span className="font-bold">Employment Type:</span> Front End Developer
+              <span className="font-bold">Employment Type:</span> {jobDetails.job_type}
             </p>
             <p>
-              <span className="font-bold">Role Category:</span> Software Development
+              <span className="font-bold">Role Category:</span> {jobDetails.role_category}
             </p>
           </div>
 
           <div className="py-[1rem]">
             <h3 className="text-2xl font-bold">Education</h3>
             <ul className="p-[1rem] list-disc">
-              <li>Strong HTML5/CSS3 experience.</li>
-              <li> Git management</li>
-              <li>Able to speak english fluently.</li>
+              {jobDetails.required_education.education.map((data, index) => (
+                <li key={index}>{data}</li>
+              ))}
             </ul>
           </div>
 
           <div className="py-[1rem]">
             <h3 className="text-2xl font-bold">Required Candidate profile</h3>
             <ul className="p-[1rem] list-disc">
-              <li>Strong HTML5/CSS3 experience.</li>
-              <li>Prior experience with ReactJS, Redux, typescript, and Javascript.</li>
-              <li>Prior experience with npm and react scripts</li>
-              <li> Git management</li>
-              <li>Able to speak english fluently.</li>
+              {jobDetails.required_profile.profile.map((data, index) => (
+                <li key={index}>{data}</li>
+              ))}
             </ul>
           </div>
 
@@ -67,29 +101,21 @@ const JobDescription = () => {
             <h3 className="font-bold">Key Skills</h3>
           </div>
           <div className="flex gap-3 flex-wrap">
-            <Button variant="ghost" color="primary" className="border-1 border-black text-black">
-              HTML5
-            </Button>
-            <Button variant="ghost" color="primary" className="border-1 border-black text-black">
-              javscript
-            </Button>
-            <Button variant="ghost" color="primary" className="border-1 border-black text-black">
-              css
-            </Button>
-            <Button variant="ghost" color="primary" className="border-1 border-black text-black">
-              redux
-            </Button>
-            <Button variant="ghost" color="primary" className="border-1 border-black text-black">
-              react js
-            </Button>
+            {jobDetails.skills.skills.map((data, index) => (
+              <Button key={index} variant="ghost" color="primary" className="border-1 border-black text-black">
+                {data}
+              </Button>
+            ))}
           </div>
 
           <div className="py-[2rem]">
             <h2 className="text-2xl font-bold">About Company</h2>
             <p className="py-[1rem] text-1xl">
-              Founded in 2005, our commitment to excellence distinguishes us. We recruit and maintain top-tier talent
-              aligned with our client-centric ethos and principles. Our remarkable retention rate underscores our
-              narrative of success.
+              TMIS Solutions was crafted by a team of dedicated professionals who recognized a critical need in the
+              business landscape. Similar to many other businesses, there was an initial apprehension about adopting a
+              Team Member Information System (TMIS), but any concerns were swiftly dispelled as we witnessed the
+              incredible advantages this model brought. Beyond the evident cost savings and the freedom to redirect our
+              focus towards revenue generation, implementing our TMIS solutions provided a breath of fresh air.
             </p>
           </div>
 
