@@ -1,10 +1,91 @@
-import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Intro from "./Intro";
-import { Input } from "@nextui-org/react";
-import { Button } from "@nextui-org/react";
+import { Input, Button } from "@nextui-org/react";
 import { IoSend } from "react-icons/io5";
+import { useEffect } from "react";
+import { scrollTop } from "../../../utils/methods";
+import { useRef } from "react";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 const ApplyForm = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  let apiUrl = process.env.REACT_APP_API_URL;
+  if (process.env.NODE_ENV === "development") {
+    apiUrl = process.env.REACT_APP_DEV_API_URL;
+  }
+
+  if (id === undefined) {
+    navigate("/Careers");
+  }
+
+  const toastSetting = { position: "top-center" };
+
+  const errorToast = (message) => {
+    toast.error(message, toastSetting);
+  };
+
+  const successToast = (message) => {
+    toast.success(message, toastSetting);
+  };
+
+  useEffect(() => scrollTop(), []);
+
+  const fullNameRef = useRef(null);
+  const emailRef = useRef(null);
+  const contactRef = useRef(null);
+  const graduationYearRef = useRef(null);
+  const curEmployerRef = useRef(null);
+  const experienceRef = useRef(null);
+  const curCTCRef = useRef(null);
+  const expectedCTCRef = useRef(null);
+  const noticePeriodRef = useRef(null);
+  const locationRef = useRef(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (
+      fullNameRef.current.value.length > 0 &&
+      emailRef.current.value.length > 0 &&
+      contactRef.current.value.length > 0 &&
+      graduationYearRef.current.value.length > 0 &&
+      experienceRef.current.value.length > 0 &&
+      expectedCTCRef.current.value.length > 0 &&
+      locationRef.current.value.length > 0
+    ) {
+      const data = {
+        full_name: fullNameRef.current.value,
+        email: emailRef.current.value,
+        contact: contactRef.current.value,
+        graduation_year: graduationYearRef.current.value,
+        experience_years: parseInt(experienceRef.current.value),
+        current_employer: curEmployerRef.current.value,
+        current_ctc: parseInt(curCTCRef.current.value),
+        expected_ctc: parseInt(expectedCTCRef.current.value),
+        notice_period: parseInt(noticePeriodRef.current.value),
+        current_location: locationRef.current.value,
+      };
+
+      try {
+        const response = await axios.post(`${apiUrl}/applicant/apply`, data);
+        console.log(response);
+        if (!response.data.success) {
+          errorToast("Application Submission Failed");
+          return;
+        }
+        successToast("Application Submission Successful");
+      } catch (error) {
+        console.log(error);
+        errorToast("Application Submission Failed");
+      }
+    } else {
+      errorToast("Please Fill The Form Appropriately");
+    }
+  };
+
   return (
     <div
       className="bg-center bg-no-repeat bg-cover"
@@ -18,38 +99,20 @@ const ApplyForm = () => {
         <h1 className="text-3xl font-bold">Kindly Fill The Details</h1>
       </div>
 
-      <form action="" className="flex flex-col  gap-[2rem] items-center grow">
+      <form action="" className="flex flex-col  gap-[2rem] items-center grow" onSubmit={handleSubmit}>
         <div className="flex flex-col items-start bg-white p-[3rem] rounded-lg">
           <label htmlFor="" className="py-[0.5rem]">
-            First Name <span className="text-red-800">*</span>
+            Full Name <span className="text-red-800">*</span>
           </label>
           <div className=" sm:w-[30rem] md:w-[45rem] w-[19rem] ">
             <Input
               type="text"
-              label=""
-              name="First Name"
-              id="First Name"
+              name="fullName"
               size="xs"
               color="primary"
-              className=""
               radius="none"
               variant="bordered"
-            />
-          </div>
-          <label htmlFor="" className="py-[0.5rem]">
-            Last Name <span className="text-red-800">*</span>
-          </label>
-          <div className="sm:w-[30rem] md:w-[45rem] w-[19rem]">
-            <Input
-              type="text"
-              variant="bordered"
-              label=""
-              name="First Name"
-              id="First Name"
-              size="xs"
-              className=""
-              radius="none"
-              color="primary"
+              ref={fullNameRef}
             />
           </div>
 
@@ -59,31 +122,27 @@ const ApplyForm = () => {
           <div className="sm:w-[30rem] md:w-[45rem] w-[19rem]">
             <Input
               type="email"
-              label=""
               name="email"
-              id="email"
               size="xs"
-              className=""
               radius="none"
               color="primary"
               variant="bordered"
+              ref={emailRef}
             />
           </div>
 
           <label htmlFor="" className="py-[0.5rem]">
-            Contact <span className="text-red-800">*</span>
+            Contact Number <span className="text-red-800">*</span>
           </label>
           <div className="sm:w-[30rem] md:w-[45rem] w-[19rem]">
             <Input
-              type="Phone"
-              label=""
+              type="tel"
               name="phone"
-              id="phone"
               size="xs"
-              className=""
               radius="none"
               color="primary"
               variant="bordered"
+              ref={contactRef}
             />
           </div>
 
@@ -93,116 +152,87 @@ const ApplyForm = () => {
           <div className="sm:w-[30rem] md:w-[45rem] w-[19rem]">
             <Input
               type="Date"
-              label=""
-              name="First Name"
-              id="First Name"
+              name="graduation"
               size="xs"
-              className=""
               radius="none"
               color="primary"
               variant="bordered"
+              ref={graduationYearRef}
             />
           </div>
 
           <label htmlFor="" className="py-[0.5rem]">
-            Gender <span className="text-red-800"></span>
+            Experience In Years <span className="text-red-800">*</span>
+          </label>
+          <div className="sm:w-[30rem] md:w-[45rem] w-[19rem]">
+            <Input
+              type="Number"
+              name="experience"
+              size="xs"
+              radius="none"
+              color="primary"
+              variant="bordered"
+              ref={experienceRef}
+            />
+          </div>
+
+          <label htmlFor="" className="py-[0.5rem]">
+            Current Employer
           </label>
           <div className="sm:w-[30rem] md:w-[45rem] w-[19rem]">
             <Input
               type="text"
-              label=""
-              name="First Name"
-              id="First Name"
+              name="curEmployer"
               size="xs"
-              className=""
               radius="none"
               color="primary"
               variant="bordered"
+              ref={curEmployerRef}
             />
           </div>
 
           <label htmlFor="" className="py-[0.5rem]">
-            Experience In Years <span className="text-red-800"></span>
+            Current CTC (In Lakh per Annum)
           </label>
           <div className="sm:w-[30rem] md:w-[45rem] w-[19rem]">
             <Input
               type="Number"
-              label=""
-              name="First Name"
-              id="First Name"
-              size="xs"
-              className=""
-              radius="none"
-              color="primary"
-              variant="bordered"
-            />
-          </div>
-
-          <label htmlFor="" className="py-[0.5rem]">
-            Current Employer <span className="text-red-800"></span>
-          </label>
-          <div className="sm:w-[30rem] md:w-[45rem] w-[19rem]">
-            <Input
-              type="text"
-              label=""
-              name="First Name"
-              id="First Name"
-              className=""
+              name="curCTC"
               size="xs"
               radius="none"
               color="primary"
               variant="bordered"
+              ref={curCTCRef}
             />
           </div>
 
           <label htmlFor="" className="py-[0.5rem]">
-            Current CTC(In Lakh per Annum) <span className="text-red-800"></span>
+            Expected CTC (In Lakh per Annum) <span className="text-red-800">*</span>
           </label>
           <div className="sm:w-[30rem] md:w-[45rem] w-[19rem]">
             <Input
               type="Number"
-              label=""
-              name="First Name"
-              id="First Name"
+              name="expectedCTC"
               size="xs"
-              className=""
               radius="none"
               color="primary"
               variant="bordered"
+              ref={expectedCTCRef}
             />
           </div>
 
           <label htmlFor="" className="py-[0.5rem]">
-            Expected CTC(In Lakh per Annum) <span className="text-red-800">*</span>
+            Notice Period (In Month)
           </label>
           <div className="sm:w-[30rem] md:w-[45rem] w-[19rem]">
             <Input
               type="Number"
-              label=""
-              name="First Name"
-              id="First Name"
+              name="noticePeriod"
               size="xs"
-              className=""
               radius="none"
               color="primary"
               variant="bordered"
-            />
-          </div>
-
-          <label htmlFor="" className="py-[0.5rem]">
-            Notice Period(In Month) <span className="text-red-800"></span>
-          </label>
-          <div className="sm:w-[30rem] md:w-[45rem] w-[19rem]">
-            <Input
-              type="Number"
-              label=""
-              name="First Name"
-              id="First Name"
-              size="xs"
-              className=""
-              radius="none"
-              color="primary"
-              variant="bordered"
+              ref={noticePeriodRef}
             />
           </div>
 
@@ -212,24 +242,20 @@ const ApplyForm = () => {
           <div className="sm:w-[30rem] md:w-[45rem] w-[19rem]">
             <Input
               type="text"
-              label=""
-              name="First Name"
-              id="First Name"
+              name="location"
               size="xs"
-              className=""
               radius="none"
               color="primary"
               variant="bordered"
+              ref={locationRef}
             />
           </div>
-
-          
 
           <label htmlFor="" className="py-[0.5rem]">
             Upload Your Resume <span className="text-red-800">*</span>
           </label>
           <div className="sm:w-[30rem] md:w-[45rem] w-[19rem]">
-            <input type="file" id="myFile" name="Resume" accept=".pdf, .docx" className="" />
+            <input type="file" name="resume" accept=".pdf, .docx" />
           </div>
         </div>
 
@@ -241,6 +267,7 @@ const ApplyForm = () => {
           Submit
         </Button>
       </form>
+      <Toaster />
     </div>
   );
 };

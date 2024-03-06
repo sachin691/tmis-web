@@ -1,7 +1,9 @@
 import fileDownload from "js-file-download";
-import React from "react";
 import { Accordion, AccordionItem } from "@nextui-org/react";
 import { MdOutlineFileDownload } from "react-icons/md";
+import { useEffect } from "react";
+import { scrollTop } from "../../../utils/methods";
+
 const content = [
   {
     Name: "Manish Kumar",
@@ -42,10 +44,11 @@ const content = [
 ];
 
 const AllCandidate = () => {
-
   const Download = (data) => {
     fileDownload(data, "filename.pdf");
   };
+
+  useEffect(() => scrollTop(), []);
 
   return (
     <div className="flex flex-col justify-center items-center md:p-[5rem] p-[1rem]">

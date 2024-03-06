@@ -18,11 +18,10 @@ import Career from "./components/career/Career";
 import JobDescription from "./components/career/Components/JobDescription";
 import Create from "./components/career/Create";
 import Auth from "./components/Auth/Auth";
-import Admin from "./components/career/Components/Admin";
+import AllCandidate from "./components/career/Components/AllCandidate";
 
 import Checkout from "./components/pricing/components/Checkout";
 import DepartWiseJob from "./components/career/Components/DepartWiseJob";
-import AllCandidate from "./components/career/Components/AllCandidate";
 
 function App() {
   const checkoutPermit = useSelector((state) => state.checkoutPermit.value);
@@ -42,14 +41,12 @@ function App() {
         <Route path="/T&C" element={<Terms />} />
         <Route path="/Career" element={<Career />} />
         <Route path="/Career/Individual/:name/:id" element={<JobDescription />} />
-        <Route path="/Career/Applyjob" element={<ApplyForm />} />
+        <Route path="/Career/Applyjob/:id" element={<ApplyForm />} />
         <Route path="/Career/Create" element={<Create />} />
         <Route path="/Auth" element={<Auth />} />
         {checkoutPermit ? <Route path="/Checkout" element={<Checkout />} /> : null}
-        <Route path="/Career/View/:id" element={<Admin />} />
+        <Route path="/Career/View/:id" element={<AllCandidate />} />
         <Route path="/department/jobs" element={<DepartWiseJob />} />
-        <Route path="/allcandidate" element={<AllCandidate />} />
-
         <Route path="*" element={<Navigate to="/Home" />} />
       </Routes>
       {curTab === "Auth" ? null : <Footer />}

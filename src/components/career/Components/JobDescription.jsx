@@ -1,6 +1,6 @@
-import React, { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import Intro from "./Intro";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@nextui-org/react";
 import axios from "axios";
 
@@ -16,14 +16,14 @@ const JobDescription = () => {
     job_type: "",
     experience_level: "",
     department: "",
-    skills: {skills: []},
+    skills: { skills: [] },
     description: "",
     industry: "",
     location: "",
-    required_education: {education: []},
-    required_profile: {profile: []},
+    required_education: { education: [] },
+    required_profile: { profile: [] },
     role: "",
-    role_category: ""
+    role_category: "",
   });
   const navigate = useNavigate();
   const { name, id } = useParams();
@@ -58,7 +58,7 @@ const JobDescription = () => {
           </div>
           <div className="text-1xl py-[1rem]">
             <h3 className="text-2xl font-bold">Job Description</h3>
-            <p className="pt-[1.5rem] text-start">{jobDetails.description}</p>
+            <p className="pt-[1.5rem] max-w-[100rem] text-justify">{jobDetails.description}</p>
           </div>
 
           <div className="py-[1rem]">
@@ -110,7 +110,7 @@ const JobDescription = () => {
 
           <div className="py-[2rem]">
             <h2 className="text-2xl font-bold">About Company</h2>
-            <p className="py-[1rem] text-1xl">
+            <p className="py-[1rem] text-1xl max-w-[100rem] text-justify">
               TMIS Solutions was crafted by a team of dedicated professionals who recognized a critical need in the
               business landscape. Similar to many other businesses, there was an initial apprehension about adopting a
               Team Member Information System (TMIS), but any concerns were swiftly dispelled as we witnessed the
@@ -120,11 +120,13 @@ const JobDescription = () => {
           </div>
 
           <div className="py-[0.5rem]">
-            <Link to="/Career/Applyjob">
-              <Button size="lg" className="bg-blue-500 text-white font-semibold rounded-xl">
-                Apply
-              </Button>
-            </Link>
+            <Button
+              size="lg"
+              className="bg-blue-500 text-white font-semibold rounded-xl"
+              onClick={() => navigate(`/Career/Applyjob/${id}`)}
+            >
+              Apply
+            </Button>
           </div>
         </div>
         <div

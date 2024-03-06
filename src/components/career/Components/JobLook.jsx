@@ -28,11 +28,10 @@ const JobLook = () => {
     const getJobs = async () => {
       try {
         const start = (currentPage - 1) * pageSize;
-        const end = currentPage * pageSize;
         const response = await axios.get(`${apiUrl}/careers/activeJobs`, {
           params: {
             start,
-            end,
+            space: "8",
             department: Array.from(department)[0],
             jobType: Array.from(jobType)[0],
             location: Array.from(location)[0],
@@ -40,7 +39,10 @@ const JobLook = () => {
           },
         });
 
-        console.log(response);
+        if (!response.data.success) {
+          setJobCount(0);
+          return;
+        }
 
         setJobsData(response.data.payload.jobs);
         setJobCount(response.data.payload.total);
