@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Intro from "./Intro";
 import { Input, Button } from "@nextui-org/react";
 import { IoSend } from "react-icons/io5";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { scrollTop } from "../../../utils/methods";
 import { useRef } from "react";
 import axios from "axios";
@@ -39,10 +39,13 @@ const ApplyForm = () => {
   const graduationYearRef = useRef(null);
   const curEmployerRef = useRef(null);
   const experienceRef = useRef(null);
-  const curCTCRef = useRef(null);
+  const curCTCRef = useRef(0);
   const expectedCTCRef = useRef(null);
   const noticePeriodRef = useRef(null);
   const locationRef = useRef(null);
+
+  const [resume, setResume] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,19 +57,30 @@ const ApplyForm = () => {
       graduationYearRef.current.value.length > 0 &&
       experienceRef.current.value.length > 0 &&
       expectedCTCRef.current.value.length > 0 &&
-      locationRef.current.value.length > 0
+      locationRef.current.value.length > 0 &&
+      resume !== null
     ) {
+      if (resume.size > 1572864) {
+        return errorToast("Resume is Bigger Than 1.5 MB");
+      }
+
+      setLoading(true);
+
+      const resumeData = new FormData();
+      resumeData.append("resume", resume);
+
       const data = {
         full_name: fullNameRef.current.value,
         email: emailRef.current.value,
         contact: contactRef.current.value,
         graduation_year: graduationYearRef.current.value,
-        experience_years: parseInt(experienceRef.current.value),
+        experience_years: parseInt(experienceRef.current.value) ? parseInt(experienceRef.current.value) : 0,
         current_employer: curEmployerRef.current.value,
-        current_ctc: parseInt(curCTCRef.current.value),
-        expected_ctc: parseInt(expectedCTCRef.current.value),
-        notice_period: parseInt(noticePeriodRef.current.value),
+        current_ctc: parseInt(curCTCRef.current.value) ? parseInt(curCTCRef.current.value) : 0,
+        expected_ctc: parseInt(expectedCTCRef.current.value) ? parseInt(expectedCTCRef.current.value) : 0,
+        notice_period: parseInt(noticePeriodRef.current.value) ? parseInt(noticePeriodRef.current.value) : 0,
         current_location: locationRef.current.value,
+        id,
       };
 
       try {
@@ -74,6 +88,7 @@ const ApplyForm = () => {
         console.log(response);
         if (!response.data.success) {
           errorToast("Application Submission Failed");
+          setLoading(false);
           return;
         }
         successToast("Application Submission Successful");
@@ -84,6 +99,7 @@ const ApplyForm = () => {
     } else {
       errorToast("Please Fill The Form Appropriately");
     }
+    setLoading(false);
   };
 
   return (
@@ -255,7 +271,13 @@ const ApplyForm = () => {
             Upload Your Resume <span className="text-red-800">*</span>
           </label>
           <div className="sm:w-[30rem] md:w-[45rem] w-[19rem]">
-            <input type="file" name="resume" accept=".pdf, .docx" />
+            <input
+              type="file"
+              name="resume"
+              accept=".pdf"
+              onChange={(e) => setResume(e.target.files ? e.target.files[0] : null)}
+              isLoading={loading}
+            />
           </div>
         </div>
 
