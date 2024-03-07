@@ -10,21 +10,20 @@ const JobDescription = () => {
     apiUrl = process.env.REACT_APP_DEV_API_URL;
   }
 
-  const [jobDetails, setJobDetails] = useState({
-    job_id: "",
-    title: "",
-    job_type: "",
-    experience_level: "",
-    department: "",
-    skills: { skills: [] },
-    description: "",
-    industry: "",
-    location: "",
-    required_education: { education: [] },
-    required_profile: { profile: [] },
-    role: "",
-    role_category: "",
-  });
+  const [jobId, setjobId] = useState("");
+  const [title, settitle] = useState("");
+  const [jobType, setjobType] = useState("");
+  const [exp, setexp] = useState("");
+  const [Department, setDepartment] = useState("");
+  const [Skill, setSkill] = useState([]);
+  const [Description, setDescription] = useState("");
+  const [Industry, setIndustry] = useState("");
+  const [Location, setLocation] = useState("");
+  const [Edu, setEdu] = useState([]);
+  const [Profile, setProfile] = useState([]);
+  const [Role, setRole] = useState("");
+  const [Category, setCategory] = useState("");
+
   const navigate = useNavigate();
   const { name, id } = useParams();
   if (id === undefined) {
@@ -38,7 +37,20 @@ const JobDescription = () => {
         if (!response.data.success || response.data.payload.jobDetails.length === 0) {
           navigate("/Careers");
         }
-        setJobDetails(response.data.payload.jobDetails[0]);
+        const details = response.data.payload.jobDetails[0];
+        setjobId((prev) => details.job_id);
+        settitle((prev) => details.title);
+        setjobType((prev) => details.job_type);
+        setexp((prev) => details.experience_level);
+        setDepartment((prev) => details.department);
+        setEdu((prev) => JSON.parse(details.required_education).education);
+        setDescription((prev) => details.description);
+        setIndustry((prev) => details.industry);
+        setLocation((prev) => details.location);
+        setSkill((prev) => JSON.parse(details.skills).skills);
+        setProfile((prev) => JSON.parse(details.required_profile).profile);
+        setRole((prev) => details.role);
+        setCategory((prev) => details.role_category);
       } catch (error) {
         console.log("Error fetching Jobs:", error);
         navigate("/Careers");
@@ -58,31 +70,31 @@ const JobDescription = () => {
           </div>
           <div className="text-1xl py-[1rem]">
             <h3 className="text-2xl font-bold">Job Description</h3>
-            <p className="pt-[1.5rem] max-w-[100rem] text-justify">{jobDetails.description}</p>
+            <p className="pt-[1.5rem] max-w-[100rem] text-justify">{Description}</p>
           </div>
 
           <div className="py-[1rem]">
             <p className="text-black text-1xl">
-              <span className="font-bold">Role:</span> {jobDetails.role}
+              <span className="font-bold">Role:</span> {Role}
             </p>
             <p>
-              <span className="font-bold">Industry Type:</span> {jobDetails.industry}
+              <span className="font-bold">Industry Type:</span> {Industry}
             </p>
             <p>
-              <span className="font-bold">Department:</span> {jobDetails.department}
+              <span className="font-bold">Department:</span> {Department}
             </p>
             <p>
-              <span className="font-bold">Employment Type:</span> {jobDetails.job_type}
+              <span className="font-bold">Employment Type:</span> {jobType}
             </p>
             <p>
-              <span className="font-bold">Role Category:</span> {jobDetails.role_category}
+              <span className="font-bold">Role Category:</span> {Category}
             </p>
           </div>
 
           <div className="py-[1rem]">
             <h3 className="text-2xl font-bold">Education</h3>
             <ul className="p-[1rem] list-disc">
-              {jobDetails.required_education.education.map((data, index) => (
+              {Edu.map((data, index) => (
                 <li key={index}>{data}</li>
               ))}
             </ul>
@@ -91,7 +103,7 @@ const JobDescription = () => {
           <div className="py-[1rem]">
             <h3 className="text-2xl font-bold">Required Candidate profile</h3>
             <ul className="p-[1rem] list-disc">
-              {jobDetails.required_profile.profile.map((data, index) => (
+              {Profile.map((data, index) => (
                 <li key={index}>{data}</li>
               ))}
             </ul>
@@ -101,7 +113,7 @@ const JobDescription = () => {
             <h3 className="font-bold">Key Skills</h3>
           </div>
           <div className="flex gap-3 flex-wrap">
-            {jobDetails.skills.skills.map((data, index) => (
+            {Skill.map((data, index) => (
               <Button key={index} variant="ghost" color="primary" className="border-1 border-black text-black">
                 {data}
               </Button>

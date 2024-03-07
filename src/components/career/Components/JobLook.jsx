@@ -164,7 +164,7 @@ const JobLook = () => {
               location={job.location}
               type={job.job_type}
               experience={job.experience_level}
-              skill={job.skills.skills}
+              skill={JSON.parse(job.skills).skills}
               id={job.job_id}
               date={job.creation_date}
               key={ind}
