@@ -45,7 +45,6 @@ const AllCandidate = () => {
   useLayoutEffect(() => {
     const getCandidates = async () => {
       try {
-        console.log(token);
         const start = (currentPage - 1) * pageSize;
         const response = await axios.get(`${apiUrl}/applicant/getApplicants`, {
           headers: {
@@ -80,7 +79,7 @@ const AllCandidate = () => {
         <div className="p-[2rem]">
           <h1 className="text-3xl text-1xl font-bold border-b-1 border-black">Applied Candidates</h1>
         </div>
-        {CandidateCount > 0 ? (
+        {CandidateData.length > 0 ? (
           <>
             {CandidateData.map((data, i) => (
               <div className=" w-full">
