@@ -85,13 +85,12 @@ const ApplyForm = () => {
 
       try {
         const response = await axios.post(`${apiUrl}/applicant/apply`, data);
-        console.log(response.data.payload.applicantId);
-        const applicantId = response.data.payload.applicantId
         if (!response.data.success) {
           errorToast("Application Submission Failed");
           setLoading(false);
           return;
         }
+        const applicantId = response.data.payload.applicantId;
         const resumeResponse = await axios.post(`${apiUrl}/applicant/uploadResume`, resumeData, {
           headers: {
             applicantId: applicantId,
@@ -105,9 +104,12 @@ const ApplyForm = () => {
         }
         successToast("Application Submission Successful");
       } catch (error) {
-       
-        
-        errorToast(error.response.data.payload.message);
+        console.log(error);
+        if (error.response.status === 406) {
+          errorToast("You already applied for this Job");
+        } else {
+          errorToast("Application Submission Failed");
+        }
       }
     } else {
       errorToast("Please Fill The Form Appropriately");
@@ -289,7 +291,6 @@ const ApplyForm = () => {
               name="resume"
               accept=".pdf"
               onChange={(e) => setResume(e.target.files ? e.target.files[0] : null)}
-              isLoading={loading}
             />
           </div>
         </div>
@@ -298,6 +299,7 @@ const ApplyForm = () => {
           className="w-[10rem] py-[1rem] px-[2rem] text-white bg-blue-500 mb-[3rem] mt-[2rem]"
           endContent={<IoSend className="mt-[0.2rem]" />}
           type="submit"
+          isLoading={loading}
         >
           Submit
         </Button>

@@ -2,26 +2,21 @@ import { Button, Input, Textarea, Chip, Select, SelectItem } from "@nextui-org/r
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { IoIosCloseCircle } from "react-icons/io";
+import axios from "axios";
+import { getCookie } from "../../../utils/cookies";
 
 const CreateJob = () => {
-  const departments = ["IT", "Sales", "Marketing", "Human Reasource"];
-  const employmentType = ["Part Time", "Full-Type", "Contractual"];
+  let apiUrl = process.env.REACT_APP_API_URL;
+  if (process.env.NODE_ENV === "development") {
+    apiUrl = process.env.REACT_APP_DEV_API_URL;
+  }
+
+  const token = getCookie("token");
+
+  const departments = ["IT", "Sales", "Marketing", "HR"];
+  const employmentType = ["Part-time", "Full-time", "Contractual"];
   const location = ["Remote", "Hybrid", "In-office"];
-  const experience = ["Entry Level", "Mid-Level", "Senior"];
-
-  const [input, setInput] = useState({
-    Firstname: "",
-    Lastname: "",
-    contact: "",
-    email: "",
-    jobDescription: "",
-    role: "",
-    industry: "",
-    department: "",
-    EmploymentType: "",
-    category: "",
-  });
-
+  const experience = ["Entry-level", "Mid-level", "Senior"];
 
   const [activity, setActivity] = useState("");
   const [list, setList] = useState([]);
@@ -29,6 +24,19 @@ const CreateJob = () => {
   const [skillList, setSkillList] = useState([]);
   const [education, SetEducation] = useState("");
   const [educationList, SetEducationList] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const [input, setInput] = useState({
+    position: "",
+    jobdes: "",
+    role: "",
+    department: "IT",
+    industryType: "",
+    employmentType: "Full-time",
+    loc: "In-office",
+    exp: "Entry-level",
+    category: "",
+  });
 
   function handleUserInput(e) {
     const { name, value } = e.target;
@@ -109,21 +117,65 @@ const CreateJob = () => {
     removeEducation(i);
   };
 
-  function handleSubmitForm(e) {
+  async function handleSubmitForm(e) {
     e.preventDefault();
 
-    if (!input.category || !input.department || !input.employmentType || !input.exp || !input.industryType) {
-      toast.error("please fill the details");
-      return;
-    }
-    if (!input.jobdes || !input.loc || !input.position || !input.role) {
-      toast.error("please fill all the details");
+    if (
+      !input.category ||
+      !input.department ||
+      !input.employmentType ||
+      !input.exp ||
+      !input.industryType ||
+      skillList.length === 0 ||
+      educationList.length === 0 ||
+      list.length === 0
+    ) {
+      toast.error("Please Fill the Form Completely");
       return;
     }
 
-    if (!skillList || !educationList || !list) {
-      toast.error("List are empty! please fill");
+    const data = {
+      ...input,
+      skills: { skills: skillList },
+      education: { education: educationList },
+      profile: { profile: list },
+    };
+
+    try {
+      const response = await axios.post(`${apiUrl}/careers/createjob`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log(response);
+
+      setLoading(false);
+      if (!response.data.success) {
+        return toast.error("Job Creation Failed");
+      }
+
+      toast.success("Job Creation Successful");
+      setInput({
+        position: "",
+        jobdes: "",
+        role: "",
+        department: "IT",
+        industryType: "",
+        employmentType: "Full-time",
+        loc: "In-office",
+        exp: "Entry-level",
+        category: "",
+      });
+      setSkillList([]);
+      SetEducation("");
+      setList([]);
+    } catch (error) {
+      console.log(error);
+      toast.error("Application Creation Failed");
     }
+
+    setLoading(false);
   }
 
   return (
@@ -229,7 +281,7 @@ const CreateJob = () => {
         </div>
         <div>
           <label htmlFor="">
-            Departments <span className="text-red-500">*</span>
+            Department <span className="text-red-500">*</span>
           </label>
 
           <Select
@@ -361,7 +413,7 @@ const CreateJob = () => {
             Experience <span className="text-red-500">*</span>
           </label>
           <Select
-            defaultSelectedKeys={["Senior"]}
+            defaultSelectedKeys={["Entry-level"]}
             disallowEmptySelection
             isRequired
             label=""
@@ -433,7 +485,12 @@ const CreateJob = () => {
           </div>
         </div>
         <div className="flex flex-col items-center justify-between p-[2rem]">
-          <Button variant="shadow" className="w-[10rem] py-[1rem] px-[2rem] text-white bg-blue-500" type="submit">
+          <Button
+            variant="shadow"
+            className="w-[10rem] py-[1rem] px-[2rem] text-white bg-blue-500"
+            type="submit"
+            isLoading={loading}
+          >
             Submit
           </Button>
         </div>
