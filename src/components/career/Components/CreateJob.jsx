@@ -168,7 +168,7 @@ const CreateJob = () => {
         category: "",
       });
       setSkillList([]);
-      SetEducation("");
+      SetEducationList([]);
       setList([]);
     } catch (error) {
       console.log(error);
