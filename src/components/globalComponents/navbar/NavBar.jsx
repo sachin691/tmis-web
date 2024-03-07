@@ -12,16 +12,19 @@ import {
 } from "@nextui-org/react";
 import { Link, useNavigate } from "react-router-dom";
 import "./NavBar.css";
+import { getCookie } from "../../../utils/cookies";
+import UserAvatar from "../../globalSubComponents/UserAvatar";
 
 const NavBar = () => {
+  const isLoggedIn = getCookie("token") ? true : false;
   const curTab = useSelector((state) => state.curTab.value);
   const navOpenStatus = useSelector((state) => state.navOpenStatus.value);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const menuItems = ["Home", "Services", "Pricing", "About", "Privacy & Policy", "Contact Us"];
-  const handleContactUs = () => {
-    navigate("/ContactUs");
+  const menuItems = ["Home", "Services", "Pricing", "About", "Career", "Contact Us", "Login"];
+  const handleLogin = () => {
+    navigate("/Auth");
   };
   return (
     <Navbar
@@ -94,14 +97,26 @@ const NavBar = () => {
         </NavbarItem>
         <NavbarItem className="hidden md:block order-2">
           <Link
-            to="/Privacy&Policy"
+            to="/Career"
             className={
-              curTab === "Privacy & Policy"
+              curTab === "Career"
                 ? "active navActive flex flex-col px-[1rem] text-inherit text-xl text-white"
                 : "notActive px-[1rem] text-inherit text-xl text-white"
             }
           >
-            Privacy & Policy
+            Career
+          </Link>
+        </NavbarItem>
+        <NavbarItem className="hidden md:block order-2">
+          <Link
+            to="/ContactUs"
+            className={
+              curTab === "Contact Us"
+                ? "active navActive flex flex-col px-[1rem] text-inherit text-xl text-white"
+                : "notActive px-[1rem] text-inherit text-xl text-white"
+            }
+          >
+            Contact
           </Link>
         </NavbarItem>
       </NavbarContent>
@@ -110,7 +125,7 @@ const NavBar = () => {
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-              to={index === 4 ? "/Privacy&Policy" : index === 5 ? "/ContactUs" : `/${item}`}
+              to={index === 5 ? "/ContactUs" : index === 6 ? "/Auth" : `/${item}`}
               onClick={() => {
                 dispatch(updateNavStatus(!navOpenStatus));
               }}
@@ -124,9 +139,17 @@ const NavBar = () => {
       </NavbarMenu>
 
       <NavbarItem className="px-[1rem] hidden md:block  order-5">
-        <Button variant="solid" className="p-[20px] bg-[#f5a524] text-white " onClick={handleContactUs}>
-          Contact Us
-        </Button>
+        {isLoggedIn ? (
+          <NavbarContent justify="end">
+            <NavbarItem>
+              <UserAvatar />
+            </NavbarItem>
+          </NavbarContent>
+        ) : (
+          <Button variant="solid" className="p-[20px] bg-[#f5a524] text-white " onClick={handleLogin}>
+            Login
+          </Button>
+        )}
       </NavbarItem>
     </Navbar>
   );

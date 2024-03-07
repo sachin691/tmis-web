@@ -1,0 +1,19 @@
+.career {
+  background-image: url("https://images.unsplash.com/photo-1606857521015-7f9fcf423740?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right;
+}
+
+.ourMission {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0.8)),
+    url("../../../globalAssets/ourMission\ \(1\).jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right;
+}
+
+.shadows:hover {
+  transform: scale(105%);
+  box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.1);
+}

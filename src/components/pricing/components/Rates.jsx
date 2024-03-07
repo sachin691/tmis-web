@@ -177,15 +177,6 @@ const Rates = () => {
   };
 
   const handleProceed = () => {
-    console.log({
-      emailValidity,
-      userNameState,
-      companyNameState,
-      phoneState,
-      addressState,
-      service: serviceRef1.current.value,
-      plan: planRef1.current.value,
-    });
     if (
       !emailValidity &&
       userNameState > 2 &&

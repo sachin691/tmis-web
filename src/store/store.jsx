@@ -12,6 +12,7 @@ const store = configureStore({
     navOpenStatus: navOpenStatusSlice,
     checkoutPermit: checkoutPermitSlice,
   },
+  devTools:true
 });
 
 export default store;
