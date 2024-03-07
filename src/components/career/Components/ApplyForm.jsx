@@ -85,8 +85,20 @@ const ApplyForm = () => {
 
       try {
         const response = await axios.post(`${apiUrl}/applicant/apply`, data);
-        console.log(response);
+        console.log(response.data.payload.applicantId);
+        const applicantId = response.data.payload.applicantId
         if (!response.data.success) {
+          errorToast("Application Submission Failed");
+          setLoading(false);
+          return;
+        }
+        const resumeResponse = await axios.post(`${apiUrl}/applicant/uploadResume`, resumeData, {
+          headers: {
+            applicantId: applicantId,
+          },
+        });
+        console.log("resumeResponse", resumeResponse);
+        if (!resumeResponse.data.success) {
           errorToast("Application Submission Failed");
           setLoading(false);
           return;

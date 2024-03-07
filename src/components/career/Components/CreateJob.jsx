@@ -9,24 +9,26 @@ const CreateJob = () => {
   const location = ["Remote", "Hybrid", "In-office"];
   const experience = ["Entry Level", "Mid-Level", "Senior"];
 
+  const [input, setInput] = useState({
+    Firstname: "",
+    Lastname: "",
+    contact: "",
+    email: "",
+    jobDescription: "",
+    role: "",
+    industry: "",
+    department: "",
+    EmploymentType: "",
+    category: "",
+  });
+
+
   const [activity, setActivity] = useState("");
   const [list, setList] = useState([]);
   const [skill, setSkill] = useState("");
   const [skillList, setSkillList] = useState([]);
   const [education, SetEducation] = useState("");
   const [educationList, SetEducationList] = useState([]);
-
-  const [input, setInput] = useState({
-    position: "",
-    role: "",
-    department: "",
-    jobdes: "",
-    industryType: "",
-    loc: "",
-    exp: "",
-    category: "",
-    employmentType: "",
-  });
 
   function handleUserInput(e) {
     const { name, value } = e.target;
