@@ -8,6 +8,7 @@ import { Accordion, AccordionItem, Button, Pagination, Divider } from "@nextui-o
 import { MdOutlineFileDownload } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
 import Model from "./Model";
+import { FaRegEye } from "react-icons/fa";
 
 import Space from "./Space";
 const content = [
@@ -56,6 +57,11 @@ const content = [
 const pageSize = 8;
 
 const AllCandidate = () => {
+  let apiUrl = process.env.REACT_APP_API_URL;
+  if (process.env.NODE_ENV === "development") {
+    apiUrl = process.env.REACT_APP_DEV_API_URL;
+  }
+  
   const [CandidateCount, setCandidateCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const { name, id } = useParams();
@@ -125,9 +131,11 @@ const AllCandidate = () => {
                     {data.expected}
                   </h1>
                 </div>
-                <Button onClick={() => Download(i)} className=" text-black" size="sm">
-                  Download Resume : <MdOutlineFileDownload />
-                </Button>
+                <a href={`${apiUrl}/applicant/applicantResumes/default.pdf`} target="_blank">
+                  <Button  className=" text-black" size="sm">
+                    View Resume : <FaRegEye />
+                  </Button>
+                </a>
               </AccordionItem>
             </Accordion>
           </div>
@@ -163,7 +171,7 @@ const AllCandidate = () => {
         </div>
         <div></div>
       </div>
-      {showModel && <Model onClose={() => setShowModel(false)} />}
+      {showModel && <Model onClose={() => setShowModel(false)} jobId={id} />}
     </>
   );
 };
