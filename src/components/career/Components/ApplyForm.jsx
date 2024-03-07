@@ -93,8 +93,9 @@ const ApplyForm = () => {
         }
         successToast("Application Submission Successful");
       } catch (error) {
-        console.log(error);
-        errorToast("Application Submission Failed");
+       
+        
+        errorToast(error.response.data.payload.message);
       }
     } else {
       errorToast("Please Fill The Form Appropriately");
