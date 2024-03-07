@@ -6,20 +6,16 @@ import { useDispatch } from "react-redux";
 import { updateTab } from "../../store/curTabSlice";
 import { updateCheckoutPermit } from "../../store/checkoutPermitSlice";
 
-
 const Career = () => {
   const dispatch = useDispatch();
   dispatch(updateTab("Career"));
   dispatch(updateCheckoutPermit(false));
 
-   
-
-  
   return (
     <div>
       <Intro />
       <Tittle />
-      <JobLook  />
+      <JobLook />
     </div>
   );
 };

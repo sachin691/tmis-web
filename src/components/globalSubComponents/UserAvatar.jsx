@@ -5,18 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { updateToLoginStatus } from "../../store/toLoginSlice";
 import { useDispatch } from "react-redux";
 import { removeCookie } from "../../utils/cookies";
-// Local Files
-import profilepic from "../../globalAssets/aboutUsMan (1).jpg";
 
 const UserAvatar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  let apiUrl = process.env.REACT_APP_API_URL;
-  if (process.env.NODE_ENV === "development") {
-    apiUrl = process.env.REACT_APP_DEV_API_URL;
-  }
-
 
   const handleLogout = () => {
     removeCookie("token");
@@ -30,7 +22,13 @@ const UserAvatar = () => {
     <>
       <Dropdown placement="bottom-end">
         <DropdownTrigger>
-          <Avatar isBordered as="button" className="transition-transform" src="" color="danger" />
+          <Avatar
+            isBordered
+            as="button"
+            className="transition-transform"
+            src="https://images.unsplash.com/photo-1509114397022-ed747cca3f65?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            color="danger"
+          />
         </DropdownTrigger>
         <DropdownMenu aria-label="Profile Actions" variant="flat">
           <DropdownItem key="privacy" className="p-0" textValue="privacy">

@@ -46,6 +46,12 @@ const CreateJob = () => {
     });
   }
 
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+    }
+  };
+
   const AddEducation = (e) => {
     e.preventDefault();
 
@@ -119,6 +125,7 @@ const CreateJob = () => {
 
   async function handleSubmitForm(e) {
     e.preventDefault();
+    setLoading(true);
 
     if (
       !input.category ||
@@ -147,8 +154,6 @@ const CreateJob = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-
-      console.log(response);
 
       setLoading(false);
       if (!response.data.success) {
@@ -202,7 +207,6 @@ const CreateJob = () => {
           </label>
           <Input
             type="text"
-            label=""
             name="position"
             id="position"
             size="sm"
@@ -210,6 +214,7 @@ const CreateJob = () => {
             color="primary"
             value={input.position}
             onChange={handleUserInput}
+            onKeyDown={handleKeyPress}
           />
         </div>
         <div>
@@ -217,8 +222,6 @@ const CreateJob = () => {
             Job Description <span className="text-red-700">*</span>
           </label>
           <Textarea
-            label=""
-            placeholder=""
             variant="bordered"
             name="jobdes"
             id="jobdes"
@@ -236,14 +239,14 @@ const CreateJob = () => {
           <div className="flex flex-row items-center justify-center gap-2 ">
             <Input
               type="text"
-              label=""
               variant="bordered"
               color="primary"
-              name="First Name"
-              id="First Name"
+              name="Profile"
+              id="Profile"
               size="sm"
               value={activity}
               onChange={(e) => setActivity(e.target.value)}
+              onKeyDown={handleKeyPress}
             />
             <button className="text-white bg-blue-500 py-[0.7rem] px-[1rem] rounded-xl" onClick={AddActivity}>
               Add
@@ -269,7 +272,6 @@ const CreateJob = () => {
           </label>
           <Input
             type="text"
-            label=""
             name="role"
             id="role"
             value={input.role}
@@ -277,6 +279,7 @@ const CreateJob = () => {
             size="sm"
             variant="bordered"
             color="primary"
+            onKeyDown={handleKeyPress}
           />
         </div>
         <div>
@@ -288,8 +291,6 @@ const CreateJob = () => {
             defaultSelectedKeys={["IT"]}
             disallowEmptySelection
             isRequired
-            label=""
-            placeholder=""
             className="min-w-full"
             size="sm"
             variant="bordered"
@@ -312,7 +313,6 @@ const CreateJob = () => {
           </label>
           <Input
             type="text"
-            label=""
             name="industryType"
             id="industryType"
             size="sm"
@@ -320,6 +320,7 @@ const CreateJob = () => {
             color="primary"
             value={input.industryType}
             onChange={handleUserInput}
+            onKeyDown={handleKeyPress}
           />
         </div>
         <div>
@@ -329,14 +330,14 @@ const CreateJob = () => {
           <div className="flex flex-row items-center justify-center gap-2 ">
             <Input
               type="text"
-              label=""
               variant="bordered"
               color="primary"
-              name="First Name"
-              id="First Name"
+              name="Education"
+              id="Education"
               size="sm"
               value={education}
               onChange={(e) => SetEducation(e.target.value)}
+              onKeyDown={handleKeyPress}
             />
             <button className="text-white bg-blue-500 py-[0.7rem] px-[1rem] rounded-xl" onClick={AddEducation}>
               Add
@@ -364,8 +365,6 @@ const CreateJob = () => {
             defaultSelectedKeys={["Full-time"]}
             disallowEmptySelection
             isRequired
-            label=""
-            placeholder=""
             className="min-w-full"
             size="sm"
             variant="bordered"
@@ -390,8 +389,6 @@ const CreateJob = () => {
             defaultSelectedKeys={["In-office"]}
             disallowEmptySelection
             isRequired
-            label=""
-            placeholder=""
             className="min-w-full"
             size="sm"
             variant="bordered"
@@ -416,8 +413,6 @@ const CreateJob = () => {
             defaultSelectedKeys={["Entry-level"]}
             disallowEmptySelection
             isRequired
-            label=""
-            placeholder=""
             className="min-w-full"
             size="sm"
             variant="bordered"
@@ -448,6 +443,7 @@ const CreateJob = () => {
             id="category"
             value={input.category}
             onChange={handleUserInput}
+            onKeyDown={handleKeyPress}
           />
         </div>
         <div>
@@ -457,7 +453,6 @@ const CreateJob = () => {
           <div className="flex flex-row items-center justify-center gap-2">
             <Input
               type="text"
-              label=""
               name="skill"
               id="skill"
               size="sm"
@@ -465,6 +460,7 @@ const CreateJob = () => {
               color="primary"
               value={skill}
               onChange={(event) => setSkill(event.target.value)}
+              onKeyDown={handleKeyPress}
             />
             <button className="text-white bg-blue-500 py-[0.8rem] px-[1rem] rounded-xl" onClick={addSkill}>
               Add

@@ -1,6 +1,6 @@
 import { useState, useLayoutEffect, useEffect } from "react";
 import JobCards from "./JobCards";
-import { Pagination, Dropdown, DropdownItem, DropdownTrigger, DropdownMenu, Button } from "@nextui-org/react";
+import { Pagination, Dropdown, DropdownItem, DropdownTrigger, DropdownMenu, Button, Skeleton } from "@nextui-org/react";
 import { IoMdArrowDropdown } from "react-icons/io";
 import axios from "axios";
 import { scrollTop } from "../../../utils/methods";
@@ -14,6 +14,7 @@ const JobLook = () => {
   }
 
   const [jobCount, setJobCount] = useState(0);
+  const [jobExist, setJobExist] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [department, setDepartment] = useState(new Set(["All"]));
   const [jobType, setJobType] = useState(new Set(["All"]));
@@ -43,6 +44,8 @@ const JobLook = () => {
           setJobCount(0);
           return;
         }
+
+        setJobExist(true);
 
         setJobsData(response.data.payload.jobs);
         setJobCount(response.data.payload.total);
@@ -156,35 +159,45 @@ const JobLook = () => {
           </DropdownMenu>
         </Dropdown>
       </div>
-      {jobCount ? (
-        <div className="flex flex-col gap-3 items-center justify-center md:p-[4rem] p-[1rem]">
-          {jobsData.map((job, ind) => (
-            <JobCards
-              title={job.title}
-              location={job.location}
-              type={job.job_type}
-              experience={job.experience_level}
-              skill={JSON.parse(job.skills).skills}
-              id={job.job_id}
-              date={job.creation_date}
-              key={ind}
-            />
-          ))}
-          <div className="py-[2rem]">
-            <Pagination
-              loop
-              showControls
-              color="primary"
-              variant="light"
-              onChange={(pageNumber) => setCurrentPage(pageNumber)}
-              total={jobCount ? Math.ceil(jobCount / pageSize) : 0}
-              initialPage={1}
-            />
+      {jobExist ? (
+        jobCount ? (
+          <div className="flex flex-col gap-3 items-center justify-center md:p-[4rem] p-[1rem]">
+            {jobsData.map((job, ind) => (
+              <JobCards
+                title={job.title}
+                location={job.location}
+                type={job.job_type}
+                experience={job.experience_level}
+                skill={JSON.parse(job.skills).skills}
+                id={job.job_id}
+                date={job.creation_date}
+                key={ind}
+              />
+            ))}
+            <div className="py-[2rem]">
+              <Pagination
+                loop
+                showControls
+                color="primary"
+                variant="light"
+                onChange={(pageNumber) => setCurrentPage(pageNumber)}
+                total={jobCount ? Math.ceil(jobCount / pageSize) : 0}
+                initialPage={1}
+              />
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="min-h-[40rem] flex justify-center items-center font-bold text-2xl text-default-500">
+            <p>No Jobs Available</p>
+          </div>
+        )
       ) : (
-        <div className="min-h-[40rem] flex justify-center items-center font-bold text-2xl text-default-500">
-          <p>No Jobs Available</p>
+        <div className="my-[3rem]">
+          {[1, 2, 3, 4].map(() => (
+            <Skeleton className="rounded-lg my-[0.5rem] mx-[2rem] lg:mx-[4rem]">
+              <div className="h-[10rem] rounded-lg bg-default-300"></div>
+            </Skeleton>
+          ))}
         </div>
       )}
     </>
