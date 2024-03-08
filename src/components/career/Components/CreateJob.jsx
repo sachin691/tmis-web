@@ -35,7 +35,7 @@ const CreateJob = () => {
     employmentType: "Full-time",
     loc: "In-office",
     exp: "Entry-level",
-    category: "",
+    category: "IT",
   });
 
   function handleUserInput(e) {
@@ -128,7 +128,6 @@ const CreateJob = () => {
     setLoading(true);
 
     if (
-      !input.category ||
       !input.department ||
       !input.employmentType ||
       !input.exp ||
@@ -137,6 +136,7 @@ const CreateJob = () => {
       educationList.length === 0 ||
       list.length === 0
     ) {
+      setLoading(false);
       toast.error("Please Fill the Form Completely");
       return;
     }
@@ -155,8 +155,8 @@ const CreateJob = () => {
         },
       });
 
-      setLoading(false);
       if (!response.data.success) {
+        setLoading(false);
         return toast.error("Job Creation Failed");
       }
 
@@ -428,23 +428,6 @@ const CreateJob = () => {
               </SelectItem>
             ))}
           </Select>
-        </div>
-        <div>
-          <label htmlFor="">
-            Role Category <span className="text-red-500">*</span>
-          </label>
-          <Input
-            type="text"
-            label=""
-            size="sm"
-            variant="bordered"
-            color="primary"
-            name="category"
-            id="category"
-            value={input.category}
-            onChange={handleUserInput}
-            onKeyDown={handleKeyPress}
-          />
         </div>
         <div>
           <label htmlFor="">

@@ -11,7 +11,7 @@ const Model = ({ onClose, jobId }) => {
   if (process.env.NODE_ENV === "development") {
     apiUrl = process.env.REACT_APP_DEV_API_URL;
   }
-    const token = getCookie("token");
+  const token = getCookie("token");
 
   const navigate = useNavigate();
   const modalRef = useRef();

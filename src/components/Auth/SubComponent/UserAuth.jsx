@@ -102,7 +102,7 @@ const UserAuth = () => {
         email: email.current,
         password: password.current,
       });
-
+      console.log("ressponse: " + response);
       if (response.data.success) {
         const cookieOptions = { expires: response.data.payload.expires };
 

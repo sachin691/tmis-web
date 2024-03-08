@@ -8,7 +8,7 @@ import { scrollTop } from "../../../utils/methods";
 const JobDescription = () => {
   let apiUrl = process.env.REACT_APP_API_URL;
   if (process.env.NODE_ENV === "development") {
-    apiUrl = process.env.REACT_APP_DEV_API_URL;
+   apiUrl = process.env.REACT_APP_DEV_API_URL;
   }
 
   const [jobType, setjobType] = useState("");
@@ -83,9 +83,6 @@ const JobDescription = () => {
               </p>
               <p>
                 <span className="font-bold">Employment Type:</span> {jobType}
-              </p>
-              <p>
-                <span className="font-bold">Role Category:</span> {Category}
               </p>
             </div>
 
