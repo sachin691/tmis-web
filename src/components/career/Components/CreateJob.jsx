@@ -35,7 +35,7 @@ const CreateJob = () => {
     employmentType: "Full-time",
     loc: "In-office",
     exp: "Entry-level",
-    category: "IT",
+    category: "Not Applicable",
   });
 
   function handleUserInput(e) {

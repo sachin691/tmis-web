@@ -52,7 +52,7 @@ const AllCandidate = () => {
     };
 
     getCandidates();
-  }, []);
+  }, [apiUrl, currentPage]);
   const navigate = useNavigate();
 
   return (
